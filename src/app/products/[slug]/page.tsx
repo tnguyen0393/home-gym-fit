@@ -59,7 +59,7 @@ export default async function ProductPage(props: { params: Promise<{ slug: strin
       <div className="max-w-3xl rounded-lg border border-stone-200 bg-white p-4">
         <SpecTable rows={rows} />
       </div>
-      {ceilingUsesUprightHeight(product) ? (
+      {product.category === "rack" && ceilingUsesUprightHeight(product) ? (
         <p className="max-w-prose text-sm text-stone-600">
           Minimum ceiling is unverified. Upright height is used for ceiling filters, and it is not
           a clearance calculation.

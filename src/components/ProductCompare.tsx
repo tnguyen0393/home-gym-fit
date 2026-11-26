@@ -1,31 +1,12 @@
 import Link from "next/link";
-import {
-  cardSpecCells,
-  formatBool,
-  formatFoldDirection,
-  type SpecCell,
-} from "@/lib/format";
+import { cardSpecCells, compareExtraCells, type SpecCell } from "@/lib/format";
 import type { GymProduct } from "@/lib/types";
 import { SpecValue } from "@/components/SpecTable";
-
-function extraCells(product: GymProduct): SpecCell[] {
-  const installationMissing = product.installation == null;
-  return [
-    {
-      label: "Wall mount",
-      value:
-        installationMissing && product.category !== "rack"
-          ? "N/A"
-          : formatBool(product.installation?.wall_mount_required),
-    },
-    { label: "Fold direction", value: formatFoldDirection(product) },
-  ];
-}
 
 function compareRows(products: GymProduct[]): { label: string; values: SpecCell[] }[] {
   const labels: string[] = [];
   const columns = products.map((product) => {
-    const cells = [...cardSpecCells(product), ...extraCells(product)];
+    const cells = [...cardSpecCells(product), ...compareExtraCells(product)];
     for (const cell of cells) {
       if (!labels.includes(cell.label)) labels.push(cell.label);
     }

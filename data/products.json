@@ -828,5 +828,280 @@
       "rep_affiliate_eligible": false,
       "amazon_asin": null
     }
+  },
+  {
+    "id": "rep-nighthawk-adjustable-bench",
+    "slug": "rep-nighthawk-adjustable-weight-bench",
+    "brand": "REP Fitness",
+    "model": "Nighthawk Adjustable Bench",
+    "sku": "AB-4102-MBLK",
+    "category": "bench",
+    "dimensions": {
+      "height_in": 16.7,
+      "min_ceiling_in": null,
+      "width_in": 25.9,
+      "depth_open_in": 51,
+      "depth_folded_in": null,
+      "footprint_sqft": 9.17,
+      "unit_weight_lbs": 88
+    },
+    "bench_specs": {
+      "bench_type": "adjustable",
+      "vertical_storage": true,
+      "stored_height_in": null,
+      "stored_width_in": null,
+      "stored_depth_in": null,
+      "stored_footprint_sqft": null,
+      "weight_capacity_lbs": 700,
+      "pad_width_in": 11.8,
+      "pad_thickness_in": null,
+      "pad_gap_in": 1.57,
+      "back_pad_positions": 7,
+      "seat_pad_positions": 4,
+      "decline_capable": false,
+      "transport_wheels": true
+    },
+    "verification": {
+      "spec_sheet_url": "https://repfitness.com/products/rep-nighthawk-adjustable-bench",
+      "additional_source_urls": [
+        "https://repfitness.com/products/rep-nighthawk-adjustable-bench.js"
+      ],
+      "last_verified_date": "2026-11-26",
+      "verification_status": "partial",
+      "unverified_fields": [
+        "dimensions.depth_folded_in",
+        "bench_specs.stored_height_in",
+        "bench_specs.stored_width_in",
+        "bench_specs.stored_depth_in",
+        "bench_specs.stored_footprint_sqft",
+        "bench_specs.pad_thickness_in"
+      ],
+      "notes": "Successor to the AB-4100 per manufacturer page ('builds on the success of the popular AB-4100'); no active AB-4100 bench product page found on repfitness.com. Vertical storage via built-in rubber-coated upright storage post. Tech Specs: Bench Height 16.7\", Width 25.9\", Length 51\", Weight 88 lb, Pad Width 11.8\", Pad Gap 1.57\", Footprint 9.2 SQFT (published, rounded; derived 9.17), Tolerance 3%, Weight Capacity 700 lb, 7- & 14-gauge steel. Back pad angles 0, 15, 30, 45, 60, 75, 85; seat angles -15, 0, 10, 20 (no negative back pad angle published; decline_capable recorded false on that basis). Knurled front handle and wheels. Stored dimensions and pad thickness not published. SKU is Metallic Black variant; other colors AB-4102-RED/BLU/MAT/OLV/WHT."
+    },
+    "affiliates": {
+      "manufacturer_url": "https://repfitness.com/products/rep-nighthawk-adjustable-bench",
+      "rep_affiliate_eligible": true,
+      "amazon_asin": null
+    }
+  },
+  {
+    "id": "rep-ab-5200-2-0",
+    "slug": "rep-ab-5200-2-0-adjustable-weight-bench",
+    "brand": "REP Fitness",
+    "model": "AB-5200 2.0 Adjustable Bench",
+    "sku": "ab-5200",
+    "category": "bench",
+    "dimensions": {
+      "height_in": 17.5,
+      "min_ceiling_in": null,
+      "width_in": 25.8,
+      "depth_open_in": 57.6,
+      "depth_folded_in": null,
+      "footprint_sqft": 10.32,
+      "unit_weight_lbs": 115
+    },
+    "bench_specs": {
+      "bench_type": "adjustable",
+      "vertical_storage": true,
+      "stored_height_in": null,
+      "stored_width_in": null,
+      "stored_depth_in": null,
+      "stored_footprint_sqft": 3.1,
+      "weight_capacity_lbs": 1000,
+      "pad_width_in": 12,
+      "pad_thickness_in": null,
+      "pad_gap_in": 1.4,
+      "back_pad_positions": 10,
+      "seat_pad_positions": 4,
+      "decline_capable": true,
+      "transport_wheels": null
+    },
+    "verification": {
+      "spec_sheet_url": "https://repfitness.com/products/ab-5200-2-0",
+      "additional_source_urls": [
+        "https://repfitness.com/products/ab-5200-2-0.js"
+      ],
+      "last_verified_date": "2026-11-26",
+      "verification_status": "partial",
+      "unverified_fields": [
+        "dimensions.depth_folded_in",
+        "bench_specs.stored_height_in",
+        "bench_specs.stored_width_in",
+        "bench_specs.stored_depth_in",
+        "bench_specs.pad_thickness_in",
+        "bench_specs.transport_wheels"
+      ],
+      "notes": "Vertical storage on integrated metal stand with plastic liner; manufacturer-published vertically stored footprint 3.1 SQFT (stored height/width/depth not published). Assembled Bench Height 17.5\" (including pad), Width 25.8\", Length 57.6\", Weight 115 lb. Published Footprint 57.6\"(L) x 25.8\"(W) listed as 10.33 SQFT; formula-derived value 10.32 recorded. Back pad angles 0, 20, 30, 37.5, 45, 52.5, 60, 67.5, 75, 85 (10); optional adjustable post adds decline angles -8, -6, -4 (decline_capable true only with adjustable-post configuration). Seat angles 0, 8, 20, 30. Pad width 12\" standard (14\" wide pad option; standard seat tapers to 8.9\"). Pad Gap 1.4\". Weight Capacity 1,000 lb. Knurled stainless-steel front handle stated; wheels not stated in product copy. SKU 'ab-5200' as published (lowercase) on all color variants."
+    },
+    "affiliates": {
+      "manufacturer_url": "https://repfitness.com/products/ab-5200-2-0",
+      "rep_affiliate_eligible": true,
+      "amazon_asin": null
+    }
+  },
+  {
+    "id": "rogue-adjustable-bench-3-0",
+    "slug": "rogue-adjustable-bench-3-0",
+    "brand": "Rogue Fitness",
+    "model": "Adjustable Bench 3.0",
+    "sku": "RF0935-BLACK-MG",
+    "category": "bench",
+    "dimensions": {
+      "height_in": 17.5,
+      "min_ceiling_in": null,
+      "width_in": 24.75,
+      "depth_open_in": 56.5,
+      "depth_folded_in": null,
+      "footprint_sqft": 9.71,
+      "unit_weight_lbs": 125
+    },
+    "bench_specs": {
+      "bench_type": "adjustable",
+      "vertical_storage": true,
+      "stored_height_in": null,
+      "stored_width_in": null,
+      "stored_depth_in": null,
+      "stored_footprint_sqft": null,
+      "weight_capacity_lbs": null,
+      "pad_width_in": 11,
+      "pad_thickness_in": null,
+      "pad_gap_in": 1,
+      "back_pad_positions": 10,
+      "seat_pad_positions": 3,
+      "decline_capable": false,
+      "transport_wheels": true
+    },
+    "verification": {
+      "spec_sheet_url": "https://www.roguefitness.com/rogue-adjustable-bench-3-0",
+      "additional_source_urls": [],
+      "last_verified_date": "2026-11-26",
+      "verification_status": "partial",
+      "unverified_fields": [
+        "dimensions.depth_folded_in",
+        "bench_specs.stored_height_in",
+        "bench_specs.stored_width_in",
+        "bench_specs.stored_depth_in",
+        "bench_specs.stored_footprint_sqft",
+        "bench_specs.weight_capacity_lbs",
+        "bench_specs.pad_thickness_in"
+      ],
+      "notes": "Built-In Vertical Storage Stand with rubber padding at base per Gear Specs. Pad Height 17.5\" flat (55.75\" at 85 degrees). Foot Print: 24.75\" Rear Foot Width x 56.5\" Length at Base (used for width_in and depth_open_in); overall pad length 52\". Unit Weight 125 lb. Pad Width 11\" (USA Textured Foam Pad, the only pad listed as available); 11.25\" for USA Vinyl Pad. 1\" gap between seat and back pad. Back positions 0, 15, 30, 37.5, 45, 52.5, 60, 67.5, 75, 85 (10); seat 0, 15, 30 (3); no negative back angle published (decline_capable false on that basis). Wheels and handle for mobility. Rogue does not publish a weight capacity. SKU is the product-group SKU in manufacturer structured data; purchasable variants are labeled 'Rogue Adjustable Bench 3.1' with SKUs RF0959-*."
+    },
+    "affiliates": {
+      "manufacturer_url": "https://www.roguefitness.com/rogue-adjustable-bench-3-0",
+      "rep_affiliate_eligible": false,
+      "amazon_asin": null
+    }
+  },
+  {
+    "id": "ironmaster-super-bench-pro-v2",
+    "slug": "ironmaster-super-bench-pro-v2",
+    "brand": "Ironmaster",
+    "model": "Super Bench PRO V2",
+    "sku": "1001",
+    "category": "bench",
+    "dimensions": {
+      "height_in": 17.2,
+      "min_ceiling_in": null,
+      "width_in": null,
+      "depth_open_in": 47,
+      "depth_folded_in": null,
+      "footprint_sqft": null,
+      "unit_weight_lbs": 69
+    },
+    "bench_specs": {
+      "bench_type": "adjustable",
+      "vertical_storage": true,
+      "stored_height_in": null,
+      "stored_width_in": null,
+      "stored_depth_in": null,
+      "stored_footprint_sqft": null,
+      "weight_capacity_lbs": 1000,
+      "pad_width_in": 12.25,
+      "pad_thickness_in": 2.5,
+      "pad_gap_in": null,
+      "back_pad_positions": 11,
+      "seat_pad_positions": 3,
+      "decline_capable": true,
+      "transport_wheels": true
+    },
+    "verification": {
+      "spec_sheet_url": "https://ironmaster.com/products/super-bench-pro-v2",
+      "additional_source_urls": [
+        "https://ironmaster.com/products/super-bench-pro-v2.js"
+      ],
+      "last_verified_date": "2026-11-26",
+      "verification_status": "partial",
+      "unverified_fields": [
+        "dimensions.width_in",
+        "dimensions.footprint_sqft",
+        "dimensions.depth_folded_in",
+        "bench_specs.stored_height_in",
+        "bench_specs.stored_width_in",
+        "bench_specs.stored_depth_in",
+        "bench_specs.stored_footprint_sqft",
+        "bench_specs.pad_gap_in"
+      ],
+      "notes": "'Stands up vertically to save space' per manufacturer. Flat height 17.2\"; overall bench length 47\". Overall width not published (base: narrow foot 12.5\" wide, longer foot 21\" wide). Bench weight 65 lb without incline seat, 69 lb with it (69 recorded). Weight capacity 1,000 lb flat; 600 lb incline and upright. Main pad 44\" x 10.25\"/12.25\" (dual-width) x 2.5\" thick; 12.25\" recorded as pad_width_in. Seat 9.5\" L x 9.25\"/5.25\" W. 11 lock-out angles 0, 5, 10, 20, 30, 40, 50, 60, 70, 80, 85 described as covering decline; manufacturer recommends Crunch Situp attachment for decline angles. Incline seat 3 positions. Pad gap with seat installed not published (seat removable for gapless pad). Wheels and handle standard. Shipping weight 79 lb at 50\" x 13\" x 19\"."
+    },
+    "affiliates": {
+      "manufacturer_url": "https://ironmaster.com/products/super-bench-pro-v2",
+      "rep_affiliate_eligible": false,
+      "amazon_asin": null
+    }
+  },
+  {
+    "id": "titan-series-single-post-flat-bench",
+    "slug": "titan-series-single-post-flat-bench",
+    "brand": "Titan Fitness",
+    "model": "TITAN Series Single Post Flat Bench",
+    "sku": "401848",
+    "category": "bench",
+    "dimensions": {
+      "height_in": 17,
+      "min_ceiling_in": null,
+      "width_in": 26,
+      "depth_open_in": 50,
+      "depth_folded_in": null,
+      "footprint_sqft": 9.03,
+      "unit_weight_lbs": 76
+    },
+    "bench_specs": {
+      "bench_type": "flat",
+      "vertical_storage": true,
+      "stored_height_in": null,
+      "stored_width_in": null,
+      "stored_depth_in": null,
+      "stored_footprint_sqft": null,
+      "weight_capacity_lbs": 1200,
+      "pad_width_in": 14,
+      "pad_thickness_in": 4,
+      "pad_gap_in": null,
+      "back_pad_positions": null,
+      "seat_pad_positions": null,
+      "decline_capable": false,
+      "transport_wheels": true
+    },
+    "verification": {
+      "spec_sheet_url": "https://titan.fitness/products/titan-series-single-post-flat-bench",
+      "additional_source_urls": [
+        "https://titan.fitness/products/titan-series-single-post-flat-bench.js"
+      ],
+      "last_verified_date": "2026-11-26",
+      "verification_status": "partial",
+      "unverified_fields": [
+        "dimensions.depth_folded_in",
+        "bench_specs.stored_height_in",
+        "bench_specs.stored_width_in",
+        "bench_specs.stored_depth_in",
+        "bench_specs.stored_footprint_sqft"
+      ],
+      "notes": "'Stores upright to save space when not in use' per manufacturer. Specifications: Overall Height 17\" (recorded as flat pad height), Overall Length 50\", Overall Width 26\", Pad Length 50\", Pad Width 14\", Pad Thickness 4\", Weight Capacity 1,200 lb, Product Weight 76 lb, 3x3\" 11-ga steel. Front knurled handle, rear wheels, rubber feet. Flat-only bench: pad_gap_in, back_pad_positions, seat_pad_positions not applicable; decline_capable false per flat-only design. SKU is Black variant; Navy 402058, White 402059, Red 402057. Stored dimensions not published."
+    },
+    "affiliates": {
+      "manufacturer_url": "https://titan.fitness/products/titan-series-single-post-flat-bench",
+      "rep_affiliate_eligible": false,
+      "amazon_asin": null
+    }
   }
 ]

@@ -16,6 +16,7 @@ export const fitPresets: FitPreset[] = [
     criteria:
       "Includes a rack when its published upright height is 92 inches or less, or the manufacturer states a minimum ceiling of 96 inches or less. A rack that meets neither published test is left out. Upright height is not turned into a clearance allowance.",
     matches: (product) => {
+      if (product.category !== "rack") return false;
       const height = product.dimensions?.height_in;
       const ceiling = product.dimensions?.min_ceiling_in;
       return (height != null && height <= 92) || (ceiling != null && ceiling <= 96);
@@ -28,6 +29,7 @@ export const fitPresets: FitPreset[] = [
     criteria:
       "Includes a rack when its published upright height is 84 inches or less. Racks with no published upright height are left out. No clearance is added to the published height.",
     matches: (product) => {
+      if (product.category !== "rack") return false;
       const height = product.dimensions?.height_in;
       return height != null && height <= 84;
     },

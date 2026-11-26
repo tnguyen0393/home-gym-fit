@@ -9,7 +9,7 @@ import { getProducts } from "@/lib/products";
 export const metadata: Metadata = {
   title: "Directory",
   description:
-    "Filter compact racks and short rackable barbells by ceiling, folded depth, wall mount, rack type, and bar length.",
+    "Filter compact racks, short rackable barbells, and vertical-storage benches by ceiling, folded depth, wall mount, rack type, bar length, and storage.",
   alternates: { canonical: "/directory/" },
 };
 
@@ -23,7 +23,8 @@ export default function DirectoryPage() {
       <header className="flex max-w-prose flex-col gap-2">
         <h1 className="text-3xl font-semibold tracking-tight">Directory</h1>
         <p className="text-stone-700">
-          Published measurements only. A missing minimum ceiling is not estimated.
+          Published measurements for racks, short barbells, and vertical-storage benches. A missing
+          number stays unverified.
         </p>
       </header>
       <DisclosureNote includeAmazonStatement={showAmazon} />

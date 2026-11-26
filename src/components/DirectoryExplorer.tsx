@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { matchesDirectoryFilters } from "@/lib/filters";
-import { CATEGORY_LABELS, RACK_TYPE_LABELS } from "@/lib/format";
+import { RACK_TYPE_LABELS } from "@/lib/format";
 import type { GymProduct, ProductCategory, RackType } from "@/lib/types";
 import { ProductCard } from "@/components/ProductCard";
 import { ProductCompare } from "@/components/ProductCompare";
@@ -10,6 +10,11 @@ import { chipClass, fieldClass, secondaryButtonClass } from "@/components/styles
 
 const RACK_TYPES = Object.keys(RACK_TYPE_LABELS) as RackType[];
 const CATEGORIES: ProductCategory[] = ["rack", "barbell", "bench"];
+const CATEGORY_FILTER_LABELS: Record<ProductCategory, string> = {
+  rack: "Racks",
+  barbell: "Barbells",
+  bench: "Benches",
+};
 const RACK_TYPE_SET = new Set<string>(RACK_TYPES);
 const CATEGORY_SET = new Set<string>(CATEGORIES);
 
@@ -44,6 +49,7 @@ function readInitialQuery(products: GymProduct[]): {
   rackType: "any" | RackType;
   renterOnly: boolean;
   foldingOnly: boolean;
+  verticalStorage: boolean;
   sort: SortKey;
   compare: string[];
 } {
@@ -67,6 +73,7 @@ function readInitialQuery(products: GymProduct[]): {
     rackType: rackValue && RACK_TYPE_SET.has(rackValue) ? (rackValue as RackType) : "any",
     renterOnly: params.get("renter") === "1",
     foldingOnly: params.get("folding") === "1",
+    verticalStorage: params.get("vertical") === "1",
     sort: readSort(params.get("sort")),
     compare,
   };
@@ -101,6 +108,7 @@ export function DirectoryExplorer({ products }: { products: GymProduct[] }) {
   const [rackType, setRackType] = useState<"any" | RackType>("any");
   const [renterOnly, setRenterOnly] = useState(false);
   const [foldingOnly, setFoldingOnly] = useState(false);
+  const [verticalStorage, setVerticalStorage] = useState(false);
   const [ceiling, setCeiling] = useState("");
   const [foldedDepth, setFoldedDepth] = useState("");
   const [barLength, setBarLength] = useState("");
@@ -108,6 +116,7 @@ export function DirectoryExplorer({ products }: { products: GymProduct[] }) {
   const [selected, setSelected] = useState<string[]>([]);
   const [showCompare, setShowCompare] = useState(false);
   const [filtersOpen, setFiltersOpen] = useState(false);
+  const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {
     const initial = readInitialQuery(productsRef.current);
@@ -118,10 +127,45 @@ export function DirectoryExplorer({ products }: { products: GymProduct[] }) {
     setRackType(initial.rackType);
     setRenterOnly(initial.renterOnly);
     setFoldingOnly(initial.foldingOnly);
+    setVerticalStorage(initial.verticalStorage);
     setSort(initial.sort);
     setSelected(initial.compare);
     setShowCompare(initial.compare.length >= 2);
+    setHydrated(true);
   }, []);
+
+  useEffect(() => {
+    if (!hydrated) return;
+    const params = new URLSearchParams();
+    if (ceiling.trim()) params.set("ceiling", ceiling.trim());
+    if (foldedDepth.trim()) params.set("depth", foldedDepth.trim());
+    if (barLength.trim()) params.set("length", barLength.trim());
+    if (category !== "any") params.set("category", category);
+    if (rackType !== "any") params.set("rack", rackType);
+    if (renterOnly) params.set("renter", "1");
+    if (foldingOnly) params.set("folding", "1");
+    if (verticalStorage) params.set("vertical", "1");
+    if (sort !== "catalog") params.set("sort", sort);
+    if (selected.length > 0) params.set("compare", selected.join(","));
+    const query = params.toString();
+    const path = window.location.pathname;
+    const next = query ? `${path}?${query}` : path;
+    if (`${path}${window.location.search}` !== next) {
+      window.history.replaceState(null, "", next);
+    }
+  }, [
+    hydrated,
+    ceiling,
+    foldedDepth,
+    barLength,
+    category,
+    rackType,
+    renterOnly,
+    foldingOnly,
+    verticalStorage,
+    sort,
+    selected,
+  ]);
 
   const maxCeilingIn = parseInches(ceiling);
   const maxFoldedDepthIn = parseInches(foldedDepth);
@@ -143,6 +187,7 @@ export function DirectoryExplorer({ products }: { products: GymProduct[] }) {
         rackType,
         renterOnly,
         foldingOnly,
+        verticalStorage,
         maxCeilingIn,
         maxFoldedDepthIn,
         maxBarLengthIn,
@@ -155,6 +200,7 @@ export function DirectoryExplorer({ products }: { products: GymProduct[] }) {
     rackType,
     renterOnly,
     foldingOnly,
+    verticalStorage,
     maxCeilingIn,
     maxFoldedDepthIn,
     maxBarLengthIn,
@@ -171,6 +217,7 @@ export function DirectoryExplorer({ products }: { products: GymProduct[] }) {
     (rackType !== "any" ? 1 : 0) +
     (renterOnly ? 1 : 0) +
     (foldingOnly ? 1 : 0) +
+    (verticalStorage ? 1 : 0) +
     (ceiling.trim() ? 1 : 0) +
     (foldedDepth.trim() ? 1 : 0) +
     (barLength.trim() ? 1 : 0);
@@ -188,6 +235,7 @@ export function DirectoryExplorer({ products }: { products: GymProduct[] }) {
     setRackType("any");
     setRenterOnly(false);
     setFoldingOnly(false);
+    setVerticalStorage(false);
     setCeiling("");
     setFoldedDepth("");
     setBarLength("");
@@ -213,6 +261,11 @@ export function DirectoryExplorer({ products }: { products: GymProduct[] }) {
       label: "Folding",
       pressed: foldingOnly,
       onClick: () => setFoldingOnly((value) => !value),
+    },
+    {
+      label: "Vertical storage",
+      pressed: verticalStorage,
+      onClick: () => setVerticalStorage((value) => !value),
     },
   ];
 
@@ -319,7 +372,7 @@ export function DirectoryExplorer({ products }: { products: GymProduct[] }) {
                   <option value="any">All</option>
                   {CATEGORIES.map((value) => (
                     <option key={value} value={value}>
-                      {CATEGORY_LABELS[value]}
+                      {CATEGORY_FILTER_LABELS[value]}
                     </option>
                   ))}
                 </select>
@@ -368,6 +421,10 @@ export function DirectoryExplorer({ products }: { products: GymProduct[] }) {
                   rack type, so choosing a rack type hides them.
                 </li>
                 <li>
+                  Vertical storage keeps benches the manufacturer says store upright. Racks and
+                  barbells stay out.
+                </li>
+                <li>
                   Renter-friendly keeps products the manufacturer says do not need a wall mount. A
                   missing answer does not count as renter-friendly.
                 </li>
@@ -377,10 +434,10 @@ export function DirectoryExplorer({ products }: { products: GymProduct[] }) {
                   out.
                 </li>
                 <li>
-                  Max ceiling height applies to racks and benches. It uses the published minimum
-                  ceiling when one exists. Otherwise it uses upright height, and the card marks
-                  minimum ceiling as unverified. A product with neither number is omitted. Barbells
-                  stay in the list.
+                  Max ceiling height applies to racks. It uses the published minimum ceiling when
+                  one exists. Otherwise it uses upright height, and the card marks minimum ceiling
+                  as unverified. A rack with neither number is omitted. Barbells and benches stay
+                  in the list. Bench pad height is not a ceiling measurement.
                 </li>
                 <li>
                   Max folded depth applies to racks and benches. Only a published folded depth at or

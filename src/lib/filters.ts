@@ -6,6 +6,7 @@ export interface DirectoryFilters {
   rackType: "any" | RackType;
   renterOnly: boolean;
   foldingOnly: boolean;
+  verticalStorage: boolean;
   maxCeilingIn: number | null;
   maxFoldedDepthIn: number | null;
   maxBarLengthIn: number | null;
@@ -16,8 +17,9 @@ export function matchesDirectoryFilters(product: GymProduct, filters: DirectoryF
   if (filters.rackType !== "any" && product.rack_specs?.rack_type !== filters.rackType) return false;
   if (filters.renterOnly && product.installation?.wall_mount_required !== false) return false;
   if (filters.foldingOnly && !isFoldingProduct(product)) return false;
+  if (filters.verticalStorage && product.bench_specs?.vertical_storage !== true) return false;
 
-  if (filters.maxCeilingIn != null && product.category !== "barbell") {
+  if (filters.maxCeilingIn != null && product.category === "rack") {
     const ceiling = ceilingReferenceIn(product);
     if (ceiling == null || ceiling > filters.maxCeilingIn) return false;
   }
