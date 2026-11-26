@@ -41,7 +41,9 @@ export function SpecValue({
       </span>
     );
   }
-  if (value === "N/A") return <span className="text-sm text-stone-500">N/A</span>;
+  if (value === "N/A" || value === "Not published") {
+    return <span className="text-sm text-stone-500">{value}</span>;
+  }
   if (badge) {
     return (
       <span className="inline-block rounded bg-stone-100 px-1.5 py-0.5 text-sm font-medium tabular-nums text-stone-950">

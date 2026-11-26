@@ -1,6 +1,6 @@
 # Home Gym Fit
 
-Static directory of manufacturer-verified compact and folding racks, with room for short rackable barbells. Built with Next.js App Router, TypeScript strict mode, and Tailwind CSS. The production build is a static export for Cloudflare Pages.
+Static directory of manufacturer-verified compact and folding racks, short rackable barbells, and vertical-storage benches. Built with Next.js App Router, TypeScript strict mode, and Tailwind CSS. The production build is a static export for Cloudflare Pages.
 
 ## Cloudflare Pages
 
@@ -27,8 +27,8 @@ See `.env.example`.
 
 Trailing slashes are part of the exported paths (`out/about/index.html` serves `/about/`).
 
-- `/` catalog counts derived from `data/products.json`, plus links to fit presets
-- `/directory/` client-side fit filters over the same file
+- `/` catalog counts derived from `data/products.json`, plus links to fit presets. The vertical-storage bench card links to `/directory/?category=bench&vertical=1`
+- `/directory/` client-side fit filters over the same file, including a Benches category and a Vertical storage chip
 - `/fit/<slug>/` preset pages from `generateStaticParams`
 - `/products/<slug>/` one static page per product
 - `/guides/` and `/guides/<slug>/` Markdown from `content/guides/`
@@ -51,16 +51,19 @@ Canonical file: `data/products.json`. Copy records in full. Do not invent dimens
 - `category` is `rack`, `bench`, or `barbell`.
 - Racks require `dimensions`, `installation`, and `rack_specs`.
 - Barbells require `barbell_specs`. `installation` may be omitted or null.
+- Benches require `dimensions` and `bench_specs`. `installation`, `rack_specs`, and `barbell_specs` are omitted.
+- `bench_specs` is fourteen flat scalars, each nullable: `bench_type` (`adjustable`, `flat`, or null), `vertical_storage`, `stored_height_in`, `stored_width_in`, `stored_depth_in`, `stored_footprint_sqft`, `pad_width_in`, `pad_thickness_in`, `pad_gap_in`, `back_pad_positions`, `seat_pad_positions`, `decline_capable`, `weight_capacity_lbs`, `transport_wheels`.
+- When `stored_height_in`, `stored_width_in`, `stored_depth_in`, or `dimensions.depth_folded_in` is null on a bench, that path is listed in `verification.unverified_fields`. A published number is not listed there.
 - `installation.fold_direction` is `inward`, `outward`, `upward`, `none`, or null.
 - Official URLs (`spec_sheet_url`, `additional_source_urls`, `manufacturer_url`) are `https`.
 - No price, stock, or rating keys anywhere in the document.
 - `id` and `slug` are unique.
 
-Null means the manufacturer did not publish that value. The UI prints `Unverified`. Folded depth and fold direction print `N/A` when `fold_direction` is `none`. The UI does not compute a ceiling clearance from upright height. The directory ceiling filter uses `min_ceiling_in` when it is a number, and otherwise the published `height_in`, and the card says the minimum ceiling is unverified.
+Null means the manufacturer did not publish that value. Rack and barbell pages print `Unverified`. A bench card prints `Not published` for a null strip value and one Unverified badge for the other gaps. The bench product page prints `Unverified` for a listed gap and `N/A` when a field does not apply. Folded depth and fold direction print `N/A` when `fold_direction` is `none`. The UI does not compute a ceiling clearance from upright height. The directory ceiling filter applies to racks: it uses `min_ceiling_in` when it is a number, and otherwise the published `height_in`, and the card says the minimum ceiling is unverified. Bench pad height is not treated as a ceiling.
 
 `BarbellSpecs` fields, each nullable: `overall_length_in`, `shaft_length_in`, `loadable_sleeve_length_in`, `shaft_diameter_mm`, `sleeve_diameter_in`, `tensile_strength_psi`, `weight_capacity_lbs`, `knurl_marks`, `center_knurl`, `bushing_or_bearing`, `coating`, `rackable`. `center_knurl` and `rackable` are booleans or null. `knurl_marks`, `bushing_or_bearing`, and `coating` are strings or null.
 
-The directory category filter and max bar length filter read those records. Max bar length compares `overall_length_in` and does not hide racks. With only the current racks in the file, the barbell filter has nothing to match.
+The directory category filter includes racks, barbells, and benches. Max bar length compares `overall_length_in` and does not hide racks or benches. Vertical storage keeps benches with `bench_specs.vertical_storage: true`.
 
 ## Content contract (Guide & Comparison Editor)
 
@@ -88,6 +91,7 @@ Published pages:
 
 - `content/guides/folding-power-racks-8-foot-ceiling.mdx` → `/guides/folding-power-racks-8-foot-ceiling/`
 - `content/guides/best-short-olympic-barbells.mdx` → `/guides/best-short-olympic-barbells/`
+- `content/guides/best-vertical-storage-weight-benches.mdx` → `/guides/best-vertical-storage-weight-benches/`
 - `content/guides/renter-friendly-squat-racks.mdx` → `/guides/renter-friendly-squat-racks/`
 - `content/compare/rep-pr-4100-vs-rogue-rml-3w.mdx` → `/compare/rep-pr-4100-vs-rogue-rml-3w/`
 - `content/compare/prx-profile-vs-rep-pr-4100.mdx` → `/compare/prx-profile-vs-rep-pr-4100/`

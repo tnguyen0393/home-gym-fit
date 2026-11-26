@@ -46,6 +46,45 @@ const RACK_SPEC_KEYS = [
   "j_cups_included",
 ] as const;
 
+const BENCH_SPEC_KEYS = [
+  "bench_type",
+  "vertical_storage",
+  "stored_height_in",
+  "stored_width_in",
+  "stored_depth_in",
+  "stored_footprint_sqft",
+  "pad_width_in",
+  "pad_thickness_in",
+  "pad_gap_in",
+  "back_pad_positions",
+  "seat_pad_positions",
+  "decline_capable",
+  "weight_capacity_lbs",
+  "transport_wheels",
+] as const;
+
+const BENCH_NUMBER_KEYS = [
+  "stored_height_in",
+  "stored_width_in",
+  "stored_depth_in",
+  "stored_footprint_sqft",
+  "pad_width_in",
+  "pad_thickness_in",
+  "pad_gap_in",
+  "back_pad_positions",
+  "seat_pad_positions",
+  "weight_capacity_lbs",
+] as const;
+
+const BENCH_BOOLEAN_KEYS = ["vertical_storage", "decline_capable", "transport_wheels"] as const;
+
+const UNPUBLISHED_BENCH_STORAGE = [
+  "bench_specs.stored_height_in",
+  "bench_specs.stored_width_in",
+  "bench_specs.stored_depth_in",
+  "dimensions.depth_folded_in",
+] as const;
+
 const BARBELL_SPEC_KEYS = [
   "overall_length_in",
   "shaft_length_in",
@@ -83,6 +122,7 @@ const RACK_TYPES = new Set([
   "half-rack",
   "squat-stand",
 ]);
+const BENCH_TYPES = new Set(["adjustable", "flat"]);
 const FOLD_DIRECTIONS = new Set(["inward", "outward", "upward", "none"]);
 const VERIFICATION_STATUSES = new Set(["verified", "partial", "unverified"]);
 const BANNED_KEY_PARTS = new Set([
@@ -231,8 +271,8 @@ function validateProduct(
   }
 
   const category = input.category;
-  if (category === "rack" && input.dimensions == null) {
-    errors.push(`${path}.dimensions is required for racks`);
+  if ((category === "rack" || category === "bench") && input.dimensions == null) {
+    errors.push(`${path}.dimensions is required for ${category === "rack" ? "racks" : "benches"}`);
   }
   if (input.dimensions != null) validateDimensions(input.dimensions, path, errors);
 
@@ -256,11 +296,15 @@ function validateProduct(
     if (input.rack_specs != null) errors.push(`${path}.rack_specs must be omitted or null on a barbell`);
     if (input.bench_specs != null) errors.push(`${path}.bench_specs must be omitted or null on a barbell`);
   } else {
-    if (input.rack_specs != null) errors.push(`${path}.rack_specs must be omitted or null on a bench`);
-    if (input.barbell_specs != null) {
-      errors.push(`${path}.barbell_specs must be omitted or null on a bench`);
+    if ("installation" in input) errors.push(`${path}.installation must be omitted on a bench`);
+    if ("rack_specs" in input) errors.push(`${path}.rack_specs must be omitted on a bench`);
+    if ("barbell_specs" in input) errors.push(`${path}.barbell_specs must be omitted on a bench`);
+    if (!isRecord(input.bench_specs)) {
+      errors.push(`${path}.bench_specs is required for benches`);
+    } else {
+      validateBenchSpecs(input.bench_specs, path, errors);
     }
-    if (input.bench_specs != null) validateBenchSpecs(input.bench_specs, path, errors);
+    validateUnpublishedBenchStorage(input, path, errors);
   }
 
   validateVerification(input.verification, path, errors);
@@ -371,20 +415,53 @@ function validateBarbellSpecs(input: Record<string, unknown>, path: string, erro
   }
 }
 
-function validateBenchSpecs(input: unknown, path: string, errors: string[]): void {
+function validateBenchSpecs(input: Record<string, unknown>, path: string, errors: string[]): void {
   const field = `${path}.bench_specs`;
-  if (!isRecord(input)) {
-    errors.push(`${field} must be an object or null`);
-    return;
+  rejectUnknown(input, BENCH_SPEC_KEYS, field, errors);
+  requireKeys(input, BENCH_SPEC_KEYS, field, errors);
+  if ("bench_type" in input) {
+    const benchType = input.bench_type;
+    if (benchType !== null && (typeof benchType !== "string" || !BENCH_TYPES.has(benchType))) {
+      errors.push(`${field}.bench_type must be adjustable, flat, or null`);
+    }
   }
-  for (const [key, value] of Object.entries(input)) {
-    if (isForbiddenKey(key)) continue;
-    const scalar =
-      value === null ||
-      typeof value === "string" ||
-      typeof value === "boolean" ||
-      (typeof value === "number" && Number.isFinite(value));
-    if (!scalar) errors.push(`${field}.${key} must be a string, number, boolean, or null`);
+  for (const key of BENCH_NUMBER_KEYS) {
+    if (key in input && !isPositiveOrNull(input[key])) {
+      errors.push(`${field}.${key} must be a positive number or null`);
+    }
+  }
+  for (const key of BENCH_BOOLEAN_KEYS) {
+    if (key in input && !isBooleanOrNull(input[key])) {
+      errors.push(`${field}.${key} must be a boolean or null`);
+    }
+  }
+}
+
+function validateUnpublishedBenchStorage(
+  input: Record<string, unknown>,
+  path: string,
+  errors: string[],
+): void {
+  const dimensions = isRecord(input.dimensions) ? input.dimensions : null;
+  const bench = isRecord(input.bench_specs) ? input.bench_specs : null;
+  const verification = isRecord(input.verification) ? input.verification : null;
+  if (!dimensions || !bench || !verification || !Array.isArray(verification.unverified_fields)) return;
+  const listed = verification.unverified_fields.filter((item): item is string => typeof item === "string");
+  const values: Record<(typeof UNPUBLISHED_BENCH_STORAGE)[number], unknown> = {
+    "bench_specs.stored_height_in": bench.stored_height_in,
+    "bench_specs.stored_width_in": bench.stored_width_in,
+    "bench_specs.stored_depth_in": bench.stored_depth_in,
+    "dimensions.depth_folded_in": dimensions.depth_folded_in,
+  };
+  for (const fieldPath of UNPUBLISHED_BENCH_STORAGE) {
+    const missing = values[fieldPath] == null;
+    const flagged = listed.includes(fieldPath);
+    if (missing && !flagged) {
+      errors.push(`${path}.${fieldPath} is null and must be listed in verification.unverified_fields`);
+    }
+    if (!missing && flagged) {
+      errors.push(`${path}.${fieldPath} is published and must not be listed in verification.unverified_fields`);
+    }
   }
 }
 

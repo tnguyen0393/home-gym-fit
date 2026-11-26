@@ -12,7 +12,8 @@ export default function AboutPage() {
       <h1 className="text-3xl font-semibold tracking-tight">About</h1>
       <p>
         Home Gym Fit is Tien Nguyen&apos;s directory of manufacturer-published dimensions for compact
-        and folding squat racks, power racks, and short rackable barbells.
+        and folding squat racks, power racks, short rackable barbells, and benches that store
+        upright.
       </p>
       <p>
         Measurements come from official manufacturer spec sheets. Guides and comparisons are written

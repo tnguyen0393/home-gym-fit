@@ -56,11 +56,28 @@ export interface BarbellSpecs {
   rackable: boolean | null;
 }
 
+export type BenchType = "adjustable" | "flat";
+
 /**
- * Reserved for a future bench record. Flat scalars only.
- * No bench fields are published in the current catalog.
+ * Vertical-storage benches. Every field is a flat scalar and stays null
+ * until the manufacturer publishes it.
  */
-export type BenchSpecs = Record<string, string | number | boolean | null>;
+export interface BenchSpecs {
+  bench_type: BenchType | null;
+  vertical_storage: boolean | null;
+  stored_height_in: number | null;
+  stored_width_in: number | null;
+  stored_depth_in: number | null;
+  stored_footprint_sqft: number | null;
+  pad_width_in: number | null;
+  pad_thickness_in: number | null;
+  pad_gap_in: number | null;
+  back_pad_positions: number | null;
+  seat_pad_positions: number | null;
+  decline_capable: boolean | null;
+  weight_capacity_lbs: number | null;
+  transport_wheels: boolean | null;
+}
 
 export interface ProductVerification {
   spec_sheet_url: string;
@@ -85,10 +102,11 @@ export interface GymProduct {
   sku: string | null;
   category: ProductCategory;
   dimensions?: ProductDimensions | null;
-  /** Required for racks. Optional and nullable for barbells. */
+  /** Required for racks. Omitted on benches. Optional and nullable for barbells. */
   installation?: ProductInstallation | null;
   rack_specs?: RackSpecs | null;
   barbell_specs?: BarbellSpecs | null;
+  /** Required for benches. Omitted on racks and barbells. */
   bench_specs?: BenchSpecs | null;
   verification: ProductVerification;
   affiliates: ProductAffiliates;

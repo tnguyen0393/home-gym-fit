@@ -20,6 +20,12 @@ export default function MethodologyPage() {
         with no installation record is labeled N/A for installation, not given a guessed mount.
       </p>
       <p>
+        A bench card prints Not published when type, vertical storage, capacity, unit weight, or
+        stored footprint has no manufacturer value. One Unverified badge covers the other gaps. The
+        product page names those gaps in plain language. Stored height, stored width, stored depth,
+        and folded depth stay unverified until the manufacturer prints them.
+      </p>
+      <p>
         Minimum ceiling is shown only when the manufacturer states one. The directory ceiling filter
         uses that stated minimum when it exists. Otherwise it compares the upright height, and the
         product card marks the minimum ceiling as unverified. Upright height is not turned into a

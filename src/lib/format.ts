@@ -1,4 +1,4 @@
-import type { ArticleType, GymProduct, ProductCategory, RackType } from "@/lib/types";
+import type { ArticleType, BenchSpecs, GymProduct, ProductCategory, RackType } from "@/lib/types";
 
 export const CATEGORY_LABELS: Record<ProductCategory, string> = {
   rack: "Rack",
@@ -60,9 +60,50 @@ const FIELD_LABELS: Record<string, string> = {
   "barbell_specs.bushing_or_bearing": "Bushing or bearing",
   "barbell_specs.coating": "Coating",
   "barbell_specs.rackable": "Rackable",
+  "bench_specs.bench_type": "Bench type",
+  "bench_specs.vertical_storage": "Vertical storage",
+  "bench_specs.stored_height_in": "Stored height",
+  "bench_specs.stored_width_in": "Stored width",
+  "bench_specs.stored_depth_in": "Stored depth",
+  "bench_specs.stored_footprint_sqft": "Stored footprint",
+  "bench_specs.pad_width_in": "Pad width",
+  "bench_specs.pad_thickness_in": "Pad thickness",
+  "bench_specs.pad_gap_in": "Pad gap",
+  "bench_specs.back_pad_positions": "Back pad positions",
+  "bench_specs.seat_pad_positions": "Seat pad positions",
+  "bench_specs.decline_capable": "Decline capable",
+  "bench_specs.weight_capacity_lbs": "Weight capacity",
+  "bench_specs.transport_wheels": "Transport wheels",
 };
 
 const NOTE_REPLACEMENTS: [string, string][] = [
+  ["bench_specs.stored_footprint_sqft", "stored footprint"],
+  ["bench_specs.stored_height_in", "stored height"],
+  ["bench_specs.stored_width_in", "stored width"],
+  ["bench_specs.stored_depth_in", "stored depth"],
+  ["bench_specs.weight_capacity_lbs", "weight capacity"],
+  ["bench_specs.pad_thickness_in", "pad thickness"],
+  ["bench_specs.back_pad_positions", "back pad positions"],
+  ["bench_specs.seat_pad_positions", "seat pad positions"],
+  ["bench_specs.transport_wheels", "transport wheels"],
+  ["bench_specs.vertical_storage", "vertical storage"],
+  ["bench_specs.decline_capable", "decline capable"],
+  ["bench_specs.pad_width_in", "pad width"],
+  ["bench_specs.pad_gap_in", "pad gap"],
+  ["bench_specs.bench_type", "bench type"],
+  ["stored_footprint_sqft", "stored footprint"],
+  ["stored_height_in", "stored height"],
+  ["stored_width_in", "stored width"],
+  ["stored_depth_in", "stored depth"],
+  ["pad_thickness_in", "pad thickness"],
+  ["back_pad_positions", "back pad positions"],
+  ["seat_pad_positions", "seat pad positions"],
+  ["transport_wheels", "transport wheels"],
+  ["vertical_storage", "vertical storage"],
+  ["decline_capable", "decline capable"],
+  ["pad_width_in", "pad width"],
+  ["pad_gap_in", "pad gap"],
+  ["bench_type", "bench type"],
   ["dimensions.min_ceiling_in", "minimum ceiling"],
   ["dimensions.unit_weight_lbs", "unit weight"],
   ["dimensions.depth_folded_in", "folded depth"],
@@ -102,6 +143,7 @@ const NOTE_REPLACEMENTS: [string, string][] = [
   ["fold_direction", "fold direction"],
   ["unverified_fields", "unpublished fields"],
   ["rack_type", "rack type"],
+  ["width_in", "width"],
 ];
 
 export function formatNumber(value: number): string {
@@ -230,6 +272,23 @@ export function formatFoldedDepth(product: GymProduct): string {
 const CEILING_HINT =
   "Upright height is used when a minimum ceiling is not published. That height is not a clearance calculation.";
 
+function cardPounds(value: number | null | undefined): string {
+  if (value == null) return "Not published";
+  return formatPounds(value);
+}
+
+function cardBool(value: boolean | null | undefined): string {
+  if (value == null) return "Not published";
+  return value ? "Yes" : "No";
+}
+
+function cardBenchType(value: string | null | undefined): string {
+  if (value == null || value.trim().length === 0) return "Not published";
+  if (value === "adjustable") return "Adjustable";
+  if (value === "flat") return "Flat";
+  return value;
+}
+
 export function cardSpecCells(product: GymProduct): SpecCell[] {
   if (product.category === "barbell") {
     return [
@@ -244,11 +303,15 @@ export function cardSpecCells(product: GymProduct): SpecCell[] {
   }
 
   if (product.category === "bench") {
+    const specs = product.bench_specs;
+    const stored = specs?.stored_footprint_sqft;
     return [
-      { label: "Height", value: formatInches(product.dimensions?.height_in) },
-      { label: "Width", value: formatInches(product.dimensions?.width_in) },
-      { label: "Depth", value: formatInches(product.dimensions?.depth_open_in) },
-      { label: "Weight", value: formatPounds(product.dimensions?.unit_weight_lbs) },
+      { label: "Type", value: cardBenchType(specs?.bench_type) },
+      { label: "Vertical storage", value: cardBool(specs?.vertical_storage) },
+      { label: "Capacity", value: cardPounds(specs?.weight_capacity_lbs) },
+      stored != null
+        ? { label: "Stored footprint", value: formatSqft(stored) }
+        : { label: "Unit weight", value: cardPounds(product.dimensions?.unit_weight_lbs) },
     ];
   }
 
@@ -269,6 +332,32 @@ export function cardSpecCells(product: GymProduct): SpecCell[] {
   ];
 }
 
+/** Rows added in the compare drawer beyond the four card cells. */
+export function compareExtraCells(product: GymProduct): SpecCell[] {
+  if (product.category === "bench") {
+    const specs = product.bench_specs;
+    return [
+      { label: "Unit weight", value: cardPounds(product.dimensions?.unit_weight_lbs) },
+      {
+        label: "Stored footprint",
+        value: specs?.stored_footprint_sqft == null ? "Not published" : formatSqft(specs.stored_footprint_sqft),
+      },
+      { label: "Decline capable", value: cardBool(specs?.decline_capable) },
+    ];
+  }
+  const installationMissing = product.installation == null;
+  return [
+    {
+      label: "Wall mount",
+      value:
+        installationMissing && product.category !== "rack"
+          ? "N/A"
+          : formatBool(product.installation?.wall_mount_required),
+    },
+    { label: "Fold direction", value: formatFoldDirection(product) },
+  ];
+}
+
 export function formatStudSpacing(product: GymProduct): string {
   if (product.installation == null) {
     return product.category === "rack" ? "Unverified" : "N/A";
@@ -285,8 +374,8 @@ export function formatSqft(value: number | null | undefined): string {
 }
 
 /**
- * Rack nulls stay Unverified. A barbell null stays Unverified only when that path is
- * listed in unverified_fields. Other barbell nulls are N/A, not a missing rack measurement.
+ * Rack nulls stay Unverified. A barbell or bench null stays Unverified only when that
+ * path is listed in unverified_fields. Other nulls on those products are N/A.
  */
 function dimensionValue(
   product: GymProduct,
@@ -309,8 +398,8 @@ function dimensionValue(
     return formatInches(value);
   }
   if (product.verification.unverified_fields.includes(`dimensions.${key}`)) return "Unverified";
-  if (product.category === "barbell") return "N/A";
-  return "Unverified";
+  if (product.category === "rack") return "Unverified";
+  return "N/A";
 }
 
 export function productSummary(product: GymProduct): string {
@@ -321,6 +410,14 @@ export function productSummary(product: GymProduct): string {
     if (length != null) parts.push(`overall length ${formatNumber(length)} in`);
     if (product.barbell_specs?.rackable === true) parts.push("rackable");
     if (product.barbell_specs?.rackable === false) parts.push("not rackable");
+  } else if (product.category === "bench") {
+    const specs = product.bench_specs;
+    if (specs?.bench_type === "adjustable") parts.push("adjustable");
+    else if (specs?.bench_type === "flat") parts.push("flat");
+    if (specs?.vertical_storage === true) parts.push("stores vertically");
+    if (specs?.weight_capacity_lbs != null) {
+      parts.push(`capacity ${formatNumber(specs.weight_capacity_lbs)} lb`);
+    }
   } else {
     const height = product.dimensions?.height_in;
     const depth = product.dimensions?.depth_open_in;
@@ -373,10 +470,29 @@ export function specRows(product: GymProduct): SpecRow[] {
     );
   }
 
-  if (product.bench_specs && Object.keys(product.bench_specs).length > 0) {
-    for (const [key, value] of Object.entries(product.bench_specs)) {
-      rows.push({ label: key.replaceAll("_", " "), value: formatBenchValue(value) });
-    }
+  if (product.bench_specs) {
+    rows.push(
+      { label: "Bench type", value: benchSpec(product, "bench_type", formatBenchType) },
+      { label: "Vertical storage", value: benchSpec(product, "vertical_storage", formatBool) },
+      { label: "Weight capacity", value: benchSpec(product, "weight_capacity_lbs", formatPounds) },
+      { label: "Stored height", value: benchSpec(product, "stored_height_in", formatInches) },
+      { label: "Stored width", value: benchSpec(product, "stored_width_in", formatInches) },
+      { label: "Stored depth", value: benchSpec(product, "stored_depth_in", formatInches) },
+      { label: "Stored footprint", value: benchSpec(product, "stored_footprint_sqft", formatSqft) },
+      { label: "Pad width", value: benchSpec(product, "pad_width_in", formatInches) },
+      { label: "Pad thickness", value: benchSpec(product, "pad_thickness_in", formatInches) },
+      { label: "Pad gap", value: benchSpec(product, "pad_gap_in", formatInches) },
+      {
+        label: "Back pad positions",
+        value: benchSpec(product, "back_pad_positions", formatNumber),
+      },
+      {
+        label: "Seat pad positions",
+        value: benchSpec(product, "seat_pad_positions", formatNumber),
+      },
+      { label: "Decline capable", value: benchSpec(product, "decline_capable", formatBool) },
+      { label: "Transport wheels", value: benchSpec(product, "transport_wheels", formatBool) },
+    );
   }
 
   if (product.dimensions) {
@@ -386,7 +502,8 @@ export function specRows(product: GymProduct): SpecRow[] {
       {
         label: "Minimum ceiling",
         value: dimensionValue(product, "min_ceiling_in"),
-        hint: ceilingUsesUprightHeight(product) ? CEILING_HINT : undefined,
+        hint:
+          product.category === "rack" && ceilingUsesUprightHeight(product) ? CEILING_HINT : undefined,
       },
       { label: "Width", value: dimensionValue(product, "width_in") },
       { label: "Open depth", value: dimensionValue(product, "depth_open_in") },
@@ -414,9 +531,20 @@ export function specRows(product: GymProduct): SpecRow[] {
   return rows;
 }
 
-function formatBenchValue(value: string | number | boolean | null): string {
-  if (value == null) return "Unverified";
-  if (typeof value === "boolean") return value ? "Yes" : "No";
-  if (typeof value === "number") return formatNumber(value);
-  return value;
+function formatBenchType(value: string | number | boolean): string {
+  if (value === "adjustable") return "Adjustable";
+  if (value === "flat") return "Flat";
+  return String(value);
+}
+
+function benchSpec<K extends keyof BenchSpecs>(
+  product: GymProduct,
+  key: K,
+  format: (value: NonNullable<BenchSpecs[K]>) => string,
+): string {
+  const value = product.bench_specs?.[key];
+  if (value == null) {
+    return product.verification.unverified_fields.includes(`bench_specs.${key}`) ? "Unverified" : "N/A";
+  }
+  return format(value);
 }
