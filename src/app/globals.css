@@ -1,44 +1,88 @@
 @import "tailwindcss";
 
+:focus-visible {
+  outline: 2px solid #3730a3;
+  outline-offset: 2px;
+}
+
 body {
   font-family: ui-sans-serif, system-ui, sans-serif;
 }
 
-.article-body :where(h2, h3) {
-  margin-top: 1.5rem;
+.legal-copy a,
+.article-body :where(a) {
+  color: #3730a3;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+.article-body :where(h2) {
+  margin-top: 1.75rem;
+  scroll-margin-top: 1rem;
   font-size: 1.25rem;
   font-weight: 650;
 }
 
-.article-body :where(p, ul, ol) {
+.article-body :where(h3) {
+  margin-top: 1.25rem;
+  font-size: 1.05rem;
+  font-weight: 650;
+}
+
+.article-body :where(h2, h3, p, ul, ol, blockquote) {
+  max-width: 65ch;
+}
+
+.article-body :where(p, ul, ol, blockquote) {
   margin-top: 0.75rem;
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
 .article-body :where(ul, ol) {
   padding-left: 1.25rem;
 }
 
-.article-body :where(a) {
-  text-decoration: underline;
+.article-body :where(ul) {
+  list-style: disc;
+}
+
+.article-body :where(ol) {
+  list-style: decimal;
 }
 
 .article-body :where(blockquote) {
-  margin-top: 0.75rem;
   border-left: 3px solid #d6d3d1;
   padding-left: 0.75rem;
+  color: #44403c;
 }
 
-.article-body :where(table) {
+.article-body .table-scroll {
+  max-width: 56rem;
   margin-top: 1rem;
-  width: 100%;
+  overflow-x: auto;
+}
+
+.article-body table {
+  width: max-content;
+  min-width: 100%;
   border-collapse: collapse;
   font-size: 0.875rem;
+  font-variant-numeric: tabular-nums;
 }
 
 .article-body :where(th, td) {
-  border: 1px solid #d6d3d1;
-  padding: 0.4rem 0.5rem;
+  border: 1px solid #e7e5e4;
+  padding: 0.35rem 0.5rem;
   text-align: left;
   vertical-align: top;
+}
+
+.article-body :where(th) {
+  background: #fafaf9;
+  font-weight: 600;
+}
+
+.article-body .status-missing {
+  color: #78716c;
 }

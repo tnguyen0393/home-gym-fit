@@ -1,82 +1,115 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ArticleList } from "@/components/ArticleList";
+import { primaryButtonClass, secondaryButtonClass } from "@/components/styles";
+import { listGuides } from "@/lib/content";
 import { fitPresets } from "@/lib/fit";
-import { CATEGORY_LABELS, RACK_TYPE_LABELS } from "@/lib/format";
+import { formatDisplayDate } from "@/lib/format";
 import { catalogStats, getProducts } from "@/lib/products";
+
+const popularSlugs = [
+  "folding-power-racks-8-foot-ceiling",
+  "renter-friendly-squat-racks",
+  "best-short-olympic-barbells",
+];
 
 export const metadata: Metadata = {
   title: "Home Gym Fit",
   description:
-    "Manufacturer-verified dimensions for compact and folding racks and short rackable barbells.",
+    "Manufacturer-published dimensions for compact and folding racks and short rackable barbells.",
   alternates: { canonical: "/" },
 };
 
 export default function HomePage() {
   const products = getProducts();
   const stats = catalogStats(products);
+  const guides = listGuides();
+  const picked = popularSlugs.flatMap((slug) => {
+    const guide = guides.find((article) => article.slug === slug);
+    return guide ? [guide] : [];
+  });
+  const popular = picked.length > 0 ? picked : guides.slice(0, 3);
 
   return (
     <div className="flex flex-col gap-10">
-      <header className="flex flex-col gap-3">
-        <h1 className="text-3xl font-semibold tracking-tight">Compact home-gym fit directory</h1>
-        <p className="max-w-3xl text-lg text-stone-700">
-          Manufacturer-verified dimensions for apartment and low-ceiling racks, plus short rackable
-          barbells when Spec Steward publishes them. Missing numbers stay unverified.
+      <header className="flex max-w-prose flex-col gap-4">
+        <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
+          Compact home-gym fit directory
+        </h1>
+        <p className="text-lg text-stone-700">
+          Manufacturer-published dimensions for apartment and low-ceiling racks, and for short
+          barbells that fit them. If a number was not published, it stays unverified.
         </p>
+        <div className="flex flex-wrap gap-3">
+          <Link href="/directory/" className={primaryButtonClass}>
+            Browse directory
+          </Link>
+          <Link href="/guides/" className={secondaryButtonClass}>
+            Read fit guides
+          </Link>
+        </div>
       </header>
-      <section className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-stone-200 bg-stone-200 sm:grid-cols-4">
         <Stat label="Products" value={String(stats.total)} />
         <Stat label="Brands" value={String(stats.brands)} />
         <Stat label="No wall mount" value={String(stats.noWallMount)} />
-        <Stat label="Stated minimum ceiling" value={String(stats.statedMinCeiling)} />
-      </section>
-      <section className="flex flex-col gap-2">
-        <h2 className="text-xl font-semibold">Catalog</h2>
-        <ul className="grid gap-1 text-sm sm:grid-cols-2">
-          {(Object.keys(CATEGORY_LABELS) as (keyof typeof CATEGORY_LABELS)[]).map((category) => (
-            <li key={category}>
-              {CATEGORY_LABELS[category]}: {stats.byCategory[category]}
-            </li>
-          ))}
-          {(Object.keys(RACK_TYPE_LABELS) as (keyof typeof RACK_TYPE_LABELS)[]).map((rackType) => (
-            <li key={rackType}>
-              {RACK_TYPE_LABELS[rackType]}: {stats.byRackType[rackType]}
-            </li>
-          ))}
-        </ul>
-        {stats.latestVerified ? (
-          <p className="text-sm text-stone-600">Latest verification date: {stats.latestVerified}.</p>
-        ) : null}
-        <p>
-          <Link href="/directory/" className="underline">
-            Open the directory
-          </Link>
-        </p>
-      </section>
+        <Stat
+          label="Last checked"
+          value={stats.latestVerified ? formatDisplayDate(stats.latestVerified) : "Not recorded"}
+        />
+      </dl>
       <section className="flex flex-col gap-3">
         <h2 className="text-xl font-semibold">Fit presets</h2>
-        <ul className="grid gap-3">
-          {fitPresets.map((preset) => (
-            <li key={preset.slug} className="border border-stone-300 bg-white p-4">
-              <h3 className="font-semibold">
-                <Link href={`/fit/${preset.slug}/`} className="underline decoration-stone-300">
-                  {preset.title}
+        <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {fitPresets.map((preset) => {
+            const count = products.filter(preset.matches).length;
+            return (
+              <li key={preset.slug}>
+                <Link
+                  href={`/fit/${preset.slug}/`}
+                  className="group flex h-full items-start justify-between gap-3 rounded-lg border border-stone-200 bg-white p-4 hover:border-indigo-300 hover:bg-indigo-50/60"
+                >
+                  <span>
+                    <span className="block font-semibold text-stone-950 group-hover:text-indigo-800">
+                      {preset.title}
+                    </span>
+                    <span className="mt-1 block text-sm text-stone-600">{preset.summary}</span>
+                  </span>
+                  <span className="flex shrink-0 items-center gap-2">
+                    <span
+                      className="rounded-full bg-indigo-50 px-2 py-0.5 text-sm font-semibold text-indigo-950 tabular-nums"
+                      aria-label={`${count} products`}
+                    >
+                      {count}
+                    </span>
+                    <span
+                      aria-hidden="true"
+                      className="text-indigo-800 transition-transform group-hover:translate-x-0.5"
+                    >
+                      →
+                    </span>
+                  </span>
                 </Link>
-              </h3>
-              <p className="mt-1 text-sm text-stone-700">{preset.criteria}</p>
-            </li>
-          ))}
+              </li>
+            );
+          })}
         </ul>
       </section>
+      {popular.length > 0 ? (
+        <section className="flex flex-col gap-3">
+          <h2 className="text-xl font-semibold">Popular fit guides</h2>
+          <ArticleList articles={popular} />
+        </section>
+      ) : null}
     </div>
   );
 }
 
 function Stat({ label, value }: { label: string; value: string }) {
   return (
-    <div className="border border-stone-300 bg-white p-4">
-      <p className="text-sm text-stone-600">{label}</p>
-      <p className="text-2xl font-semibold tabular-nums">{value}</p>
+    <div className="bg-white px-4 py-3">
+      <dt className="text-xs text-stone-500">{label}</dt>
+      <dd className="text-xl font-semibold text-stone-950 tabular-nums">{value}</dd>
     </div>
   );
 }

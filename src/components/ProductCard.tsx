@@ -1,81 +1,70 @@
 import Link from "next/link";
-import {
-  ceilingUsesUprightHeight,
-  formatBool,
-  formatFoldedDepth,
-  formatInches,
-  RACK_TYPE_LABELS,
-} from "@/lib/format";
+import { cardSpecCells, CATEGORY_LABELS, formatDisplayDate, RACK_TYPE_LABELS } from "@/lib/format";
 import type { GymProduct } from "@/lib/types";
 import { ProductLinks } from "@/components/ProductLinks";
 import { SpecValue } from "@/components/SpecTable";
 
-export function ProductCard({ product }: { product: GymProduct }) {
+export function ProductCard({
+  product,
+  headingLevel = 2,
+  compare,
+}: {
+  product: GymProduct;
+  headingLevel?: 2 | 3;
+  compare?: {
+    checked: boolean;
+    disabled: boolean;
+    onChange: () => void;
+  };
+}) {
   const rackType = product.rack_specs?.rack_type;
-  const barLength = product.barbell_specs?.overall_length_in;
+  const kind = rackType ? RACK_TYPE_LABELS[rackType] : CATEGORY_LABELS[product.category];
+  const Title = headingLevel === 3 ? "h3" : "h2";
 
   return (
-    <article className="flex flex-col gap-3 border border-stone-300 bg-white p-4">
-      <header>
+    <article className="flex h-full flex-col gap-3 rounded-lg border border-stone-200 bg-white p-4 shadow-sm">
+      <header className="flex flex-col gap-1">
+        {compare ? (
+          <label className="flex items-center gap-2 text-sm text-stone-700">
+            <input
+              type="checkbox"
+              className="size-4 accent-indigo-800"
+              checked={compare.checked}
+              disabled={compare.disabled}
+              onChange={compare.onChange}
+              aria-label={`Compare ${product.brand} ${product.model}`}
+            />
+            Compare
+          </label>
+        ) : null}
         <p className="text-sm text-stone-600">{product.brand}</p>
-        <h2 className="text-lg font-semibold leading-snug">
-          <Link href={`/products/${product.slug}/`} className="underline decoration-stone-300">
+        <Link
+          href={`/products/${product.slug}/`}
+          className="group block text-stone-950 hover:text-indigo-800"
+        >
+          <Title className="text-lg font-semibold leading-snug underline decoration-transparent underline-offset-4 group-hover:decoration-indigo-800">
             {product.model}
-          </Link>
-        </h2>
-        <p className="mt-1 text-sm text-stone-600">
-          {rackType ? RACK_TYPE_LABELS[rackType] : product.category}
+          </Title>
+          <span aria-hidden="true" className="mt-1 inline-block text-sm font-medium text-indigo-800">
+            Specs →
+          </span>
+        </Link>
+        <p className="text-sm text-stone-600">
+          {kind}
           {" · "}
-          Last verified {product.verification.last_verified_date}
-          {" · "}
-          {product.verification.verification_status}
+          Last verified {formatDisplayDate(product.verification.last_verified_date)}
         </p>
       </header>
-      <dl className="grid grid-cols-[max-content_1fr] gap-x-4 gap-y-1 text-sm">
-        {product.category === "barbell" ? (
-          <>
-            <dt className="text-stone-600">Overall length</dt>
-            <dd className="tabular-nums">
-              <SpecValue value={formatInches(barLength)} />
+      <dl className="grid grid-cols-4 gap-2 border-t border-stone-100 pt-3">
+        {cardSpecCells(product).map((cell) => (
+          <div key={cell.label} className="min-w-0">
+            <dt className="text-xs leading-4 text-stone-500">{cell.label}</dt>
+            <dd className="mt-1">
+              <SpecValue value={cell.value} hint={cell.hint} badge />
             </dd>
-            <dt className="text-stone-600">Shaft length</dt>
-            <dd className="tabular-nums">
-              <SpecValue value={formatInches(product.barbell_specs?.shaft_length_in)} />
-            </dd>
-            <dt className="text-stone-600">Rackable</dt>
-            <dd>
-              <SpecValue value={formatBool(product.barbell_specs?.rackable)} />
-            </dd>
-          </>
-        ) : product.dimensions ? (
-          <>
-            <dt className="text-stone-600">Upright height</dt>
-            <dd className="tabular-nums">
-              <SpecValue value={formatInches(product.dimensions.height_in)} />
-            </dd>
-            <dt className="text-stone-600">Minimum ceiling</dt>
-            <dd className="tabular-nums">
-              <SpecValue value={formatInches(product.dimensions.min_ceiling_in)} />
-            </dd>
-            <dt className="text-stone-600">Open depth</dt>
-            <dd className="tabular-nums">
-              <SpecValue value={formatInches(product.dimensions.depth_open_in)} />
-            </dd>
-            <dt className="text-stone-600">Folded depth</dt>
-            <dd className="tabular-nums">
-              <SpecValue value={formatFoldedDepth(product)} />
-            </dd>
-          </>
-        ) : null}
+          </div>
+        ))}
       </dl>
-      {ceilingUsesUprightHeight(product) ? (
-        <p className="text-sm text-amber-800">
-          Minimum ceiling is unverified. Only upright height is published.
-        </p>
-      ) : null}
-      {product.category === "barbell" && barLength == null ? (
-        <p className="text-sm text-amber-800">Overall length is unverified.</p>
-      ) : null}
       <ProductLinks product={product} />
     </article>
   );
