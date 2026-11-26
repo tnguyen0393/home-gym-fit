@@ -91,6 +91,7 @@ Published pages:
 
 - `content/guides/folding-power-racks-8-foot-ceiling.mdx` → `/guides/folding-power-racks-8-foot-ceiling/`
 - `content/guides/best-short-olympic-barbells.mdx` → `/guides/best-short-olympic-barbells/`
+- `content/guides/best-vertical-storage-weight-benches.mdx` → `/guides/best-vertical-storage-weight-benches/`
 - `content/guides/renter-friendly-squat-racks.mdx` → `/guides/renter-friendly-squat-racks/`
 - `content/compare/rep-pr-4100-vs-rogue-rml-3w.mdx` → `/compare/rep-pr-4100-vs-rogue-rml-3w/`
 - `content/compare/prx-profile-vs-rep-pr-4100.mdx` → `/compare/prx-profile-vs-rep-pr-4100/`
