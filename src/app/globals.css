@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+body {
+  font-family: ui-sans-serif, system-ui, sans-serif;
+}
+
+.article-body :where(h2, h3) {
+  margin-top: 1.5rem;
+  font-size: 1.25rem;
+  font-weight: 650;
+}
+
+.article-body :where(p, ul, ol) {
+  margin-top: 0.75rem;
+  line-height: 1.6;
+}
+
+.article-body :where(ul, ol) {
+  padding-left: 1.25rem;
+}
+
+.article-body :where(a) {
+  text-decoration: underline;
+}
