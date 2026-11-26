@@ -4,7 +4,6 @@ import {
   formatBool,
   formatFoldedDepth,
   formatInches,
-  installDepthCaveat,
   RACK_TYPE_LABELS,
 } from "@/lib/format";
 import type { GymProduct } from "@/lib/types";
@@ -14,7 +13,6 @@ import { SpecValue } from "@/components/SpecTable";
 export function ProductCard({ product }: { product: GymProduct }) {
   const rackType = product.rack_specs?.rack_type;
   const barLength = product.barbell_specs?.overall_length_in;
-  const installNote = installDepthCaveat(product);
 
   return (
     <article className="flex flex-col gap-3 border border-stone-300 bg-white p-4">
@@ -70,7 +68,6 @@ export function ProductCard({ product }: { product: GymProduct }) {
           </>
         ) : null}
       </dl>
-      {installNote ? <p className="text-sm text-amber-800">{installNote}</p> : null}
       {ceilingUsesUprightHeight(product) ? (
         <p className="text-sm text-amber-800">
           Minimum ceiling is unverified. Only upright height is published.

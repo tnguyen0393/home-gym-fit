@@ -56,21 +56,6 @@ export function ceilingUsesUprightHeight(product: GymProduct): boolean {
   return product.dimensions?.min_ceiling_in == null && product.dimensions?.height_in != null;
 }
 
-/**
- * Quoted from verification notes when the published minimum ceiling and open
- * depth describe different installs. Returns null when the notes do not say that.
- */
-export function installDepthCaveat(product: GymProduct): string | null {
-  if (product.dimensions?.min_ceiling_in == null || product.dimensions.depth_open_in == null) {
-    return null;
-  }
-  const notes = product.verification.notes;
-  if (!/modified install/i.test(notes) || !/standard install/i.test(notes)) return null;
-  const sentences = notes.split(/(?<=\.)\s+/).filter((sentence) => /install/i.test(sentence));
-  if (sentences.length === 0) return null;
-  return sentences.join(" ");
-}
-
 /** Value the directory ceiling filter compares. Not a clearance formula. */
 export function ceilingReferenceIn(product: GymProduct): number | null {
   const stated = product.dimensions?.min_ceiling_in;
@@ -216,13 +201,11 @@ export function specRows(product: GymProduct): SpecRow[] {
 
   if (product.dimensions) {
     const heightLabel = product.category === "rack" ? "Upright height" : "Height";
-    const installNote = installDepthCaveat(product);
     rows.push(
       { label: heightLabel, value: dimensionValue(product, "height_in") },
       { label: "Minimum ceiling", value: dimensionValue(product, "min_ceiling_in") },
       { label: "Width", value: dimensionValue(product, "width_in") },
       { label: "Open depth", value: dimensionValue(product, "depth_open_in") },
-      ...(installNote ? [{ label: "Install note", value: installNote }] : []),
       { label: "Folded depth", value: dimensionValue(product, "depth_folded_in") },
       { label: "Footprint", value: dimensionValue(product, "footprint_sqft") },
       { label: "Unit weight", value: dimensionValue(product, "unit_weight_lbs") },

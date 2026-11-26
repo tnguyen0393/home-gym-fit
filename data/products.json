@@ -175,7 +175,7 @@
     "category": "rack",
     "dimensions": {
       "height_in": 89,
-      "min_ceiling_in": 94,
+      "min_ceiling_in": 107,
       "width_in": 53,
       "depth_open_in": 21.75,
       "depth_folded_in": 4,
@@ -215,7 +215,7 @@
         "dimensions.unit_weight_lbs",
         "installation.floor_bolt_required"
       ],
-      "notes": "Minimum ceiling 94\" requires modified install; 107\" recommended for standard install. Depth 21.75\" is rack depth at standard install (107\" ceiling) per PRx Ceiling Solutions table; depth reduces with modified install (16\" at 94\" ceiling). Total rack width 53\"; outside of uprights 48\". Wall brackets mount to 16\" or 24\" on-center studs; ledger board required if studs unevenly spaced. Hydraulic-shock assisted fold-up. All wall mounting brackets and hardware for wood stud installation included. SKU varies by color/pull-up bar; PXP108 = 89\"/Black/Straight. Safeties not listed as included."
+      "notes": "Primary record reflects PRx's official standard install: 107\" minimum recommended ceiling and 21.75\" open depth (8.01 sq ft footprint) per PRx Ceiling Solutions table. PRx also publishes an official modified install down to 94\" minimum ceiling, which reduces open depth to 16\" (5.89 sq ft footprint). Total rack width 53\"; outside of uprights 48\". Wall brackets mount to 16\" or 24\" on-center studs; ledger board required if studs unevenly spaced. Hydraulic-shock assisted fold-up. All wall mounting brackets and hardware for wood stud installation included. SKU varies by color/pull-up bar; PXP108 = 89\"/Black/Straight. Safeties not listed as included."
     },
     "affiliates": {
       "manufacturer_url": "https://prxperformance.com/products/profile-pro-bar",
@@ -651,7 +651,7 @@
       "last_verified_date": "2026-11-26",
       "verification_status": "verified",
       "unverified_fields": [],
-      "notes": "Weight published as '15kg (33.1lbs)'. sleeve_diameter_in converted from published 'Sleeve Diameter 50mm' (50 / 25.4 = 1.97). shaft_length_in from published sleeve-to-sleeve distance 51.5\". Rackability per manufacturer FAQ: 'designed to be rackable on any standard 47” and 49” width racks.' Capacity published as 'Static Rating 1,500lbs'. Tensile published as '190ksi'. Published tolerance 1%."
+      "notes": "Weight published as '15kg (33.1lbs)'. sleeve_diameter_in converted from published 'Sleeve Diameter 50mm' (50 / 25.4 = 1.97). shaft_length_in from published sleeve-to-sleeve distance 51.5\". Rackability per manufacturer FAQ: 'designed to be rackable on any standard 47\u201d and 49\u201d width racks.' Capacity published as 'Static Rating 1,500lbs'. Tensile published as '190ksi'. Published tolerance 1%."
     },
     "affiliates": {
       "manufacturer_url": "https://repfitness.com/products/colorado-short-bar",
