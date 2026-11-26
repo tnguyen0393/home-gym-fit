@@ -40,7 +40,7 @@ export interface RackSpecs {
   j_cups_included: boolean | null;
 }
 
-/** Short rackable barbells. Every measurement stays null until Spec Steward publishes it. */
+/** Short rackable barbells. Measurements stay null until a manufacturer value is recorded. */
 export interface BarbellSpecs {
   overall_length_in: number | null;
   shaft_length_in: number | null;

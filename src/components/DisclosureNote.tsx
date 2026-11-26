@@ -4,15 +4,14 @@ export function DisclosureNote({
   includeAmazonStatement?: boolean;
 }) {
   return (
-    <aside className="border border-stone-300 bg-stone-100 px-3 py-2 text-sm leading-6 text-stone-700">
+    <aside className="rounded-md bg-stone-100 px-3 py-2 text-sm leading-5 text-stone-600">
       <p>
-        Disclosure: some outbound links are affiliate links. We may earn a commission if you buy
-        through them, at no extra cost to you. Links go directly to the retailer. This site does
-        not publish prices, stock, or ratings.
+        Affiliate links may earn us a commission at no extra cost to you. We do not publish prices,
+        stock, or ratings.
         {includeAmazonStatement
           ? " As an Amazon Associate I earn from qualifying purchases."
           : null}{" "}
-        <a className="underline" href="/disclosure/">
+        <a className="font-medium text-indigo-800 underline" href="/disclosure/">
           Full disclosure
         </a>
         .

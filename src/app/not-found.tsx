@@ -5,7 +5,7 @@ export default function NotFound() {
     <div className="flex flex-col gap-3">
       <h1 className="text-3xl font-semibold tracking-tight">Page not found</h1>
       <p>
-        <Link href="/" className="underline">
+        <Link href="/" className="font-medium text-indigo-800 underline">
           Back to the directory home
         </Link>
       </p>

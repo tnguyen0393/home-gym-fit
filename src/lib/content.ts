@@ -205,12 +205,122 @@ export function productsForArticle(article: ArticleDocument): GymProduct[] {
   });
 }
 
-export async function renderMarkdown(source: string): Promise<string> {
+export interface ArticleHeading {
+  id: string;
+  text: string;
+}
+
+interface MdNode {
+  type: string;
+  tagName?: string;
+  value?: string;
+  children?: MdNode[];
+  properties?: Record<string, unknown>;
+}
+
+const MISSING_STATUS = /^(not published|not included|unverified)\b/i;
+const PROSE_TAGS = new Set(["h3", "p", "ul", "ol", "blockquote"]);
+
+function textOf(node: MdNode): string {
+  if (node.type === "text") return node.value ?? "";
+  return (node.children ?? []).map(textOf).join("");
+}
+
+function addClass(node: MdNode, className: string) {
+  const properties = node.properties ?? {};
+  const current = properties.className;
+  const list = Array.isArray(current)
+    ? current.map(String)
+    : typeof current === "string"
+      ? current.split(/\s+/).filter(Boolean)
+      : [];
+  if (!list.includes(className)) list.push(className);
+  node.properties = { ...properties, className: list };
+}
+
+function uniqueId(text: string, used: Set<string>): string {
+  const base =
+    text
+      .toLowerCase()
+      .replace(/&amp;/g, " and ")
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "") || "section";
+  let id = base;
+  let suffix = 2;
+  while (used.has(id)) {
+    id = `${base}-${suffix}`;
+    suffix += 1;
+  }
+  used.add(id);
+  return id;
+}
+
+function markOutbound(node: MdNode) {
+  const href = node.properties?.href;
+  if (typeof href !== "string" || !/^https?:\/\//i.test(href)) return;
+  node.properties = {
+    ...node.properties,
+    target: "_blank",
+    rel: "sponsored nofollow noopener noreferrer",
+  };
+}
+
+function enhanceTree(node: MdNode, headings: ArticleHeading[], used: Set<string>) {
+  if (node.type === "element") {
+    if (node.tagName === "h2") {
+      const text = textOf(node).replace(/\s+/g, " ").trim();
+      const id = uniqueId(text, used);
+      node.properties = { ...(node.properties ?? {}), id };
+      addClass(node, "max-w-prose");
+      headings.push({ id, text });
+    } else if (node.tagName && PROSE_TAGS.has(node.tagName)) {
+      addClass(node, "max-w-prose");
+    } else if (node.tagName === "td" || node.tagName === "th") {
+      if (MISSING_STATUS.test(textOf(node).trim())) addClass(node, "status-missing");
+    } else if (node.tagName === "a") {
+      markOutbound(node);
+    } else if (node.tagName === "table") {
+      addClass(node, "tabular-nums");
+    }
+  }
+
+  const children = node.children ?? [];
+  for (let index = 0; index < children.length; index += 1) {
+    const child = children[index];
+    enhanceTree(child, headings, used);
+    if (child.type === "element" && child.tagName === "table") {
+      children[index] = {
+        type: "element",
+        tagName: "div",
+        properties: { className: ["table-scroll", "max-w-4xl", "overflow-x-auto"] },
+        children: [child],
+      };
+    }
+  }
+}
+
+/** The template owns the single FTC bar, so a leading disclosure quote is not rendered twice. */
+function stripLeadingDisclosure(source: string): string {
+  const match = source.match(/^(?:\s*\n)*(?:>[^\n]*\n?)+/);
+  if (!match) return source;
+  const quote = match[0].replace(/^>\s?/gm, " ").replace(/\s+/g, " ").trim();
+  if (!/^disclosure:/i.test(quote)) return source;
+  return source.slice(match[0].length).replace(/^\n+/, "");
+}
+
+export async function renderMarkdown(
+  source: string,
+): Promise<{ html: string; headings: ArticleHeading[] }> {
+  const headings: ArticleHeading[] = [];
+  const used = new Set<string>();
   const file = await remark()
     .use(remarkGfm)
     .use(remarkRehype)
     .use(rehypeSanitize)
+    .use(() => (tree: MdNode) => {
+      enhanceTree(tree, headings, used);
+    })
     .use(rehypeStringify)
-    .process(source);
-  return String(file);
+    .process(stripLeadingDisclosure(source));
+  return { html: String(file), headings };
 }

@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <article className="flex max-w-3xl flex-col gap-4">
+    <article className="legal-copy flex max-w-prose flex-col gap-4">
       <h1 className="text-3xl font-semibold tracking-tight">Privacy</h1>
       <p>
         Home Gym Fit is a static site hosted on Cloudflare Pages. It has no accounts and no

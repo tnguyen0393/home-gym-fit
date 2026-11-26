@@ -8,27 +8,26 @@ export const metadata: Metadata = {
 
 export default function MethodologyPage() {
   return (
-    <article className="flex max-w-3xl flex-col gap-4">
+    <article className="legal-copy flex max-w-prose flex-col gap-4">
       <h1 className="text-3xl font-semibold tracking-tight">Methodology</h1>
       <p>
-        Each product record stores only values published by the manufacturer. The spec sheet URL and
-        last verified date are shown on the product page. Fields the source does not state are null.
+        Each product page lists only values the manufacturer published, plus the spec sheet link and
+        the date those values were last checked. A measurement the source does not state is left
+        blank and labeled Unverified.
       </p>
       <p>
-        Null measurements are labeled Unverified. Folded depth and fold direction are labeled N/A
-        when the product does not fold (fold_direction is none). A barbell with no installation
-        record is labeled N/A for installation, not given a guessed mount.
+        Folded depth and fold direction are labeled N/A when the product does not fold. A barbell
+        with no installation record is labeled N/A for installation, not given a guessed mount.
       </p>
       <p>
-        Minimum ceiling is shown only when min_ceiling_in is published. The directory ceiling filter
-        uses that stated minimum when it exists, and otherwise compares the upright height. The card
-        says so. Upright height is not converted into a clearance requirement, and no inches are
-        added.
+        Minimum ceiling is shown only when the manufacturer states one. The directory ceiling filter
+        uses that stated minimum when it exists. Otherwise it compares the upright height, and the
+        product card marks the minimum ceiling as unverified. Upright height is not turned into a
+        clearance requirement, and no inches are added.
       </p>
       <p>
-        Fit pages state their inclusion rule in the page text. verification.unverified_fields lists
-        what Spec Steward could not confirm. The catalog validator rejects price, stock, and rating
-        keys. Those values are not stored and not displayed.
+        Each fit preset page states its inclusion rule. The product page lists the fields that could
+        not be confirmed. Prices, stock, and ratings are not stored and are not displayed.
       </p>
     </article>
   );
