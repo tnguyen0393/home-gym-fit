@@ -1,0 +1,832 @@
+[
+  {
+    "id": "rep-pr-4100-21-5",
+    "slug": "rep-pr-4100-folding-wall-mount-rack-21-5",
+    "brand": "REP Fitness",
+    "model": "PR-4100 Folding Squat Rack (21.5\" Depth)",
+    "sku": "PR-4100",
+    "category": "rack",
+    "dimensions": {
+      "height_in": 92.3,
+      "min_ceiling_in": null,
+      "width_in": 48,
+      "depth_open_in": 21.5,
+      "depth_folded_in": 6,
+      "footprint_sqft": 7.17,
+      "unit_weight_lbs": null
+    },
+    "installation": {
+      "wall_mount_required": true,
+      "floor_bolt_required": null,
+      "stud_spacing_in": null,
+      "renter_friendly": false,
+      "fold_direction": "inward"
+    },
+    "rack_specs": {
+      "rack_type": "folding-wall",
+      "upright_size_in": "3x3",
+      "steel_gauge": 11,
+      "hole_size_in": 0.625,
+      "hole_spacing_in": "1\" through bench press and pull area; 2\" elsewhere",
+      "weight_capacity_lbs": 1000,
+      "pullup_bar_included": true,
+      "safeties_included": false,
+      "j_cups_included": true
+    },
+    "verification": {
+      "spec_sheet_url": "https://repfitness.com/products/pr-4100-folding-wall-mount-squat-power-rack",
+      "additional_source_urls": [
+        "https://repfitness.com/pages/rack-guide",
+        "https://repfitness.com/products/pr-4100-folding-wall-mount-squat-power-rack.js"
+      ],
+      "last_verified_date": "2026-11-26",
+      "verification_status": "partial",
+      "unverified_fields": [
+        "dimensions.min_ceiling_in",
+        "dimensions.unit_weight_lbs",
+        "installation.floor_bolt_required",
+        "installation.stud_spacing_in"
+      ],
+      "notes": "Capacity 1,000 lb stated as 'when properly mounted'. Wood stringer (two 2x10x56\" boards) not included; REP Stringer not compatible. Concrete mounting via included M10x90 expansion bolts. Spec table lists 21.5\" inside length 18.9\", inside width 42.1\"; legacy product description on same product record lists 92\" height, 48.5\" overall width, 6.5\" folded depth (conflicts with current spec table values 92.3\", 48\", 6\" used here). Hole size 5/8\" from REP Rack Guide. J-cups and 1.25\" pull-up bar inclusion per product description. SKU per 21.5\" Depth variant in manufacturer product data. Safeties not listed as included."
+    },
+    "affiliates": {
+      "manufacturer_url": "https://repfitness.com/products/pr-4100-folding-wall-mount-squat-power-rack",
+      "rep_affiliate_eligible": true,
+      "amazon_asin": null
+    }
+  },
+  {
+    "id": "rogue-rml-3w-21-5",
+    "slug": "rogue-rml-3w-fold-back-wall-mount-rack-21-5",
+    "brand": "Rogue Fitness",
+    "model": "RML-3W Fold Back Wall Mount Rack (21.5\" Inside Depth)",
+    "sku": null,
+    "category": "rack",
+    "dimensions": {
+      "height_in": 90.375,
+      "min_ceiling_in": null,
+      "width_in": 56.1875,
+      "depth_open_in": 24.75,
+      "depth_folded_in": null,
+      "footprint_sqft": 9.66,
+      "unit_weight_lbs": 163
+    },
+    "installation": {
+      "wall_mount_required": true,
+      "floor_bolt_required": null,
+      "stud_spacing_in": null,
+      "renter_friendly": false,
+      "fold_direction": "inward"
+    },
+    "rack_specs": {
+      "rack_type": "folding-wall",
+      "upright_size_in": "3x3",
+      "steel_gauge": 11,
+      "hole_size_in": null,
+      "hole_spacing_in": "Westside through bench/pull area; 2\" on center above and below",
+      "weight_capacity_lbs": null,
+      "pullup_bar_included": true,
+      "safeties_included": false,
+      "j_cups_included": true
+    },
+    "verification": {
+      "spec_sheet_url": "https://www.roguefitness.com/rogue-rml-3w-fold-back-wall-mount-rack",
+      "additional_source_urls": [],
+      "last_verified_date": "2026-11-26",
+      "verification_status": "partial",
+      "unverified_fields": [
+        "sku",
+        "dimensions.min_ceiling_in",
+        "dimensions.depth_folded_in",
+        "installation.floor_bolt_required",
+        "installation.stud_spacing_in",
+        "rack_specs.hole_size_in",
+        "rack_specs.weight_capacity_lbs"
+      ],
+      "notes": "Width 56.1875\" is overall on-wall width per manufacturer footprint; 49\" outside uprights, 43\" inside uprights. Depth 24.75\" is from wall; inside depth 21.5\". Product weight listed as '163LB or 190LB' (21.5\"/41.5\" options); 163 lb assigned to 21.5\" option by listing order. Folded depth stated only as 'less than 5\"'. 21.5\" version folds inward or outward. Optional stringer pair (sold separately, highly recommended) requires 4 wood studs. 5/8\" hardware. Spotter arm use: wall attachment should be checked by a contractor."
+    },
+    "affiliates": {
+      "manufacturer_url": "https://www.roguefitness.com/rogue-rml-3w-fold-back-wall-mount-rack",
+      "rep_affiliate_eligible": false,
+      "amazon_asin": null
+    }
+  },
+  {
+    "id": "titan-t-3-folding-power-rack-82-21-5",
+    "slug": "titan-t-3-series-folding-power-rack-82-21-5",
+    "brand": "Titan Fitness",
+    "model": "T-3 Series Folding Power Rack (82\" Height, 21.5\" Depth)",
+    "sku": "401226",
+    "category": "rack",
+    "dimensions": {
+      "height_in": 82.375,
+      "min_ceiling_in": null,
+      "width_in": 46,
+      "depth_open_in": 22.5,
+      "depth_folded_in": 5,
+      "footprint_sqft": 7.19,
+      "unit_weight_lbs": 140
+    },
+    "installation": {
+      "wall_mount_required": true,
+      "floor_bolt_required": null,
+      "stud_spacing_in": null,
+      "renter_friendly": false,
+      "fold_direction": null
+    },
+    "rack_specs": {
+      "rack_type": "folding-wall",
+      "upright_size_in": "2x3",
+      "steel_gauge": 11,
+      "hole_size_in": 0.6875,
+      "hole_spacing_in": "Westside through bench and clean pull zone; 2\" above and below; 6\" side hole spacing",
+      "weight_capacity_lbs": 1100,
+      "pullup_bar_included": true,
+      "safeties_included": false,
+      "j_cups_included": true
+    },
+    "verification": {
+      "spec_sheet_url": "https://titan.fitness/products/t3-series-folding-power-rack",
+      "additional_source_urls": [
+        "https://titan.fitness/products/t3-series-folding-power-rack.js"
+      ],
+      "last_verified_date": "2026-11-26",
+      "verification_status": "partial",
+      "unverified_fields": [
+        "dimensions.min_ceiling_in",
+        "installation.floor_bolt_required",
+        "installation.stud_spacing_in",
+        "installation.fold_direction"
+      ],
+      "notes": "Wall mounting hardware not included. Depth 22.5\" from wall; pull-up bar depth from wall 20.5\". Max pull-up bar height 80\". Inside width 42\". Hole size 11/16\". SKU per 82\"/21\" variant in manufacturer product data. Safeties not listed as included."
+    },
+    "affiliates": {
+      "manufacturer_url": "https://titan.fitness/products/t3-series-folding-power-rack",
+      "rep_affiliate_eligible": false,
+      "amazon_asin": null
+    }
+  },
+  {
+    "id": "prx-profile-pro-89",
+    "slug": "prx-profile-pro-folding-squat-rack-89",
+    "brand": "PRx Performance",
+    "model": "Profile PRO Folding Squat Rack (89\" Uprights, Black, Straight Pull-Up Bar)",
+    "sku": "PXP108",
+    "category": "rack",
+    "dimensions": {
+      "height_in": 89,
+      "min_ceiling_in": 107,
+      "width_in": 53,
+      "depth_open_in": 21.75,
+      "depth_folded_in": 4,
+      "footprint_sqft": 8.01,
+      "unit_weight_lbs": null
+    },
+    "installation": {
+      "wall_mount_required": true,
+      "floor_bolt_required": null,
+      "stud_spacing_in": [
+        16,
+        24
+      ],
+      "renter_friendly": false,
+      "fold_direction": "upward"
+    },
+    "rack_specs": {
+      "rack_type": "folding-wall",
+      "upright_size_in": "3x3",
+      "steel_gauge": 11,
+      "hole_size_in": 0.625,
+      "hole_spacing_in": "Front: 2\" (1\" in bench area); side: 2\"",
+      "weight_capacity_lbs": 1000,
+      "pullup_bar_included": true,
+      "safeties_included": false,
+      "j_cups_included": true
+    },
+    "verification": {
+      "spec_sheet_url": "https://prxperformance.com/products/profile-pro-bar",
+      "additional_source_urls": [
+        "https://prxperformance.com/pages/ceiling-solutions",
+        "https://prxperformance.com/products/profile-pro-bar.js"
+      ],
+      "last_verified_date": "2026-11-26",
+      "verification_status": "partial",
+      "unverified_fields": [
+        "dimensions.unit_weight_lbs",
+        "installation.floor_bolt_required"
+      ],
+      "notes": "Primary record reflects PRx's official standard install: 107\" minimum recommended ceiling and 21.75\" open depth (8.01 sq ft footprint) per PRx Ceiling Solutions table. PRx also publishes an official modified install down to 94\" minimum ceiling, which reduces open depth to 16\" (5.89 sq ft footprint). Total rack width 53\"; outside of uprights 48\". Wall brackets mount to 16\" or 24\" on-center studs; ledger board required if studs unevenly spaced. Hydraulic-shock assisted fold-up. All wall mounting brackets and hardware for wood stud installation included. SKU varies by color/pull-up bar; PXP108 = 89\"/Black/Straight. Safeties not listed as included."
+    },
+    "affiliates": {
+      "manufacturer_url": "https://prxperformance.com/products/profile-pro-bar",
+      "rep_affiliate_eligible": false,
+      "amazon_asin": null
+    }
+  },
+  {
+    "id": "rep-pr-1100",
+    "slug": "rep-pr-1100-power-rack",
+    "brand": "REP Fitness",
+    "model": "PR-1100 Power Rack (Matte Black)",
+    "sku": "PR-1100",
+    "category": "rack",
+    "dimensions": {
+      "height_in": 85,
+      "min_ceiling_in": null,
+      "width_in": 58.1,
+      "depth_open_in": 48.5,
+      "depth_folded_in": null,
+      "footprint_sqft": 19.57,
+      "unit_weight_lbs": 130
+    },
+    "installation": {
+      "wall_mount_required": false,
+      "floor_bolt_required": false,
+      "stud_spacing_in": [],
+      "renter_friendly": true,
+      "fold_direction": "none"
+    },
+    "rack_specs": {
+      "rack_type": "compact-power-rack",
+      "upright_size_in": "2x2",
+      "steel_gauge": 14,
+      "hole_size_in": 1,
+      "hole_spacing_in": "3\"",
+      "weight_capacity_lbs": 700,
+      "pullup_bar_included": true,
+      "safeties_included": true,
+      "j_cups_included": true
+    },
+    "verification": {
+      "spec_sheet_url": "https://repfitness.com/products/pr-1100-power-rack",
+      "additional_source_urls": [
+        "https://repfitness.com/products/pr-1100-power-rack.js"
+      ],
+      "last_verified_date": "2026-11-26",
+      "verification_status": "partial",
+      "unverified_fields": [
+        "dimensions.min_ceiling_in"
+      ],
+      "notes": "Manufacturer states the PR-1100 cannot be bolted down. Working area 44\" W x 24\" D x 79\" H. Pin-pipe safeties and J-cups included. Multi-grip pull-up bar can be inverted to reduce height. Muscle-ups not recommended; banded movements not recommended (no band peg holes). 3/8\" hardware. SKU PR-1100 = Black variant; color variants carry suffixed SKUs."
+    },
+    "affiliates": {
+      "manufacturer_url": "https://repfitness.com/products/pr-1100-power-rack",
+      "rep_affiliate_eligible": true,
+      "amazon_asin": null
+    }
+  },
+  {
+    "id": "titan-t-2-power-rack-71",
+    "slug": "titan-t-2-series-power-rack-71",
+    "brand": "Titan Fitness",
+    "model": "T-2 Series Power Rack (71\", Black)",
+    "sku": "401835",
+    "category": "rack",
+    "dimensions": {
+      "height_in": 71,
+      "min_ceiling_in": null,
+      "width_in": null,
+      "depth_open_in": null,
+      "depth_folded_in": null,
+      "footprint_sqft": null,
+      "unit_weight_lbs": 125
+    },
+    "installation": {
+      "wall_mount_required": false,
+      "floor_bolt_required": false,
+      "stud_spacing_in": [],
+      "renter_friendly": true,
+      "fold_direction": "none"
+    },
+    "rack_specs": {
+      "rack_type": "compact-power-rack",
+      "upright_size_in": "2x2",
+      "steel_gauge": 14,
+      "hole_size_in": 1,
+      "hole_spacing_in": "2\" on center",
+      "weight_capacity_lbs": 850,
+      "pullup_bar_included": true,
+      "safeties_included": true,
+      "j_cups_included": true
+    },
+    "verification": {
+      "spec_sheet_url": "https://titan.fitness/products/t2-series-power-rack",
+      "additional_source_urls": [
+        "https://titan.fitness/products/t2-series-power-rack.js"
+      ],
+      "last_verified_date": "2026-11-26",
+      "verification_status": "partial",
+      "unverified_fields": [
+        "dimensions.min_ceiling_in",
+        "dimensions.width_in",
+        "dimensions.depth_open_in",
+        "dimensions.footprint_sqft"
+      ],
+      "notes": "Overall footprint published as '57-in x 50-in' without width/depth axis labels; inside dimensions 42\" x 26\". Hole size listed as 26mm in spec table and as 1\" in details list. Rackable capacity 850 lb; whole rack capacity 2,200 lb. Max pull-up bar height 69\". Rubber feet with bolt-down options; Titan recommends bolting down for added stability. Includes pin and pipe safeties, (2) J-hooks, (2) weight plate horns, 1.25\" pull-up bar."
+    },
+    "affiliates": {
+      "manufacturer_url": "https://titan.fitness/products/t2-series-power-rack",
+      "rep_affiliate_eligible": false,
+      "amazon_asin": null
+    }
+  },
+  {
+    "id": "rogue-hr-2-90",
+    "slug": "rogue-hr-2-half-rack-90",
+    "brand": "Rogue Fitness",
+    "model": "HR-2 Half Rack (90\" Front Uprights)",
+    "sku": null,
+    "category": "rack",
+    "dimensions": {
+      "height_in": 92.25,
+      "min_ceiling_in": null,
+      "width_in": 48,
+      "depth_open_in": 49,
+      "depth_folded_in": null,
+      "footprint_sqft": 16.33,
+      "unit_weight_lbs": null
+    },
+    "installation": {
+      "wall_mount_required": false,
+      "floor_bolt_required": false,
+      "stud_spacing_in": [],
+      "renter_friendly": true,
+      "fold_direction": "none"
+    },
+    "rack_specs": {
+      "rack_type": "half-rack",
+      "upright_size_in": "3x3",
+      "steel_gauge": 11,
+      "hole_size_in": null,
+      "hole_spacing_in": "Westside",
+      "weight_capacity_lbs": null,
+      "pullup_bar_included": true,
+      "safeties_included": false,
+      "j_cups_included": true
+    },
+    "verification": {
+      "spec_sheet_url": "https://www.roguefitness.com/rogue-hr-2-half-rack",
+      "additional_source_urls": [],
+      "last_verified_date": "2026-11-26",
+      "verification_status": "partial",
+      "unverified_fields": [
+        "sku",
+        "dimensions.min_ceiling_in",
+        "dimensions.unit_weight_lbs",
+        "rack_specs.hole_size_in",
+        "rack_specs.weight_capacity_lbs"
+      ],
+      "notes": "Height listed as '92.25\" or 110.25\"'; 92.25\" assigned to 90\" front-upright option. Product weight published only as range 225-255 lb, varies by upright selection. Manufacturer states unit does not need to be bolted to the floor. Back upright options 70\" or 90\"; front 90\" or 108\". 2x3\" 11-gauge base. 16\" Pin/Pipe Safety Set optional add-on (not included). Includes Monster Lite J-cup pair and 43\" single skinny pull-up bar."
+    },
+    "affiliates": {
+      "manufacturer_url": "https://www.roguefitness.com/rogue-hr-2-half-rack",
+      "rep_affiliate_eligible": false,
+      "amazon_asin": null
+    }
+  },
+  {
+    "id": "rep-apollo-half-rack-80",
+    "slug": "rep-apollo-half-rack-80",
+    "brand": "REP Fitness",
+    "model": "Apollo Half Rack (80\" Uprights, Builder)",
+    "sku": null,
+    "category": "rack",
+    "dimensions": {
+      "height_in": 80,
+      "min_ceiling_in": null,
+      "width_in": 52.4,
+      "depth_open_in": 48,
+      "depth_folded_in": null,
+      "footprint_sqft": 17.47,
+      "unit_weight_lbs": null
+    },
+    "installation": {
+      "wall_mount_required": false,
+      "floor_bolt_required": false,
+      "stud_spacing_in": [],
+      "renter_friendly": true,
+      "fold_direction": "none"
+    },
+    "rack_specs": {
+      "rack_type": "half-rack",
+      "upright_size_in": "3x3",
+      "steel_gauge": 11,
+      "hole_size_in": 1,
+      "hole_spacing_in": "2\"",
+      "weight_capacity_lbs": 1000,
+      "pullup_bar_included": null,
+      "safeties_included": null,
+      "j_cups_included": null
+    },
+    "verification": {
+      "spec_sheet_url": "https://repfitness.com/products/apollo-rack-builder",
+      "additional_source_urls": [],
+      "last_verified_date": "2026-11-26",
+      "verification_status": "partial",
+      "unverified_fields": [
+        "sku",
+        "dimensions.min_ceiling_in",
+        "dimensions.unit_weight_lbs",
+        "rack_specs.pullup_bar_included",
+        "rack_specs.safeties_included",
+        "rack_specs.j_cups_included"
+      ],
+      "notes": "Sold via configurable builder; included pull-up bar, J-cups, and safeties depend on builder selections. Height is upright height option (80\" or 93\"). Length 48\", width 52.4\". Flat foot base; manufacturer states it eliminates the need to bolt down. Crossmember depth 16\". 5000 Series attachments; not Ares or Belt Squat compatible. Rackable capacity 1,000 lb."
+    },
+    "affiliates": {
+      "manufacturer_url": "https://repfitness.com/products/apollo-rack-builder",
+      "rep_affiliate_eligible": true,
+      "amazon_asin": null
+    }
+  },
+  {
+    "id": "rogue-sml-1-70",
+    "slug": "rogue-sml-1-70-monster-lite-squat-stand",
+    "brand": "Rogue Fitness",
+    "model": "SML-1 Rogue 70\" Monster Lite Squat Stand",
+    "sku": null,
+    "category": "rack",
+    "dimensions": {
+      "height_in": 72.25,
+      "min_ceiling_in": null,
+      "width_in": 49,
+      "depth_open_in": 48,
+      "depth_folded_in": null,
+      "footprint_sqft": 16.33,
+      "unit_weight_lbs": 122
+    },
+    "installation": {
+      "wall_mount_required": false,
+      "floor_bolt_required": null,
+      "stud_spacing_in": [],
+      "renter_friendly": null,
+      "fold_direction": "none"
+    },
+    "rack_specs": {
+      "rack_type": "squat-stand",
+      "upright_size_in": "3x3",
+      "steel_gauge": 11,
+      "hole_size_in": 0.625,
+      "hole_spacing_in": "Westside: 1\" through bench and clean pull zone; 2\" above and below",
+      "weight_capacity_lbs": 1000,
+      "pullup_bar_included": false,
+      "safeties_included": false,
+      "j_cups_included": true
+    },
+    "verification": {
+      "spec_sheet_url": "https://www.roguefitness.com/sml-1-rogue-70-monster-lite-squat-stand",
+      "additional_source_urls": [
+        "https://assets.roguefitness.com/instructions/IS0070/IS0070_CUST_INSTR_V1"
+      ],
+      "last_verified_date": "2026-11-26",
+      "verification_status": "partial",
+      "unverified_fields": [
+        "sku",
+        "dimensions.min_ceiling_in",
+        "installation.floor_bolt_required",
+        "installation.renter_friendly"
+      ],
+      "notes": "Weight capacity stated as '1,000LB+'. Total height 72.25\" with no pull-up bar add-on. No pull-up bar; Monster Lite Matador and Plate Storage Posts not recommended. Floor Mounting Feet and Safety Spotter Arms sold separately. 2x3\" 11-gauge base tubes. 5/8\" hardware and J-cup pins."
+    },
+    "affiliates": {
+      "manufacturer_url": "https://www.roguefitness.com/sml-1-rogue-70-monster-lite-squat-stand",
+      "rep_affiliate_eligible": false,
+      "amazon_asin": null
+    }
+  },
+  {
+    "id": "titan-t-3-short-squat-stand",
+    "slug": "titan-t-3-series-short-squat-stand",
+    "brand": "Titan Fitness",
+    "model": "T-3 Series Short Squat Stand",
+    "sku": "400925",
+    "category": "rack",
+    "dimensions": {
+      "height_in": 73.5,
+      "min_ceiling_in": null,
+      "width_in": null,
+      "depth_open_in": null,
+      "depth_folded_in": null,
+      "footprint_sqft": null,
+      "unit_weight_lbs": 144
+    },
+    "installation": {
+      "wall_mount_required": false,
+      "floor_bolt_required": false,
+      "stud_spacing_in": [],
+      "renter_friendly": true,
+      "fold_direction": "none"
+    },
+    "rack_specs": {
+      "rack_type": "squat-stand",
+      "upright_size_in": "2x3",
+      "steel_gauge": 11,
+      "hole_size_in": 0.6875,
+      "hole_spacing_in": "Westside through bench and clean pull zone; 2\" above and below; 6\" side hole spacing",
+      "weight_capacity_lbs": 1000,
+      "pullup_bar_included": false,
+      "safeties_included": false,
+      "j_cups_included": true
+    },
+    "verification": {
+      "spec_sheet_url": "https://titan.fitness/products/t-3-series-short-squat-stand",
+      "additional_source_urls": [
+        "https://titan.fitness/products/t-3-series-short-squat-stand.js"
+      ],
+      "last_verified_date": "2026-11-26",
+      "verification_status": "partial",
+      "unverified_fields": [
+        "dimensions.min_ceiling_in",
+        "dimensions.width_in",
+        "dimensions.depth_open_in",
+        "dimensions.footprint_sqft"
+      ],
+      "notes": "Upright height 72\"; overall height 73.5\". Base dimensions published as '47-in. x 48-in.' and walk-in as '41-in. x 42-in.' without width/depth axis labels. Manufacturer states no floor bolting required. Pull-up bar and safeties not listed as included; spotter arms sold separately."
+    },
+    "affiliates": {
+      "manufacturer_url": "https://titan.fitness/products/t-3-series-short-squat-stand",
+      "rep_affiliate_eligible": false,
+      "amazon_asin": null
+    }
+  },
+  {
+    "id": "rogue-c-70s-bar",
+    "slug": "rogue-c-70s-short-rackable-bar",
+    "brand": "Rogue Fitness",
+    "model": "C-70S Bar (Black Cerakote Shaft / Bright Zinc Sleeve)",
+    "sku": "RA1016-EBLACK-BR",
+    "category": "barbell",
+    "dimensions": {
+      "height_in": null,
+      "min_ceiling_in": null,
+      "width_in": 72,
+      "depth_open_in": null,
+      "depth_folded_in": null,
+      "footprint_sqft": null,
+      "unit_weight_lbs": null
+    },
+    "installation": {
+      "wall_mount_required": false,
+      "floor_bolt_required": false,
+      "stud_spacing_in": [],
+      "renter_friendly": true,
+      "fold_direction": "none"
+    },
+    "barbell_specs": {
+      "overall_length_in": 72,
+      "shaft_length_in": 52,
+      "loadable_sleeve_length_in": 8.875,
+      "shaft_diameter_mm": 28.5,
+      "sleeve_diameter_in": null,
+      "tensile_strength_psi": 190000,
+      "weight_capacity_lbs": null,
+      "knurl_marks": "Dual (IWF & IPF)",
+      "center_knurl": false,
+      "bushing_or_bearing": "Composite bushings",
+      "coating": "Black Cerakote shaft; bright zinc sleeves",
+      "rackable": true
+    },
+    "verification": {
+      "spec_sheet_url": "https://www.roguefitness.com/the-rogue-c-70s-bar",
+      "additional_source_urls": [
+        "https://www.roguefitness.com/theindex/gear-how-tos/choosing-the-right-barbell"
+      ],
+      "last_verified_date": "2026-11-26",
+      "verification_status": "partial",
+      "unverified_fields": [
+        "dimensions.unit_weight_lbs",
+        "barbell_specs.sleeve_diameter_in",
+        "barbell_specs.weight_capacity_lbs"
+      ],
+      "notes": "Weight published only as '15KG with collars' ('The C-70S weighs 15KG only with collars included'); bare-bar weight not published, so unit_weight_lbs is null. Rackability per manufacturer FAQ: 'The C-70S Bar has a 52\" shaft length between the sleeves allows this to be racked on any well-known power racks, squat stands, or rigs in existance.' Rogue states it does not publish static weight ratings for its barbells. Sleeve diameter not published. SKU from manufacturer product data. Lengths per spec table: Bar Length 72\", Distance Between Sleeves 52\", Loadable Sleeve Length 8.875\". F-Rating F16-R."
+    },
+    "affiliates": {
+      "manufacturer_url": "https://www.roguefitness.com/the-rogue-c-70s-bar",
+      "rep_affiliate_eligible": false,
+      "amazon_asin": null
+    }
+  },
+  {
+    "id": "rep-colorado-short-bar",
+    "slug": "rep-colorado-short-bar-15kg",
+    "brand": "REP Fitness",
+    "model": "Colorado Short Bar (Black Cerakote / Hard Chrome)",
+    "sku": "BB-5020-S",
+    "category": "barbell",
+    "dimensions": {
+      "height_in": null,
+      "min_ceiling_in": null,
+      "width_in": 72,
+      "depth_open_in": null,
+      "depth_folded_in": null,
+      "footprint_sqft": null,
+      "unit_weight_lbs": 33.1
+    },
+    "installation": {
+      "wall_mount_required": false,
+      "floor_bolt_required": false,
+      "stud_spacing_in": [],
+      "renter_friendly": true,
+      "fold_direction": "none"
+    },
+    "barbell_specs": {
+      "overall_length_in": 72,
+      "shaft_length_in": 51.5,
+      "loadable_sleeve_length_in": 8.9,
+      "shaft_diameter_mm": 28.5,
+      "sleeve_diameter_in": 1.97,
+      "tensile_strength_psi": 190000,
+      "weight_capacity_lbs": 1500,
+      "knurl_marks": "Dual (IPF & IWF)",
+      "center_knurl": false,
+      "bushing_or_bearing": "Composite bushings",
+      "coating": "Black Cerakote shaft; hard chrome sleeves",
+      "rackable": true
+    },
+    "verification": {
+      "spec_sheet_url": "https://repfitness.com/products/colorado-short-bar",
+      "additional_source_urls": [
+        "https://repfitness.com/products/colorado-short-bar.js"
+      ],
+      "last_verified_date": "2026-11-26",
+      "verification_status": "verified",
+      "unverified_fields": [],
+      "notes": "Weight published as '15kg (33.1lbs)'. sleeve_diameter_in converted from published 'Sleeve Diameter 50mm' (50 / 25.4 = 1.97). shaft_length_in from published sleeve-to-sleeve distance 51.5\". Rackability per manufacturer FAQ: 'designed to be rackable on any standard 47\u201d and 49\u201d width racks.' Capacity published as 'Static Rating 1,500lbs'. Tensile published as '190ksi'. Published tolerance 1%."
+    },
+    "affiliates": {
+      "manufacturer_url": "https://repfitness.com/products/colorado-short-bar",
+      "rep_affiliate_eligible": true,
+      "amazon_asin": null
+    }
+  },
+  {
+    "id": "bells-of-steel-short-rackable-barbell",
+    "slug": "bells-of-steel-short-rackable-barbell-69",
+    "brand": "Bells of Steel",
+    "model": "Short Rackable Barbell",
+    "sku": "RCK-UTL-BAR",
+    "category": "barbell",
+    "dimensions": {
+      "height_in": null,
+      "min_ceiling_in": null,
+      "width_in": 69,
+      "depth_open_in": null,
+      "depth_folded_in": null,
+      "footprint_sqft": null,
+      "unit_weight_lbs": 29
+    },
+    "installation": {
+      "wall_mount_required": false,
+      "floor_bolt_required": false,
+      "stud_spacing_in": [],
+      "renter_friendly": true,
+      "fold_direction": "none"
+    },
+    "barbell_specs": {
+      "overall_length_in": 69,
+      "shaft_length_in": 51.6,
+      "loadable_sleeve_length_in": 7.88,
+      "shaft_diameter_mm": 28.5,
+      "sleeve_diameter_in": null,
+      "tensile_strength_psi": 150000,
+      "weight_capacity_lbs": 900,
+      "knurl_marks": "Dual (Powerlifting & Weightlifting)",
+      "center_knurl": true,
+      "bushing_or_bearing": "Bushings & snap rings",
+      "coating": "Black zinc shaft; black zinc sleeves",
+      "rackable": true
+    },
+    "verification": {
+      "spec_sheet_url": "https://bellsofsteel.us/products/short-rackable-barbell",
+      "additional_source_urls": [
+        "https://bellsofsteel.us/products/short-rackable-barbell.js",
+        "https://bellsofsteel.us/blogs/content/how-much-do-short-barbells-weigh"
+      ],
+      "last_verified_date": "2026-11-26",
+      "verification_status": "partial",
+      "unverified_fields": [
+        "barbell_specs.sleeve_diameter_in"
+      ],
+      "notes": "Length published as '69\" / 1,753mm'; loadable sleeve as '7.88\" / 200mm' (also stated as 7-7/8\"). Weight published as 29.00 lb (13 kg). shaft_length_in 51.6\" from manufacturer blog (bellsofsteel.us), not the product spec table. Rack compatibility stated as 'racks cleanly in any power rack up to 49\" / 124.5 cm inside width'. Max capacity published as 900 lbs / 408 kg static. Sleeve diameter not published. SKU from manufacturer product data."
+    },
+    "affiliates": {
+      "manufacturer_url": "https://bellsofsteel.us/products/short-rackable-barbell",
+      "rep_affiliate_eligible": false,
+      "amazon_asin": null
+    }
+  },
+  {
+    "id": "fringe-sport-midas-mini-shorty-bar",
+    "slug": "fringe-sport-midas-mini-shorty-power-bar",
+    "brand": "Fringe Sport",
+    "model": "Midas Mini Shorty Power Bar",
+    "sku": "Bar-FS-Shorty-Midas-15kg",
+    "category": "barbell",
+    "dimensions": {
+      "height_in": null,
+      "min_ceiling_in": null,
+      "width_in": 72,
+      "depth_open_in": null,
+      "depth_folded_in": null,
+      "footprint_sqft": null,
+      "unit_weight_lbs": 33
+    },
+    "installation": {
+      "wall_mount_required": false,
+      "floor_bolt_required": false,
+      "stud_spacing_in": [],
+      "renter_friendly": true,
+      "fold_direction": "none"
+    },
+    "barbell_specs": {
+      "overall_length_in": 72,
+      "shaft_length_in": null,
+      "loadable_sleeve_length_in": null,
+      "shaft_diameter_mm": 28.5,
+      "sleeve_diameter_in": null,
+      "tensile_strength_psi": 190000,
+      "weight_capacity_lbs": 1500,
+      "knurl_marks": "Dual (IWF + IPF)",
+      "center_knurl": null,
+      "bushing_or_bearing": "Aerospace-grade bushing",
+      "coating": "Cerakote shaft; gold-colored titanium sleeves",
+      "rackable": true
+    },
+    "verification": {
+      "spec_sheet_url": "https://www.fringesport.com/products/midas-mini-shorty-bar",
+      "additional_source_urls": [
+        "https://www.fringesport.com/products/midas-mini-shorty-bar.js"
+      ],
+      "last_verified_date": "2026-11-26",
+      "verification_status": "partial",
+      "unverified_fields": [
+        "barbell_specs.shaft_length_in",
+        "barbell_specs.loadable_sleeve_length_in",
+        "barbell_specs.sleeve_diameter_in",
+        "barbell_specs.center_knurl"
+      ],
+      "notes": "Rackability stated as 'This Midas Mini is a rackable, short-sleeve bar' and 'it has the same shaft length of standard barbells'; no numeric shaft length published. Spec table lists 'Sleeve Length 9\"' without specifying loadable length, so loadable_sleeve_length_in is null. Center knurl not stated. Page overview also refers to 'a chrome finish', conflicting with spec table 'Gold-colored titanium sleeve with cerakote finish'; spec table value recorded. Page lists 'Product ID 8134'; sku recorded from manufacturer variant data. Weight published as 33lbs (15 kg). Sleeve diameter not published."
+    },
+    "affiliates": {
+      "manufacturer_url": "https://www.fringesport.com/products/midas-mini-shorty-bar",
+      "rep_affiliate_eligible": false,
+      "amazon_asin": null
+    }
+  },
+  {
+    "id": "rogue-c-68s-bar",
+    "slug": "rogue-c-68s-womens-short-rackable-bar",
+    "brand": "Rogue Fitness",
+    "model": "C-68S Bar (Black Cerakote Shaft / Bright Zinc Sleeve)",
+    "sku": "RA2402-EBLACK-BR",
+    "category": "barbell",
+    "dimensions": {
+      "height_in": null,
+      "min_ceiling_in": null,
+      "width_in": 68.25,
+      "depth_open_in": null,
+      "depth_folded_in": null,
+      "footprint_sqft": null,
+      "unit_weight_lbs": 25
+    },
+    "installation": {
+      "wall_mount_required": false,
+      "floor_bolt_required": false,
+      "stud_spacing_in": [],
+      "renter_friendly": true,
+      "fold_direction": "none"
+    },
+    "barbell_specs": {
+      "overall_length_in": 68.25,
+      "shaft_length_in": 51.5,
+      "loadable_sleeve_length_in": 7.75,
+      "shaft_diameter_mm": 25,
+      "sleeve_diameter_in": null,
+      "tensile_strength_psi": 190000,
+      "weight_capacity_lbs": null,
+      "knurl_marks": "Dual (IWF & IPF)",
+      "center_knurl": false,
+      "bushing_or_bearing": "Bronze bushings",
+      "coating": "Black Cerakote shaft; bright zinc sleeves",
+      "rackable": true
+    },
+    "verification": {
+      "spec_sheet_url": "https://www.roguefitness.com/the-rogue-c-68s-bar",
+      "additional_source_urls": [
+        "https://www.roguefitness.com/theindex/gear-how-tos/choosing-the-right-barbell"
+      ],
+      "last_verified_date": "2026-11-26",
+      "verification_status": "partial",
+      "unverified_fields": [
+        "barbell_specs.sleeve_diameter_in",
+        "barbell_specs.weight_capacity_lbs"
+      ],
+      "notes": "Women's 25mm bar. Weight published as 25 lb. Rackability per manufacturer FAQ: 'The C-68S Bar has a 51.5\" shaft length between the sleeves allows this to be racked on any well-known power racks, squat stands, or rigs in existance.' Rogue does not publish static weight ratings for its barbells. Sleeve diameter not published. F-Rating F12-R. SKU from manufacturer product data."
+    },
+    "affiliates": {
+      "manufacturer_url": "https://www.roguefitness.com/the-rogue-c-68s-bar",
+      "rep_affiliate_eligible": false,
+      "amazon_asin": null
+    }
+  }
+]
