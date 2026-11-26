@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArticleView } from "@/components/ArticleView";
+import { JsonLd } from "@/components/JsonLd";
 import { getGuide, listGuides, productsForArticle, renderMarkdown } from "@/lib/content";
+import { pageListJsonLd } from "@/lib/jsonld";
 import type { ArticleDocument } from "@/lib/types";
 
 export const dynamicParams = false;
@@ -34,11 +36,19 @@ export async function generateMetadata(props: {
 function GuideIndex({ articles }: { articles: ArticleDocument[] }) {
   return (
     <div className="flex flex-col gap-6">
+      <JsonLd
+        data={pageListJsonLd(
+          "Guides",
+          articles.map((article) => ({
+            title: article.title,
+            path: `/guides/${article.slug}/`,
+          })),
+        )}
+      />
       <header className="flex flex-col gap-2">
         <h1 className="text-3xl font-semibold tracking-tight">Guides</h1>
         <p className="max-w-3xl text-stone-700">
-          Guides and explainers are loaded from content/guides as Markdown or MDX. None are included
-          until Guide & Comparison Editor adds them.
+          Guides and explainers are loaded from content/guides as Markdown or MDX.
         </p>
       </header>
       {articles.length === 0 ? (

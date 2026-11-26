@@ -64,7 +64,7 @@ The directory category filter and max bar length filter read those records. Max 
 
 ## Content contract (Guide & Comparison Editor)
 
-`content/guides/` and `content/compare/` ship empty (`.gitkeep` only). Do not commit sample articles in this app. Drop `.md` or `.mdx` files and rebuild. Bodies are parsed as Markdown with `gray-matter`, `remark`, and a sanitize step. JSX in `.mdx` is not executed.
+Drop `.md` or `.mdx` files into `content/guides/` and `content/compare/` and rebuild. Bodies are parsed as Markdown with `gray-matter`, `remark`, `remark-gfm`, and a sanitize step. JSX in `.mdx` is not executed. Do not rewrite published editorial files in app code.
 
 Frontmatter:
 
@@ -82,15 +82,15 @@ testingStatus: string # optional
 ftcDisclosure: false  # optional
 ```
 
-Explainers live in `content/guides/` and render at `/guides/<slug>/`. The article page shows the FTC disclosure when `ftcDisclosure` is true or `productIds` is non-empty.
+Explainers live in `content/guides/` and render at `/guides/<slug>/`. The article page shows the FTC disclosure when `ftcDisclosure` is true or `productIds` is non-empty. Bodies are GitHub-flavored Markdown, so tables in `.mdx` render as tables. JSX is not executed.
 
-Sprint 1 paths this pipeline will serve once the files exist:
+Published pages:
 
 - `content/guides/folding-power-racks-8-foot-ceiling.mdx` → `/guides/folding-power-racks-8-foot-ceiling/`
 - `content/guides/best-short-olympic-barbells.mdx` → `/guides/best-short-olympic-barbells/`
+- `content/guides/renter-friendly-squat-racks.mdx` → `/guides/renter-friendly-squat-racks/`
 - `content/compare/rep-pr-4100-vs-rogue-rml-3w.mdx` → `/compare/rep-pr-4100-vs-rogue-rml-3w/`
-
-`.md` is accepted for the same slugs.
+- `content/compare/prx-profile-vs-rep-pr-4100.mdx` → `/compare/prx-profile-vs-rep-pr-4100/`
 
 ## Scripts
 

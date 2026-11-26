@@ -22,3 +22,23 @@ body {
 .article-body :where(a) {
   text-decoration: underline;
 }
+
+.article-body :where(blockquote) {
+  margin-top: 0.75rem;
+  border-left: 3px solid #d6d3d1;
+  padding-left: 0.75rem;
+}
+
+.article-body :where(table) {
+  margin-top: 1rem;
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.article-body :where(th, td) {
+  border: 1px solid #d6d3d1;
+  padding: 0.4rem 0.5rem;
+  text-align: left;
+  vertical-align: top;
+}

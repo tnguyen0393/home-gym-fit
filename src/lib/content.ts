@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
 import { remark } from "remark";
+import remarkGfm from "remark-gfm";
 import remarkRehype from "remark-rehype";
 import rehypeSanitize from "rehype-sanitize";
 import rehypeStringify from "rehype-stringify";
@@ -26,12 +27,7 @@ import type { ArticleDocument, ArticleType, GymProduct } from "@/lib/types";
  * testingStatus (string), ftcDisclosure (boolean).
  *
  * The article page shows the FTC note when ftcDisclosure is true or productIds
- * is non-empty. Bodies are Markdown. JSX in .mdx files is not executed.
- *
- * Sprint 1 routes this pipeline is ready to serve, with no sample articles:
- * - content/guides/folding-power-racks-8-foot-ceiling.mdx
- * - content/guides/best-short-olympic-barbells.mdx
- * - content/compare/rep-pr-4100-vs-rogue-rml-3w.mdx
+ * is non-empty. Bodies are Markdown, including GFM tables. JSX in .mdx files is not executed.
  */
 
 const GUIDE_DIR = path.join(process.cwd(), "content", "guides");
@@ -211,6 +207,7 @@ export function productsForArticle(article: ArticleDocument): GymProduct[] {
 
 export async function renderMarkdown(source: string): Promise<string> {
   const file = await remark()
+    .use(remarkGfm)
     .use(remarkRehype)
     .use(rehypeSanitize)
     .use(rehypeStringify)

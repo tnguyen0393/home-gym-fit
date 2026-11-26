@@ -1,7 +1,9 @@
 import { amazonLink } from "@/lib/affiliates";
 import { articleNeedsDisclosure } from "@/lib/content";
+import { itemListJsonLd } from "@/lib/jsonld";
 import type { ArticleDocument, GymProduct } from "@/lib/types";
 import { DisclosureNote } from "@/components/DisclosureNote";
+import { JsonLd } from "@/components/JsonLd";
 import { ProductCard } from "@/components/ProductCard";
 
 export function ArticleView({
@@ -17,6 +19,7 @@ export function ArticleView({
 
   return (
     <article className="flex flex-col gap-6">
+      {products.length > 0 ? <JsonLd data={itemListJsonLd(article.title, products)} /> : null}
       <header className="flex flex-col gap-2">
         <p className="text-sm uppercase tracking-wide text-stone-500">{article.type}</p>
         <h1 className="text-3xl font-semibold tracking-tight">{article.title}</h1>

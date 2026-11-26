@@ -16,6 +16,24 @@ export function productJsonLd(product: GymProduct): Record<string, unknown> {
   return data;
 }
 
+export function pageListJsonLd(
+  name: string,
+  pages: { title: string; path: string }[],
+): Record<string, unknown> {
+  const site = getSiteUrl();
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name,
+    itemListElement: pages.map((page, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: page.title,
+      url: `${site}${page.path}`,
+    })),
+  };
+}
+
 export function itemListJsonLd(name: string, products: GymProduct[]): Record<string, unknown> {
   const site = getSiteUrl();
   return {

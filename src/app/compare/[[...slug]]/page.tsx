@@ -2,12 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArticleView } from "@/components/ArticleView";
+import { JsonLd } from "@/components/JsonLd";
 import {
   getComparison,
   listComparisons,
   productsForArticle,
   renderMarkdown,
 } from "@/lib/content";
+import { pageListJsonLd } from "@/lib/jsonld";
 import type { ArticleDocument } from "@/lib/types";
 
 export const dynamicParams = false;
@@ -39,11 +41,19 @@ export async function generateMetadata(props: {
 function CompareIndex({ articles }: { articles: ArticleDocument[] }) {
   return (
     <div className="flex flex-col gap-6">
+      <JsonLd
+        data={pageListJsonLd(
+          "Comparisons",
+          articles.map((article) => ({
+            title: article.title,
+            path: `/compare/${article.slug}/`,
+          })),
+        )}
+      />
       <header className="flex flex-col gap-2">
         <h1 className="text-3xl font-semibold tracking-tight">Comparisons</h1>
         <p className="max-w-3xl text-stone-700">
-          Comparisons are loaded from content/compare as Markdown or MDX. None are included until
-          Guide & Comparison Editor adds them.
+          Comparisons are loaded from content/compare as Markdown or MDX.
         </p>
       </header>
       {articles.length === 0 ? (
