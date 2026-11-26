@@ -58,7 +58,7 @@ Canonical file: `data/products.json`. Copy records in full. Do not invent dimens
 
 Null means the manufacturer did not publish that value. The UI prints `Unverified`. Folded depth and fold direction print `N/A` when `fold_direction` is `none`. The UI does not compute a ceiling clearance from upright height. The directory ceiling filter uses `min_ceiling_in` when it is a number, and otherwise the published `height_in`, and the card says the minimum ceiling is unverified.
 
-`BarbellSpecs` fields, each nullable: `overall_length_in`, `shaft_length_in`, `loadable_sleeve_length_in`, `shaft_diameter_mm`, `sleeve_diameter_in`, `tensile_strength_psi`, `weight_capacity_lbs`, `knurl_marks`, `center_knurl`, `bushing_or_bearing`, `coating`, `rackable`. Boolean fields are `knurl_marks`, `center_knurl`, and `rackable`. `bushing_or_bearing` and `coating` are strings or null.
+`BarbellSpecs` fields, each nullable: `overall_length_in`, `shaft_length_in`, `loadable_sleeve_length_in`, `shaft_diameter_mm`, `sleeve_diameter_in`, `tensile_strength_psi`, `weight_capacity_lbs`, `knurl_marks`, `center_knurl`, `bushing_or_bearing`, `coating`, `rackable`. `center_knurl` and `rackable` are booleans or null. `knurl_marks`, `bushing_or_bearing`, and `coating` are strings or null.
 
 The directory category filter and max bar length filter read those records. Max bar length compares `overall_length_in` and does not hide racks. With only the current racks in the file, the barbell filter has nothing to match.
 

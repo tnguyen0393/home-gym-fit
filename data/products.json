@@ -548,5 +548,285 @@
       "rep_affiliate_eligible": false,
       "amazon_asin": null
     }
+  },
+  {
+    "id": "rogue-c-70s-bar",
+    "slug": "rogue-c-70s-short-rackable-bar",
+    "brand": "Rogue Fitness",
+    "model": "C-70S Bar (Black Cerakote Shaft / Bright Zinc Sleeve)",
+    "sku": "RA1016-EBLACK-BR",
+    "category": "barbell",
+    "dimensions": {
+      "height_in": null,
+      "min_ceiling_in": null,
+      "width_in": 72,
+      "depth_open_in": null,
+      "depth_folded_in": null,
+      "footprint_sqft": null,
+      "unit_weight_lbs": null
+    },
+    "installation": {
+      "wall_mount_required": false,
+      "floor_bolt_required": false,
+      "stud_spacing_in": [],
+      "renter_friendly": true,
+      "fold_direction": "none"
+    },
+    "barbell_specs": {
+      "overall_length_in": 72,
+      "shaft_length_in": 52,
+      "loadable_sleeve_length_in": 8.875,
+      "shaft_diameter_mm": 28.5,
+      "sleeve_diameter_in": null,
+      "tensile_strength_psi": 190000,
+      "weight_capacity_lbs": null,
+      "knurl_marks": "Dual (IWF & IPF)",
+      "center_knurl": false,
+      "bushing_or_bearing": "Composite bushings",
+      "coating": "Black Cerakote shaft; bright zinc sleeves",
+      "rackable": true
+    },
+    "verification": {
+      "spec_sheet_url": "https://www.roguefitness.com/the-rogue-c-70s-bar",
+      "additional_source_urls": [
+        "https://www.roguefitness.com/theindex/gear-how-tos/choosing-the-right-barbell"
+      ],
+      "last_verified_date": "2026-11-26",
+      "verification_status": "partial",
+      "unverified_fields": [
+        "dimensions.unit_weight_lbs",
+        "barbell_specs.sleeve_diameter_in",
+        "barbell_specs.weight_capacity_lbs"
+      ],
+      "notes": "Weight published only as '15KG with collars' ('The C-70S weighs 15KG only with collars included'); bare-bar weight not published, so unit_weight_lbs is null. Rackability per manufacturer FAQ: 'The C-70S Bar has a 52\" shaft length between the sleeves allows this to be racked on any well-known power racks, squat stands, or rigs in existance.' Rogue states it does not publish static weight ratings for its barbells. Sleeve diameter not published. SKU from manufacturer product data. Lengths per spec table: Bar Length 72\", Distance Between Sleeves 52\", Loadable Sleeve Length 8.875\". F-Rating F16-R."
+    },
+    "affiliates": {
+      "manufacturer_url": "https://www.roguefitness.com/the-rogue-c-70s-bar",
+      "rep_affiliate_eligible": false,
+      "amazon_asin": null
+    }
+  },
+  {
+    "id": "rep-colorado-short-bar",
+    "slug": "rep-colorado-short-bar-15kg",
+    "brand": "REP Fitness",
+    "model": "Colorado Short Bar (Black Cerakote / Hard Chrome)",
+    "sku": "BB-5020-S",
+    "category": "barbell",
+    "dimensions": {
+      "height_in": null,
+      "min_ceiling_in": null,
+      "width_in": 72,
+      "depth_open_in": null,
+      "depth_folded_in": null,
+      "footprint_sqft": null,
+      "unit_weight_lbs": 33.1
+    },
+    "installation": {
+      "wall_mount_required": false,
+      "floor_bolt_required": false,
+      "stud_spacing_in": [],
+      "renter_friendly": true,
+      "fold_direction": "none"
+    },
+    "barbell_specs": {
+      "overall_length_in": 72,
+      "shaft_length_in": 51.5,
+      "loadable_sleeve_length_in": 8.9,
+      "shaft_diameter_mm": 28.5,
+      "sleeve_diameter_in": 1.97,
+      "tensile_strength_psi": 190000,
+      "weight_capacity_lbs": 1500,
+      "knurl_marks": "Dual (IPF & IWF)",
+      "center_knurl": false,
+      "bushing_or_bearing": "Composite bushings",
+      "coating": "Black Cerakote shaft; hard chrome sleeves",
+      "rackable": true
+    },
+    "verification": {
+      "spec_sheet_url": "https://repfitness.com/products/colorado-short-bar",
+      "additional_source_urls": [
+        "https://repfitness.com/products/colorado-short-bar.js"
+      ],
+      "last_verified_date": "2026-11-26",
+      "verification_status": "verified",
+      "unverified_fields": [],
+      "notes": "Weight published as '15kg (33.1lbs)'. sleeve_diameter_in converted from published 'Sleeve Diameter 50mm' (50 / 25.4 = 1.97). shaft_length_in from published sleeve-to-sleeve distance 51.5\". Rackability per manufacturer FAQ: 'designed to be rackable on any standard 47” and 49” width racks.' Capacity published as 'Static Rating 1,500lbs'. Tensile published as '190ksi'. Published tolerance 1%."
+    },
+    "affiliates": {
+      "manufacturer_url": "https://repfitness.com/products/colorado-short-bar",
+      "rep_affiliate_eligible": true,
+      "amazon_asin": null
+    }
+  },
+  {
+    "id": "bells-of-steel-short-rackable-barbell",
+    "slug": "bells-of-steel-short-rackable-barbell-69",
+    "brand": "Bells of Steel",
+    "model": "Short Rackable Barbell",
+    "sku": "RCK-UTL-BAR",
+    "category": "barbell",
+    "dimensions": {
+      "height_in": null,
+      "min_ceiling_in": null,
+      "width_in": 69,
+      "depth_open_in": null,
+      "depth_folded_in": null,
+      "footprint_sqft": null,
+      "unit_weight_lbs": 29
+    },
+    "installation": {
+      "wall_mount_required": false,
+      "floor_bolt_required": false,
+      "stud_spacing_in": [],
+      "renter_friendly": true,
+      "fold_direction": "none"
+    },
+    "barbell_specs": {
+      "overall_length_in": 69,
+      "shaft_length_in": 51.6,
+      "loadable_sleeve_length_in": 7.88,
+      "shaft_diameter_mm": 28.5,
+      "sleeve_diameter_in": null,
+      "tensile_strength_psi": 150000,
+      "weight_capacity_lbs": 900,
+      "knurl_marks": "Dual (Powerlifting & Weightlifting)",
+      "center_knurl": true,
+      "bushing_or_bearing": "Bushings & snap rings",
+      "coating": "Black zinc shaft; black zinc sleeves",
+      "rackable": true
+    },
+    "verification": {
+      "spec_sheet_url": "https://bellsofsteel.us/products/short-rackable-barbell",
+      "additional_source_urls": [
+        "https://bellsofsteel.us/products/short-rackable-barbell.js",
+        "https://bellsofsteel.us/blogs/content/how-much-do-short-barbells-weigh"
+      ],
+      "last_verified_date": "2026-11-26",
+      "verification_status": "partial",
+      "unverified_fields": [
+        "barbell_specs.sleeve_diameter_in"
+      ],
+      "notes": "Length published as '69\" / 1,753mm'; loadable sleeve as '7.88\" / 200mm' (also stated as 7-7/8\"). Weight published as 29.00 lb (13 kg). shaft_length_in 51.6\" from manufacturer blog (bellsofsteel.us), not the product spec table. Rack compatibility stated as 'racks cleanly in any power rack up to 49\" / 124.5 cm inside width'. Max capacity published as 900 lbs / 408 kg static. Sleeve diameter not published. SKU from manufacturer product data."
+    },
+    "affiliates": {
+      "manufacturer_url": "https://bellsofsteel.us/products/short-rackable-barbell",
+      "rep_affiliate_eligible": false,
+      "amazon_asin": null
+    }
+  },
+  {
+    "id": "fringe-sport-midas-mini-shorty-bar",
+    "slug": "fringe-sport-midas-mini-shorty-power-bar",
+    "brand": "Fringe Sport",
+    "model": "Midas Mini Shorty Power Bar",
+    "sku": "Bar-FS-Shorty-Midas-15kg",
+    "category": "barbell",
+    "dimensions": {
+      "height_in": null,
+      "min_ceiling_in": null,
+      "width_in": 72,
+      "depth_open_in": null,
+      "depth_folded_in": null,
+      "footprint_sqft": null,
+      "unit_weight_lbs": 33
+    },
+    "installation": {
+      "wall_mount_required": false,
+      "floor_bolt_required": false,
+      "stud_spacing_in": [],
+      "renter_friendly": true,
+      "fold_direction": "none"
+    },
+    "barbell_specs": {
+      "overall_length_in": 72,
+      "shaft_length_in": null,
+      "loadable_sleeve_length_in": null,
+      "shaft_diameter_mm": 28.5,
+      "sleeve_diameter_in": null,
+      "tensile_strength_psi": 190000,
+      "weight_capacity_lbs": 1500,
+      "knurl_marks": "Dual (IWF + IPF)",
+      "center_knurl": null,
+      "bushing_or_bearing": "Aerospace-grade bushing",
+      "coating": "Cerakote shaft; gold-colored titanium sleeves",
+      "rackable": true
+    },
+    "verification": {
+      "spec_sheet_url": "https://www.fringesport.com/products/midas-mini-shorty-bar",
+      "additional_source_urls": [
+        "https://www.fringesport.com/products/midas-mini-shorty-bar.js"
+      ],
+      "last_verified_date": "2026-11-26",
+      "verification_status": "partial",
+      "unverified_fields": [
+        "barbell_specs.shaft_length_in",
+        "barbell_specs.loadable_sleeve_length_in",
+        "barbell_specs.sleeve_diameter_in",
+        "barbell_specs.center_knurl"
+      ],
+      "notes": "Rackability stated as 'This Midas Mini is a rackable, short-sleeve bar' and 'it has the same shaft length of standard barbells'; no numeric shaft length published. Spec table lists 'Sleeve Length 9\"' without specifying loadable length, so loadable_sleeve_length_in is null. Center knurl not stated. Page overview also refers to 'a chrome finish', conflicting with spec table 'Gold-colored titanium sleeve with cerakote finish'; spec table value recorded. Page lists 'Product ID 8134'; sku recorded from manufacturer variant data. Weight published as 33lbs (15 kg). Sleeve diameter not published."
+    },
+    "affiliates": {
+      "manufacturer_url": "https://www.fringesport.com/products/midas-mini-shorty-bar",
+      "rep_affiliate_eligible": false,
+      "amazon_asin": null
+    }
+  },
+  {
+    "id": "rogue-c-68s-bar",
+    "slug": "rogue-c-68s-womens-short-rackable-bar",
+    "brand": "Rogue Fitness",
+    "model": "C-68S Bar (Black Cerakote Shaft / Bright Zinc Sleeve)",
+    "sku": "RA2402-EBLACK-BR",
+    "category": "barbell",
+    "dimensions": {
+      "height_in": null,
+      "min_ceiling_in": null,
+      "width_in": 68.25,
+      "depth_open_in": null,
+      "depth_folded_in": null,
+      "footprint_sqft": null,
+      "unit_weight_lbs": 25
+    },
+    "installation": {
+      "wall_mount_required": false,
+      "floor_bolt_required": false,
+      "stud_spacing_in": [],
+      "renter_friendly": true,
+      "fold_direction": "none"
+    },
+    "barbell_specs": {
+      "overall_length_in": 68.25,
+      "shaft_length_in": 51.5,
+      "loadable_sleeve_length_in": 7.75,
+      "shaft_diameter_mm": 25,
+      "sleeve_diameter_in": null,
+      "tensile_strength_psi": 190000,
+      "weight_capacity_lbs": null,
+      "knurl_marks": "Dual (IWF & IPF)",
+      "center_knurl": false,
+      "bushing_or_bearing": "Bronze bushings",
+      "coating": "Black Cerakote shaft; bright zinc sleeves",
+      "rackable": true
+    },
+    "verification": {
+      "spec_sheet_url": "https://www.roguefitness.com/the-rogue-c-68s-bar",
+      "additional_source_urls": [
+        "https://www.roguefitness.com/theindex/gear-how-tos/choosing-the-right-barbell"
+      ],
+      "last_verified_date": "2026-11-26",
+      "verification_status": "partial",
+      "unverified_fields": [
+        "barbell_specs.sleeve_diameter_in",
+        "barbell_specs.weight_capacity_lbs"
+      ],
+      "notes": "Women's 25mm bar. Weight published as 25 lb. Rackability per manufacturer FAQ: 'The C-68S Bar has a 51.5\" shaft length between the sleeves allows this to be racked on any well-known power racks, squat stands, or rigs in existance.' Rogue does not publish static weight ratings for its barbells. Sleeve diameter not published. F-Rating F12-R. SKU from manufacturer product data."
+    },
+    "affiliates": {
+      "manufacturer_url": "https://www.roguefitness.com/the-rogue-c-68s-bar",
+      "rep_affiliate_eligible": false,
+      "amazon_asin": null
+    }
   }
 ]

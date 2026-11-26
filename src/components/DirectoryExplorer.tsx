@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { matchesDirectoryFilters } from "@/lib/filters";
-import { RACK_TYPE_LABELS } from "@/lib/format";
+import { CATEGORY_LABELS, RACK_TYPE_LABELS } from "@/lib/format";
 import type { GymProduct, ProductCategory, RackType } from "@/lib/types";
 import { ProductCard } from "@/components/ProductCard";
 
@@ -77,8 +77,9 @@ export function DirectoryExplorer({ products }: { products: GymProduct[] }) {
             className="border border-stone-400 px-2 py-1"
           />
           <span className="text-stone-600">
-            Compared with min_ceiling_in when published. Otherwise upright height_in is used, and
-            the card says the minimum ceiling is unverified.
+            Applies to racks. Compared with min_ceiling_in when published, otherwise upright
+            height_in. The card says when only upright height is published. Barbells stay in the
+            list.
           </span>
         </label>
         <label className="flex flex-col gap-1 text-sm">
@@ -90,8 +91,8 @@ export function DirectoryExplorer({ products }: { products: GymProduct[] }) {
             className="border border-stone-400 px-2 py-1"
           />
           <span className="text-stone-600">
-            Keeps products whose published depth_folded_in is at or under this number. Unpublished
-            folded depth does not pass.
+            Applies to racks. Keeps racks whose published depth_folded_in is at or under this
+            number. Unpublished folded depth does not pass. Barbells stay in the list.
           </span>
         </label>
         <label className="flex flex-col gap-1 text-sm">
@@ -118,7 +119,7 @@ export function DirectoryExplorer({ products }: { products: GymProduct[] }) {
             <option value="any">All</option>
             {CATEGORIES.map((value) => (
               <option key={value} value={value}>
-                {value}
+                {CATEGORY_LABELS[value]}
               </option>
             ))}
           </select>

@@ -49,7 +49,7 @@ export interface BarbellSpecs {
   sleeve_diameter_in: number | null;
   tensile_strength_psi: number | null;
   weight_capacity_lbs: number | null;
-  knurl_marks: boolean | null;
+  knurl_marks: string | null;
   center_knurl: boolean | null;
   bushing_or_bearing: string | null;
   coating: string | null;

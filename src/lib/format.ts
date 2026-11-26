@@ -104,6 +104,35 @@ export function formatSqft(value: number | null | undefined): string {
   return `${formatNumber(value)} sq ft`;
 }
 
+/**
+ * Rack nulls stay Unverified. A barbell null stays Unverified only when Spec Steward
+ * listed that path in unverified_fields. Other barbell nulls are N/A, not a missing rack measurement.
+ */
+function dimensionValue(
+  product: GymProduct,
+  key:
+    | "height_in"
+    | "min_ceiling_in"
+    | "width_in"
+    | "depth_open_in"
+    | "depth_folded_in"
+    | "footprint_sqft"
+    | "unit_weight_lbs",
+): string {
+  const value = product.dimensions?.[key];
+  if (key === "depth_folded_in") {
+    if (value == null && product.installation?.fold_direction === "none") return "N/A";
+  }
+  if (typeof value === "number") {
+    if (key === "footprint_sqft") return formatSqft(value);
+    if (key === "unit_weight_lbs") return formatPounds(value);
+    return formatInches(value);
+  }
+  if (product.verification.unverified_fields.includes(`dimensions.${key}`)) return "Unverified";
+  if (product.category === "barbell") return "N/A";
+  return "Unverified";
+}
+
 export function productSummary(product: GymProduct): string {
   const name = `${product.brand} ${product.model}`;
   const parts: string[] = [];
@@ -156,7 +185,7 @@ export function specRows(product: GymProduct): SpecRow[] {
       { label: "Sleeve diameter", value: formatInches(specs.sleeve_diameter_in) },
       { label: "Tensile strength", value: formatPsi(specs.tensile_strength_psi) },
       { label: "Weight capacity", value: formatPounds(specs.weight_capacity_lbs) },
-      { label: "Knurl marks", value: formatBool(specs.knurl_marks) },
+      { label: "Knurl marks", value: formatText(specs.knurl_marks) },
       { label: "Center knurl", value: formatBool(specs.center_knurl) },
       { label: "Bushing or bearing", value: formatText(specs.bushing_or_bearing) },
       { label: "Coating", value: formatText(specs.coating) },
@@ -171,14 +200,15 @@ export function specRows(product: GymProduct): SpecRow[] {
   }
 
   if (product.dimensions) {
+    const heightLabel = product.category === "rack" ? "Upright height" : "Height";
     rows.push(
-      { label: "Upright height", value: formatInches(product.dimensions.height_in) },
-      { label: "Minimum ceiling", value: formatInches(product.dimensions.min_ceiling_in) },
-      { label: "Width", value: formatInches(product.dimensions.width_in) },
-      { label: "Open depth", value: formatInches(product.dimensions.depth_open_in) },
-      { label: "Folded depth", value: formatFoldedDepth(product) },
-      { label: "Footprint", value: formatSqft(product.dimensions.footprint_sqft) },
-      { label: "Unit weight", value: formatPounds(product.dimensions.unit_weight_lbs) },
+      { label: heightLabel, value: dimensionValue(product, "height_in") },
+      { label: "Minimum ceiling", value: dimensionValue(product, "min_ceiling_in") },
+      { label: "Width", value: dimensionValue(product, "width_in") },
+      { label: "Open depth", value: dimensionValue(product, "depth_open_in") },
+      { label: "Folded depth", value: dimensionValue(product, "depth_folded_in") },
+      { label: "Footprint", value: dimensionValue(product, "footprint_sqft") },
+      { label: "Unit weight", value: dimensionValue(product, "unit_weight_lbs") },
     );
   }
 

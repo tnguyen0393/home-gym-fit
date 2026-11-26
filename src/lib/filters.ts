@@ -17,12 +17,12 @@ export function matchesDirectoryFilters(product: GymProduct, filters: DirectoryF
   if (filters.renterOnly && product.installation?.wall_mount_required !== false) return false;
   if (filters.foldingOnly && !isFoldingProduct(product)) return false;
 
-  if (filters.maxCeilingIn != null) {
+  if (filters.maxCeilingIn != null && product.category !== "barbell") {
     const ceiling = ceilingReferenceIn(product);
     if (ceiling == null || ceiling > filters.maxCeilingIn) return false;
   }
 
-  if (filters.maxFoldedDepthIn != null) {
+  if (filters.maxFoldedDepthIn != null && product.category !== "barbell") {
     const depth = product.dimensions?.depth_folded_in;
     if (depth == null || depth > filters.maxFoldedDepthIn) return false;
   }

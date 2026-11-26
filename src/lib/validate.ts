@@ -356,7 +356,10 @@ function validateBarbellSpecs(input: Record<string, unknown>, path: string, erro
       errors.push(`${field}.${key} must be a positive number or null`);
     }
   }
-  for (const key of ["knurl_marks", "center_knurl", "rackable"] as const) {
+  if ("knurl_marks" in input && !isNonEmptyOrNull(input.knurl_marks)) {
+    errors.push(`${field}.knurl_marks must be a non-empty string or null`);
+  }
+  for (const key of ["center_knurl", "rackable"] as const) {
     if (key in input && !isBooleanOrNull(input[key])) {
       errors.push(`${field}.${key} must be a boolean or null`);
     }
