@@ -5,6 +5,7 @@ import { ArticleView } from "@/components/ArticleView";
 import { JsonLd } from "@/components/JsonLd";
 import { getGuide, listGuides, productsForArticle, renderMarkdown } from "@/lib/content";
 import { pageListJsonLd } from "@/lib/jsonld";
+import { pageMetadata } from "@/lib/site";
 import type { ArticleDocument } from "@/lib/types";
 
 export const dynamicParams = false;
@@ -18,19 +19,15 @@ export async function generateMetadata(props: {
 }): Promise<Metadata> {
   const { slug } = await props.params;
   if (!slug || slug.length === 0) {
-    return {
-      title: "Guides",
-      description: "Fit guides that use manufacturer spec sheets to answer a room constraint.",
-      alternates: { canonical: "/guides/" },
-    };
+    return pageMetadata(
+      "Guides",
+      "Fit guides that use manufacturer spec sheets to answer a room constraint.",
+      "/guides/",
+    );
   }
   const article = slug.length === 1 ? getGuide(slug[0]) : undefined;
   if (!article) return {};
-  return {
-    title: article.title,
-    description: article.description,
-    alternates: { canonical: `/guides/${article.slug}/` },
-  };
+  return pageMetadata(article.title, article.description, `/guides/${article.slug}/`);
 }
 
 function GuideIndex({ articles }: { articles: ArticleDocument[] }) {

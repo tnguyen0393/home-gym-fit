@@ -1,10 +1,10 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Methodology",
-  description: "How product dimensions are recorded and how missing values are shown.",
-  alternates: { canonical: "/methodology/" },
-};
+export const metadata = pageMetadata(
+  "Methodology",
+  "How product dimensions are recorded and how missing values are shown.",
+  "/methodology/",
+);
 
 export default function MethodologyPage() {
   return (

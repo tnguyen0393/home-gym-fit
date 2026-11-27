@@ -6,7 +6,8 @@ import remarkGfm from "remark-gfm";
 import remarkRehype from "remark-rehype";
 import rehypeSanitize from "rehype-sanitize";
 import rehypeStringify from "rehype-stringify";
-import { getProductById } from "@/lib/products";
+import { manufacturerHref } from "@/lib/affiliates";
+import { getProductById, getProducts } from "@/lib/products";
 import type { ArticleDocument, ArticleType, GymProduct } from "@/lib/types";
 
 /**
@@ -260,6 +261,7 @@ function markOutbound(node: MdNode) {
   if (typeof href !== "string" || !/^https?:\/\//i.test(href)) return;
   node.properties = {
     ...node.properties,
+    href: manufacturerHref(href, getProducts()),
     target: "_blank",
     rel: "sponsored nofollow noopener noreferrer",
   };

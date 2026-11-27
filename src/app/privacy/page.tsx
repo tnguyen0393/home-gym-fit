@@ -1,10 +1,10 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Privacy",
-  description: "What this static site does and does not collect.",
-  alternates: { canonical: "/privacy/" },
-};
+export const metadata = pageMetadata(
+  "Privacy",
+  "What this static site does and does not collect.",
+  "/privacy/",
+);
 
 export default function PrivacyPage() {
   return (

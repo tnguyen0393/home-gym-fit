@@ -9,6 +9,7 @@ import { amazonLink } from "@/lib/affiliates";
 import { fitPresets, getFitPreset } from "@/lib/fit";
 import { itemListJsonLd } from "@/lib/jsonld";
 import { getProducts } from "@/lib/products";
+import { pageMetadata } from "@/lib/site";
 
 export const dynamicParams = false;
 
@@ -22,11 +23,7 @@ export async function generateMetadata(props: {
   const { slug } = await props.params;
   const preset = getFitPreset(slug);
   if (!preset) return {};
-  return {
-    title: preset.title,
-    description: preset.summary,
-    alternates: { canonical: `/fit/${preset.slug}/` },
-  };
+  return pageMetadata(preset.title, preset.summary, `/fit/${preset.slug}/`);
 }
 
 export default async function FitPage(props: { params: Promise<{ slug: string }> }) {
@@ -34,7 +31,7 @@ export default async function FitPage(props: { params: Promise<{ slug: string }>
   const preset = getFitPreset(slug);
   if (!preset) notFound();
   const products = getProducts().filter(preset.matches);
-  const showAmazon = products.some((product) => amazonLink(product) != null);
+  const showAmazon = products.some((product) => amazonLink(product)?.affiliate === true);
   const countLabel =
     products.length === 1 ? "1 product matches this rule." : `${products.length} products match this rule.`;
 

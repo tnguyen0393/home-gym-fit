@@ -5,31 +5,87 @@ export interface OutboundTarget {
   affiliate: boolean;
 }
 
+const REP_HOSTS = new Set(["repfitness.com", "www.repfitness.com"]);
+
 /**
- * REP affiliate parameters are appended only when the product is eligible and
- * both public env vars are set. Otherwise the plain manufacturer URL is used.
+ * REP Fitness affiliate query string from NEXT_PUBLIC_REP_AFFILIATE_PARAMS.
+ * The exact fragment (for example `ref=xyz`) comes from the REP affiliate
+ * dashboard after approval. It is merged onto eligible repfitness.com links
+ * and does not replace query parameters already on the URL.
  */
-export function manufacturerLink(product: GymProduct): OutboundTarget {
-  const plain = product.affiliates.manufacturer_url;
-  if (!product.affiliates.rep_affiliate_eligible) {
-    return { href: plain, affiliate: false };
-  }
-  const param = process.env.NEXT_PUBLIC_REP_AFFILIATE_PARAM?.trim();
-  const value = process.env.NEXT_PUBLIC_REP_AFFILIATE_VALUE?.trim();
-  if (!param || !value) return { href: plain, affiliate: false };
+function repAffiliateParams(): URLSearchParams | null {
+  const raw = process.env.NEXT_PUBLIC_REP_AFFILIATE_PARAMS?.trim();
+  if (!raw) return null;
+  const parsed = new URLSearchParams(raw.replace(/^[?#]+/, ""));
+  const params = new URLSearchParams();
+  parsed.forEach((value, key) => {
+    if (key) params.append(key, value);
+  });
+  return params.size > 0 ? params : null;
+}
+
+function appendRepParams(plain: string, eligible: boolean): OutboundTarget {
+  if (!eligible) return { href: plain, affiliate: false };
+  const extra = repAffiliateParams();
+  if (!extra) return { href: plain, affiliate: false };
+  let url: URL;
   try {
-    const url = new URL(plain);
-    url.searchParams.set(param, value);
-    return { href: url.toString(), affiliate: true };
+    url = new URL(plain);
   } catch {
     return { href: plain, affiliate: false };
   }
+  if (!REP_HOSTS.has(url.hostname)) return { href: plain, affiliate: false };
+  let applied = false;
+  extra.forEach((value, key) => {
+    if (url.searchParams.has(key)) return;
+    url.searchParams.append(key, value);
+    applied = true;
+  });
+  if (!applied) return { href: plain, affiliate: false };
+  return { href: url.toString(), affiliate: true };
 }
 
-/** Direct Amazon Associates URL. Null when the ASIN or tag is absent. */
-export function amazonLink(product: GymProduct): string | null {
-  const asin = product.affiliates.amazon_asin;
+function manufacturerKey(href: string): string | null {
+  try {
+    const url = new URL(href);
+    const pathname = url.pathname.replace(/\/+$/, "") || "/";
+    return `${url.hostname}${pathname}`;
+  } catch {
+    return null;
+  }
+}
+
+export function manufacturerLink(product: GymProduct): OutboundTarget {
+  return appendRepParams(
+    product.affiliates.manufacturer_url,
+    product.affiliates.rep_affiliate_eligible,
+  );
+}
+
+/**
+ * Rewrites a known manufacturer URL when that product is REP-eligible.
+ * Unmatched URLs, including spec sheets, are returned unchanged.
+ */
+export function manufacturerHref(href: string, products: readonly GymProduct[]): string {
+  const key = manufacturerKey(href);
+  if (!key) return href;
+  const product = products.find((item) => manufacturerKey(item.affiliates.manufacturer_url) === key);
+  if (!product) return href;
+  return appendRepParams(href, product.affiliates.rep_affiliate_eligible).href;
+}
+
+/** Direct Amazon URL when amazon_asin is a non-empty string. Tag is optional. */
+export function amazonLink(product: GymProduct): OutboundTarget | null {
+  const asin = product.affiliates.amazon_asin?.trim() ?? "";
+  if (!asin) return null;
+  let url: URL;
+  try {
+    url = new URL(`https://www.amazon.com/dp/${encodeURIComponent(asin)}`);
+  } catch {
+    return null;
+  }
   const tag = process.env.NEXT_PUBLIC_AMAZON_TAG?.trim();
-  if (!asin || !tag) return null;
-  return `https://www.amazon.com/dp/${encodeURIComponent(asin)}?tag=${encodeURIComponent(tag)}`;
+  if (!tag) return { href: url.toString(), affiliate: false };
+  url.searchParams.set("tag", tag);
+  return { href: url.toString(), affiliate: true };
 }

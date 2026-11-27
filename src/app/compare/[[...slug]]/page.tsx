@@ -10,6 +10,7 @@ import {
   renderMarkdown,
 } from "@/lib/content";
 import { pageListJsonLd } from "@/lib/jsonld";
+import { pageMetadata } from "@/lib/site";
 import type { ArticleDocument } from "@/lib/types";
 
 export const dynamicParams = false;
@@ -23,19 +24,15 @@ export async function generateMetadata(props: {
 }): Promise<Metadata> {
   const { slug } = await props.params;
   if (!slug || slug.length === 0) {
-    return {
-      title: "Comparisons",
-      description: "Side-by-side comparisons using published manufacturer dimensions.",
-      alternates: { canonical: "/compare/" },
-    };
+    return pageMetadata(
+      "Comparisons",
+      "Side-by-side comparisons using published manufacturer dimensions.",
+      "/compare/",
+    );
   }
   const article = slug.length === 1 ? getComparison(slug[0]) : undefined;
   if (!article) return {};
-  return {
-    title: article.title,
-    description: article.description,
-    alternates: { canonical: `/compare/${article.slug}/` },
-  };
+  return pageMetadata(article.title, article.description, `/compare/${article.slug}/`);
 }
 
 function CompareIndex({ articles }: { articles: ArticleDocument[] }) {

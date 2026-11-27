@@ -19,6 +19,7 @@ import {
 } from "@/lib/format";
 import { productJsonLd } from "@/lib/jsonld";
 import { getProductBySlug, getProducts } from "@/lib/products";
+import { pageMetadata } from "@/lib/site";
 
 export const dynamicParams = false;
 
@@ -32,11 +33,11 @@ export async function generateMetadata(props: {
   const { slug } = await props.params;
   const product = getProductBySlug(slug);
   if (!product) return {};
-  return {
-    title: `${product.brand} ${product.model}`,
-    description: productSummary(product),
-    alternates: { canonical: `/products/${product.slug}/` },
-  };
+  return pageMetadata(
+    `${product.brand} ${product.model}`,
+    productSummary(product),
+    `/products/${product.slug}/`,
+  );
 }
 
 export default async function ProductPage(props: { params: Promise<{ slug: string }> }) {
@@ -50,7 +51,7 @@ export default async function ProductPage(props: { params: Promise<{ slug: strin
   return (
     <article className="flex flex-col gap-6">
       <JsonLd data={productJsonLd(product)} />
-      <DisclosureNote includeAmazonStatement={amazonLink(product) != null} />
+      <DisclosureNote includeAmazonStatement={amazonLink(product)?.affiliate === true} />
       <header className="flex max-w-prose flex-col gap-2">
         <p className="text-sm font-medium text-indigo-800">{product.brand}</p>
         <h1 className="text-3xl font-semibold tracking-tight">{product.model}</h1>

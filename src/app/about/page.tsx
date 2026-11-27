@@ -1,10 +1,10 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "About",
-  description: "What Home Gym Fit publishes and who maintains the records.",
-  alternates: { canonical: "/about/" },
-};
+export const metadata = pageMetadata(
+  "About",
+  "What Home Gym Fit publishes and who maintains the records.",
+  "/about/",
+);
 
 export default function AboutPage() {
   return (

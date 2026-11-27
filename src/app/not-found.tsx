@@ -1,4 +1,11 @@
 import Link from "next/link";
+import { pageMetadata } from "@/lib/site";
+
+export const metadata = pageMetadata(
+  "Page not found",
+  "This address is not a page on Home Gym Fit.",
+  "/404.html",
+);
 
 export default function NotFound() {
   return (

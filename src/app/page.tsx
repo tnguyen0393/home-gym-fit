@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { ArticleList } from "@/components/ArticleList";
 import { ArtworkImage } from "@/components/ArtworkImage";
@@ -8,6 +7,7 @@ import { listGuides } from "@/lib/content";
 import { fitPresets } from "@/lib/fit";
 import { formatDisplayDate } from "@/lib/format";
 import { catalogStats, getProducts } from "@/lib/products";
+import { pageMetadata } from "@/lib/site";
 import type { ProductCategory } from "@/lib/types";
 
 const popularSlugs = [
@@ -17,12 +17,11 @@ const popularSlugs = [
   "best-adjustable-dumbbells-for-apartments",
 ];
 
-export const metadata: Metadata = {
-  title: "Home Gym Fit",
-  description:
-    "Manufacturer-published dimensions for compact and folding racks, short rackable barbells, vertical-storage benches, and adjustable dumbbells.",
-  alternates: { canonical: "/" },
-};
+export const metadata = pageMetadata(
+  "Home Gym Fit",
+  "Manufacturer-published dimensions for compact and folding racks, short rackable barbells, vertical-storage benches, and adjustable dumbbells.",
+  "/",
+);
 
 export default function HomePage() {
   const products = getProducts();

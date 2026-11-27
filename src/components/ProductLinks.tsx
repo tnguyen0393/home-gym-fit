@@ -14,8 +14,8 @@ export function ProductLinks({ product }: { product: GymProduct }) {
         <span aria-hidden="true">↗</span>
       </OutboundLink>
       {amazon ? (
-        <OutboundLink href={amazon} affiliate className={pillLinkClass}>
-          Amazon · Affiliate
+        <OutboundLink href={amazon.href} affiliate={amazon.affiliate} className={pillLinkClass}>
+          {amazon.affiliate ? "Amazon · Affiliate" : "Amazon"}
           <span aria-hidden="true">↗</span>
         </OutboundLink>
       ) : null}
