@@ -33,7 +33,12 @@ export interface CatalogStats {
 }
 
 export function catalogStats(products: GymProduct[]): CatalogStats {
-  const byCategory: Record<ProductCategory, number> = { rack: 0, bench: 0, barbell: 0 };
+  const byCategory: Record<ProductCategory, number> = {
+    rack: 0,
+    bench: 0,
+    barbell: 0,
+    dumbbell: 0,
+  };
   const byRackType: Record<RackType, number> = {
     "folding-wall": 0,
     "compact-power-rack": 0,

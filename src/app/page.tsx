@@ -11,12 +11,13 @@ const popularSlugs = [
   "folding-power-racks-8-foot-ceiling",
   "renter-friendly-squat-racks",
   "best-short-olympic-barbells",
+  "best-adjustable-dumbbells-for-apartments",
 ];
 
 export const metadata: Metadata = {
   title: "Home Gym Fit",
   description:
-    "Manufacturer-published dimensions for compact and folding racks, short rackable barbells, and vertical-storage benches.",
+    "Manufacturer-published dimensions for compact and folding racks, short rackable barbells, vertical-storage benches, and adjustable dumbbells.",
   alternates: { canonical: "/" },
 };
 
@@ -24,6 +25,7 @@ export default function HomePage() {
   const products = getProducts();
   const stats = catalogStats(products);
   const verticalBenches = products.filter((product) => product.bench_specs?.vertical_storage === true);
+  const dumbbells = products.filter((product) => product.category === "dumbbell");
   const guides = listGuides();
   const picked = popularSlugs.flatMap((slug) => {
     const guide = guides.find((article) => article.slug === slug);
@@ -39,8 +41,8 @@ export default function HomePage() {
         </h1>
         <p className="text-lg text-stone-700">
           Manufacturer-published dimensions for apartment and low-ceiling racks, short barbells that
-          fit them, and benches that store upright. If a number was not published, it stays
-          unverified.
+          fit them, benches that store upright, and adjustable dumbbells. If a number was not
+          published, it stays unverified.
         </p>
         <div className="flex flex-wrap gap-3">
           <Link href="/directory/" className={primaryButtonClass}>
@@ -52,14 +54,17 @@ export default function HomePage() {
         </div>
       </header>
       <div className="flex flex-col gap-2">
-        <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-stone-200 bg-stone-200 sm:grid-cols-4">
+        <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-stone-200 bg-stone-200 sm:grid-cols-3 lg:grid-cols-5">
           <Stat label="Products" value={String(stats.total)} />
           <Stat label="Racks" value={String(stats.byCategory.rack)} />
           <Stat label="Short barbells" value={String(stats.byCategory.barbell)} />
-          <Stat label="Benches" value={String(stats.byCategory.bench)} />
+          <Stat label="Vertical benches" value={String(verticalBenches.length)} />
+          <Stat label="Dumbbells" value={String(stats.byCategory.dumbbell)} />
         </dl>
         <p className="text-sm text-stone-600">
-          {stats.total} products across racks, short barbells, and benches.
+          {stats.total} products: {stats.byCategory.rack} racks, {stats.byCategory.barbell} short
+          barbells, {verticalBenches.length} vertical benches, and {stats.byCategory.dumbbell}{" "}
+          adjustable dumbbells.
           {" · "}
           {stats.brands} brands
           {" · "}
@@ -123,6 +128,36 @@ export default function HomePage() {
                   aria-label={`${verticalBenches.length} products`}
                 >
                   {verticalBenches.length}
+                </span>
+                <span
+                  aria-hidden="true"
+                  className="text-indigo-800 transition-transform group-hover:translate-x-0.5"
+                >
+                  →
+                </span>
+              </span>
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/directory/?category=dumbbell"
+              className="group flex h-full items-start justify-between gap-3 rounded-lg border border-stone-200 bg-white p-4 hover:border-indigo-300 hover:bg-indigo-50/60"
+            >
+              <span>
+                <span className="block font-semibold text-stone-950 group-hover:text-indigo-800">
+                  Adjustable dumbbells
+                </span>
+                <span className="mt-1 block text-sm text-stone-600">
+                  Pairs with a published weight range, max length, and tray when the manufacturer
+                  prints one.
+                </span>
+              </span>
+              <span className="flex shrink-0 items-center gap-2">
+                <span
+                  className="rounded-full bg-indigo-50 px-2 py-0.5 text-sm font-semibold text-indigo-950 tabular-nums"
+                  aria-label={`${dumbbells.length} products`}
+                >
+                  {dumbbells.length}
                 </span>
                 <span
                   aria-hidden="true"

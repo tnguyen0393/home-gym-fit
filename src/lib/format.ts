@@ -1,9 +1,30 @@
-import type { ArticleType, BenchSpecs, GymProduct, ProductCategory, RackType } from "@/lib/types";
+import type {
+  ArticleType,
+  BenchSpecs,
+  DumbbellSpecs,
+  GymProduct,
+  ProductCategory,
+  RackType,
+} from "@/lib/types";
 
 export const CATEGORY_LABELS: Record<ProductCategory, string> = {
   rack: "Rack",
   bench: "Bench",
   barbell: "Barbell",
+  dumbbell: "Dumbbell",
+};
+
+const ADJUSTMENT_LABELS: Record<NonNullable<DumbbellSpecs["adjustment_mechanism"]>, string> = {
+  "selector-pin": "Selector-pin",
+  "twist-handle": "Twist-handle",
+  "lock-switch": "Lock-switch",
+  "quick-lock-screw": "Quick-lock screw",
+  dial: "Dial",
+};
+
+const SOLD_AS_LABELS: Record<NonNullable<DumbbellSpecs["sold_as"]>, string> = {
+  pair: "Pair",
+  single: "Single",
 };
 
 export const RACK_TYPE_LABELS: Record<RackType, string> = {
@@ -74,9 +95,46 @@ const FIELD_LABELS: Record<string, string> = {
   "bench_specs.decline_capable": "Decline capable",
   "bench_specs.weight_capacity_lbs": "Weight capacity",
   "bench_specs.transport_wheels": "Transport wheels",
+  "dumbbell_specs.min_weight_lbs": "Minimum weight",
+  "dumbbell_specs.max_weight_lbs": "Maximum weight",
+  "dumbbell_specs.weight_increment_lbs": "Weight increment",
+  "dumbbell_specs.adjustment_mechanism": "Adjustment mechanism",
+  "dumbbell_specs.handle_diameter_mm": "Handle diameter",
+  "dumbbell_specs.handle_length_in": "Handle length",
+  "dumbbell_specs.tray_included": "Tray included",
+  "dumbbell_specs.tray_length_in": "Tray length",
+  "dumbbell_specs.tray_width_in": "Tray width",
+  "dumbbell_specs.tray_height_in": "Tray height",
+  "dumbbell_specs.stand_included": "Stand included",
+  "dumbbell_specs.expandable": "Expandable",
+  "dumbbell_specs.sold_as": "Sold as",
 };
 
 const NOTE_REPLACEMENTS: [string, string][] = [
+  ["dumbbell_specs.adjustment_mechanism", "adjustment mechanism"],
+  ["dumbbell_specs.weight_increment_lbs", "weight increment"],
+  ["dumbbell_specs.handle_diameter_mm", "handle diameter"],
+  ["dumbbell_specs.handle_length_in", "handle length"],
+  ["dumbbell_specs.min_weight_lbs", "minimum weight"],
+  ["dumbbell_specs.max_weight_lbs", "maximum weight"],
+  ["dumbbell_specs.tray_length_in", "tray length"],
+  ["dumbbell_specs.tray_width_in", "tray width"],
+  ["dumbbell_specs.tray_height_in", "tray height"],
+  ["dumbbell_specs.tray_included", "tray included"],
+  ["dumbbell_specs.stand_included", "stand included"],
+  ["dumbbell_specs.sold_as", "sold as"],
+  ["weight_increment_lbs", "weight increment"],
+  ["handle_diameter_mm", "handle diameter"],
+  ["handle_length_in", "handle length"],
+  ["min_weight_lbs", "minimum weight"],
+  ["max_weight_lbs", "maximum weight"],
+  ["tray_length_in", "tray length"],
+  ["tray_width_in", "tray width"],
+  ["tray_height_in", "tray height"],
+  ["tray_included", "tray included"],
+  ["stand_included", "stand included"],
+  ["adjustment_mechanism", "adjustment mechanism"],
+  ["sold_as", "sold as"],
   ["bench_specs.stored_footprint_sqft", "stored footprint"],
   ["bench_specs.stored_height_in", "stored height"],
   ["bench_specs.stored_width_in", "stored width"],
@@ -143,6 +201,7 @@ const NOTE_REPLACEMENTS: [string, string][] = [
   ["fold_direction", "fold direction"],
   ["unverified_fields", "unpublished fields"],
   ["rack_type", "rack type"],
+  ["height_in", "height"],
   ["width_in", "width"],
 ];
 
@@ -164,6 +223,7 @@ export function humanizeTag(tag: string): string {
 
 export function humanizeFieldPath(path: string, category: ProductCategory): string {
   if (path === "dimensions.height_in") return category === "rack" ? "Upright height" : "Height";
+  if (path === "dimensions.depth_open_in" && category === "dumbbell") return "Max length";
   const known = FIELD_LABELS[path];
   if (known) return known;
   const leaf = path.split(".").pop() ?? path;
@@ -177,7 +237,14 @@ export function shopperNotes(notes: string): string {
   for (const [token, label] of NOTE_REPLACEMENTS) {
     text = text.replaceAll(token, label);
   }
-  return text.replaceAll(" is null", " was not published");
+  return text
+    .replaceAll(" is null", " was not published")
+    .replaceAll(" left null", " was left unpublished")
+    .replaceAll(" so null", " so it was not published")
+    .replaceAll(" null:", " was not published:")
+    .replaceAll(" null.", " was not published.")
+    .replaceAll(" = false", " = no")
+    .replaceAll(" = true", " = yes");
 }
 
 export function articleTypeLabel(type: ArticleType): string {
@@ -227,6 +294,31 @@ export function formatBool(value: boolean | null | undefined): string {
   return value ? "Yes" : "No";
 }
 
+export function formatAdjustmentMechanism(
+  value: DumbbellSpecs["adjustment_mechanism"] | undefined,
+  missing: "Unverified" | "Not published" = "Unverified",
+): string {
+  if (value == null) return missing;
+  return ADJUSTMENT_LABELS[value];
+}
+
+export function formatSoldAs(
+  value: DumbbellSpecs["sold_as"] | undefined,
+  missing: "Unverified" | "Not published" = "Unverified",
+): string {
+  if (value == null) return missing;
+  return SOLD_AS_LABELS[value];
+}
+
+/** Length × width × height, only when the manufacturer published all three. */
+export function formatTraySize(specs: DumbbellSpecs): string | null {
+  const length = specs.tray_length_in;
+  const width = specs.tray_width_in;
+  const height = specs.tray_height_in;
+  if (length == null || width == null || height == null) return null;
+  return `${formatNumber(length)} × ${formatNumber(width)} × ${formatNumber(height)} in`;
+}
+
 export function formatText(value: string | null | undefined): string {
   if (value == null || value.trim().length === 0) return "Unverified";
   return value;
@@ -272,9 +364,38 @@ export function formatFoldedDepth(product: GymProduct): string {
 const CEILING_HINT =
   "Upright height is used when a minimum ceiling is not published. That height is not a clearance calculation.";
 
+function cardInches(value: number | null | undefined): string {
+  if (value == null) return "Not published";
+  return formatInches(value);
+}
+
 function cardPounds(value: number | null | undefined): string {
   if (value == null) return "Not published";
   return formatPounds(value);
+}
+
+function cardWeightRange(specs: DumbbellSpecs | null | undefined): string {
+  if (specs == null) return "Not published";
+  const min = specs.min_weight_lbs;
+  const max = specs.max_weight_lbs;
+  if (min != null && max != null) return `${formatNumber(min)}–${formatNumber(max)} lb`;
+  if (max != null) return `Up to ${formatNumber(max)} lb`;
+  if (min != null) return `From ${formatNumber(min)} lb`;
+  return "Not published";
+}
+
+function cardTray(specs: DumbbellSpecs): string {
+  const size = formatTraySize(specs);
+  if (size) return size;
+  if (specs.tray_included == null) return "Not published";
+  return specs.tray_included ? "Yes" : "No";
+}
+
+function dumbbellFourthCell(specs: DumbbellSpecs | null | undefined): SpecCell {
+  if (specs != null && specs.handle_diameter_mm != null) {
+    return { label: "Handle", value: formatMillimeters(specs.handle_diameter_mm) };
+  }
+  return { label: "Tray", value: specs == null ? "Not published" : cardTray(specs) };
 }
 
 function cardBool(value: boolean | null | undefined): string {
@@ -290,6 +411,19 @@ function cardBenchType(value: string | null | undefined): string {
 }
 
 export function cardSpecCells(product: GymProduct): SpecCell[] {
+  if (product.category === "dumbbell") {
+    const specs = product.dumbbell_specs;
+    return [
+      { label: "Weight range", value: cardWeightRange(specs) },
+      { label: "Max length", value: cardInches(product.dimensions?.depth_open_in) },
+      {
+        label: "Mechanism",
+        value: formatAdjustmentMechanism(specs?.adjustment_mechanism, "Not published"),
+      },
+      dumbbellFourthCell(specs),
+    ];
+  }
+
   if (product.category === "barbell") {
     return [
       { label: "Length", value: formatInches(product.barbell_specs?.overall_length_in) },
@@ -334,6 +468,23 @@ export function cardSpecCells(product: GymProduct): SpecCell[] {
 
 /** Rows added in the compare drawer beyond the four card cells. */
 export function compareExtraCells(product: GymProduct): SpecCell[] {
+  if (product.category === "dumbbell") {
+    const specs = product.dumbbell_specs;
+    return [
+      { label: "Increment", value: cardPounds(specs?.weight_increment_lbs) },
+      { label: "Expandable", value: cardBool(specs?.expandable) },
+      {
+        label: "Handle",
+        value:
+          specs?.handle_diameter_mm == null
+            ? "Not published"
+            : formatMillimeters(specs.handle_diameter_mm),
+      },
+      { label: "Grip length", value: cardInches(specs?.handle_length_in) },
+      { label: "Tray", value: specs == null ? "Not published" : cardTray(specs) },
+    ];
+  }
+
   if (product.category === "bench") {
     const specs = product.bench_specs;
     return [
@@ -410,6 +561,17 @@ export function productSummary(product: GymProduct): string {
     if (length != null) parts.push(`overall length ${formatNumber(length)} in`);
     if (product.barbell_specs?.rackable === true) parts.push("rackable");
     if (product.barbell_specs?.rackable === false) parts.push("not rackable");
+  } else if (product.category === "dumbbell") {
+    const specs = product.dumbbell_specs;
+    if (specs?.min_weight_lbs != null && specs.max_weight_lbs != null) {
+      parts.push(`${formatNumber(specs.min_weight_lbs)}–${formatNumber(specs.max_weight_lbs)} lb`);
+    } else if (specs?.max_weight_lbs != null) {
+      parts.push(`up to ${formatNumber(specs.max_weight_lbs)} lb`);
+    } else if (specs?.min_weight_lbs != null) {
+      parts.push(`from ${formatNumber(specs.min_weight_lbs)} lb`);
+    }
+    const length = product.dimensions?.depth_open_in;
+    if (length != null) parts.push(`max length ${formatNumber(length)} in`);
   } else if (product.category === "bench") {
     const specs = product.bench_specs;
     if (specs?.bench_type === "adjustable") parts.push("adjustable");
@@ -506,7 +668,10 @@ export function specRows(product: GymProduct): SpecRow[] {
           product.category === "rack" && ceilingUsesUprightHeight(product) ? CEILING_HINT : undefined,
       },
       { label: "Width", value: dimensionValue(product, "width_in") },
-      { label: "Open depth", value: dimensionValue(product, "depth_open_in") },
+      {
+        label: product.category === "dumbbell" ? "Max length" : "Open depth",
+        value: dimensionValue(product, "depth_open_in"),
+      },
       { label: "Folded depth", value: dimensionValue(product, "depth_folded_in") },
       { label: "Footprint", value: dimensionValue(product, "footprint_sqft") },
       { label: "Unit weight", value: dimensionValue(product, "unit_weight_lbs") },
@@ -528,6 +693,31 @@ export function specRows(product: GymProduct): SpecRow[] {
     );
   }
 
+  return rows;
+}
+
+export function dumbbellSpecRows(product: GymProduct): SpecRow[] {
+  const specs = product.dumbbell_specs;
+  if (!specs) return [];
+  const rows: SpecRow[] = [
+    { label: "Minimum weight", value: formatPounds(specs.min_weight_lbs) },
+    { label: "Maximum weight", value: formatPounds(specs.max_weight_lbs) },
+    { label: "Weight increment", value: formatPounds(specs.weight_increment_lbs) },
+    { label: "Adjustment mechanism", value: formatAdjustmentMechanism(specs.adjustment_mechanism) },
+    { label: "Handle diameter", value: formatMillimeters(specs.handle_diameter_mm) },
+    { label: "Handle length", value: formatInches(specs.handle_length_in) },
+    { label: "Tray included", value: formatBool(specs.tray_included) },
+    { label: "Tray length", value: formatInches(specs.tray_length_in) },
+    { label: "Tray width", value: formatInches(specs.tray_width_in) },
+    { label: "Tray height", value: formatInches(specs.tray_height_in) },
+  ];
+  const traySize = formatTraySize(specs);
+  if (traySize) rows.push({ label: "Tray size", value: traySize });
+  rows.push(
+    { label: "Stand included", value: formatBool(specs.stand_included) },
+    { label: "Expandable", value: formatBool(specs.expandable) },
+    { label: "Sold as", value: formatSoldAs(specs.sold_as) },
+  );
   return rows;
 }
 

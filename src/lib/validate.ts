@@ -12,6 +12,7 @@ const PRODUCT_KEYS = [
   "rack_specs",
   "barbell_specs",
   "bench_specs",
+  "dumbbell_specs",
   "verification",
   "affiliates",
 ] as const;
@@ -85,6 +86,35 @@ const UNPUBLISHED_BENCH_STORAGE = [
   "dimensions.depth_folded_in",
 ] as const;
 
+const DUMBBELL_SPEC_KEYS = [
+  "min_weight_lbs",
+  "max_weight_lbs",
+  "weight_increment_lbs",
+  "adjustment_mechanism",
+  "handle_diameter_mm",
+  "handle_length_in",
+  "tray_included",
+  "tray_length_in",
+  "tray_width_in",
+  "tray_height_in",
+  "stand_included",
+  "expandable",
+  "sold_as",
+] as const;
+
+const DUMBBELL_NUMBER_KEYS = [
+  "min_weight_lbs",
+  "max_weight_lbs",
+  "weight_increment_lbs",
+  "handle_diameter_mm",
+  "handle_length_in",
+  "tray_length_in",
+  "tray_width_in",
+  "tray_height_in",
+] as const;
+
+const DUMBBELL_BOOLEAN_KEYS = ["tray_included", "stand_included", "expandable"] as const;
+
 const BARBELL_SPEC_KEYS = [
   "overall_length_in",
   "shaft_length_in",
@@ -115,7 +145,15 @@ const AFFILIATE_KEYS = [
   "amazon_asin",
 ] as const;
 
-const CATEGORIES = new Set(["rack", "bench", "barbell"]);
+const CATEGORIES = new Set(["rack", "bench", "barbell", "dumbbell"]);
+const ADJUSTMENT_MECHANISMS = new Set([
+  "selector-pin",
+  "twist-handle",
+  "lock-switch",
+  "quick-lock-screw",
+  "dial",
+]);
+const SOLD_AS = new Set(["pair", "single"]);
 const RACK_TYPES = new Set([
   "folding-wall",
   "compact-power-rack",
@@ -266,13 +304,17 @@ function validateProduct(
     errors.push(`${path}.sku must be a non-empty string or null`);
   }
   if (typeof input.category !== "string" || !CATEGORIES.has(input.category)) {
-    errors.push(`${path}.category must be rack, bench, or barbell`);
+    errors.push(`${path}.category must be rack, bench, barbell, or dumbbell`);
     return;
   }
 
   const category = input.category;
-  if ((category === "rack" || category === "bench") && input.dimensions == null) {
-    errors.push(`${path}.dimensions is required for ${category === "rack" ? "racks" : "benches"}`);
+  if (
+    (category === "rack" || category === "bench" || category === "dumbbell") &&
+    input.dimensions == null
+  ) {
+    const label = category === "rack" ? "racks" : category === "bench" ? "benches" : "dumbbells";
+    errors.push(`${path}.dimensions is required for ${label}`);
   }
   if (input.dimensions != null) validateDimensions(input.dimensions, path, errors);
 
@@ -287,6 +329,9 @@ function validateProduct(
     else validateRackSpecs(input.rack_specs, path, errors);
     if (input.barbell_specs != null) errors.push(`${path}.barbell_specs must be omitted or null on a rack`);
     if (input.bench_specs != null) errors.push(`${path}.bench_specs must be omitted or null on a rack`);
+    if (input.dumbbell_specs != null) {
+      errors.push(`${path}.dumbbell_specs must be omitted or null on a rack`);
+    }
   } else if (category === "barbell") {
     if (!isRecord(input.barbell_specs)) {
       errors.push(`${path}.barbell_specs is required for barbells`);
@@ -295,16 +340,30 @@ function validateProduct(
     }
     if (input.rack_specs != null) errors.push(`${path}.rack_specs must be omitted or null on a barbell`);
     if (input.bench_specs != null) errors.push(`${path}.bench_specs must be omitted or null on a barbell`);
-  } else {
+    if (input.dumbbell_specs != null) {
+      errors.push(`${path}.dumbbell_specs must be omitted or null on a barbell`);
+    }
+  } else if (category === "bench") {
     if ("installation" in input) errors.push(`${path}.installation must be omitted on a bench`);
     if ("rack_specs" in input) errors.push(`${path}.rack_specs must be omitted on a bench`);
     if ("barbell_specs" in input) errors.push(`${path}.barbell_specs must be omitted on a bench`);
+    if ("dumbbell_specs" in input) errors.push(`${path}.dumbbell_specs must be omitted on a bench`);
     if (!isRecord(input.bench_specs)) {
       errors.push(`${path}.bench_specs is required for benches`);
     } else {
       validateBenchSpecs(input.bench_specs, path, errors);
     }
     validateUnpublishedBenchStorage(input, path, errors);
+  } else {
+    if ("installation" in input) errors.push(`${path}.installation must be omitted on a dumbbell`);
+    if ("rack_specs" in input) errors.push(`${path}.rack_specs must be omitted on a dumbbell`);
+    if ("barbell_specs" in input) errors.push(`${path}.barbell_specs must be omitted on a dumbbell`);
+    if ("bench_specs" in input) errors.push(`${path}.bench_specs must be omitted on a dumbbell`);
+    if (!isRecord(input.dumbbell_specs)) {
+      errors.push(`${path}.dumbbell_specs is required for dumbbells`);
+    } else {
+      validateDumbbellSpecs(input.dumbbell_specs, path, errors);
+    }
   }
 
   validateVerification(input.verification, path, errors);
@@ -433,6 +492,36 @@ function validateBenchSpecs(input: Record<string, unknown>, path: string, errors
   for (const key of BENCH_BOOLEAN_KEYS) {
     if (key in input && !isBooleanOrNull(input[key])) {
       errors.push(`${field}.${key} must be a boolean or null`);
+    }
+  }
+}
+
+function validateDumbbellSpecs(input: Record<string, unknown>, path: string, errors: string[]): void {
+  const field = `${path}.dumbbell_specs`;
+  rejectUnknown(input, DUMBBELL_SPEC_KEYS, field, errors);
+  requireKeys(input, DUMBBELL_SPEC_KEYS, field, errors);
+  for (const key of DUMBBELL_NUMBER_KEYS) {
+    if (key in input && !isPositiveOrNull(input[key])) {
+      errors.push(`${field}.${key} must be a positive number or null`);
+    }
+  }
+  for (const key of DUMBBELL_BOOLEAN_KEYS) {
+    if (key in input && !isBooleanOrNull(input[key])) {
+      errors.push(`${field}.${key} must be a boolean or null`);
+    }
+  }
+  if ("adjustment_mechanism" in input) {
+    const mechanism = input.adjustment_mechanism;
+    if (mechanism !== null && (typeof mechanism !== "string" || !ADJUSTMENT_MECHANISMS.has(mechanism))) {
+      errors.push(
+        `${field}.adjustment_mechanism must be selector-pin, twist-handle, lock-switch, quick-lock-screw, dial, or null`,
+      );
+    }
+  }
+  if ("sold_as" in input) {
+    const soldAs = input.sold_as;
+    if (soldAs !== null && (typeof soldAs !== "string" || !SOLD_AS.has(soldAs))) {
+      errors.push(`${field}.sold_as must be pair, single, or null`);
     }
   }
 }

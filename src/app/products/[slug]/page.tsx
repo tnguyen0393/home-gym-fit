@@ -11,6 +11,7 @@ import {
   ceilingUsesUprightHeight,
   formatDisplayDate,
   humanizeFieldPath,
+  dumbbellSpecRows,
   productSummary,
   shopperNotes,
   specRows,
@@ -42,6 +43,7 @@ export default async function ProductPage(props: { params: Promise<{ slug: strin
   const product = getProductBySlug(slug);
   if (!product) notFound();
   const rows = specRows(product);
+  const dumbbellRows = product.category === "dumbbell" ? dumbbellSpecRows(product) : [];
   const notes = shopperNotes(product.verification.notes).trim();
 
   return (
@@ -56,6 +58,12 @@ export default async function ProductPage(props: { params: Promise<{ slug: strin
         </p>
       </header>
       <ProductLinks product={product} />
+      {dumbbellRows.length > 0 ? (
+        <section className="max-w-3xl rounded-lg border border-stone-200 bg-white p-4">
+          <h2 className="mb-3 text-xl font-semibold">Dumbbell specs</h2>
+          <SpecTable rows={dumbbellRows} />
+        </section>
+      ) : null}
       <div className="max-w-3xl rounded-lg border border-stone-200 bg-white p-4">
         <SpecTable rows={rows} />
       </div>

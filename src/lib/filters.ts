@@ -7,6 +7,8 @@ export interface DirectoryFilters {
   renterOnly: boolean;
   foldingOnly: boolean;
   verticalStorage: boolean;
+  trayIncluded: boolean;
+  expandableOnly: boolean;
   maxCeilingIn: number | null;
   maxFoldedDepthIn: number | null;
   maxBarLengthIn: number | null;
@@ -18,13 +20,18 @@ export function matchesDirectoryFilters(product: GymProduct, filters: DirectoryF
   if (filters.renterOnly && product.installation?.wall_mount_required !== false) return false;
   if (filters.foldingOnly && !isFoldingProduct(product)) return false;
   if (filters.verticalStorage && product.bench_specs?.vertical_storage !== true) return false;
+  if (filters.trayIncluded && product.dumbbell_specs?.tray_included !== true) return false;
+  if (filters.expandableOnly && product.dumbbell_specs?.expandable !== true) return false;
 
   if (filters.maxCeilingIn != null && product.category === "rack") {
     const ceiling = ceilingReferenceIn(product);
     if (ceiling == null || ceiling > filters.maxCeilingIn) return false;
   }
 
-  if (filters.maxFoldedDepthIn != null && product.category !== "barbell") {
+  if (
+    filters.maxFoldedDepthIn != null &&
+    (product.category === "rack" || product.category === "bench")
+  ) {
     const depth = product.dimensions?.depth_folded_in;
     if (depth == null || depth > filters.maxFoldedDepthIn) return false;
   }
