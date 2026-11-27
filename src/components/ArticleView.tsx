@@ -23,12 +23,15 @@ function directoryCta(article: ArticleDocument): { href: string; label: string }
   if (tags.some((tag) => tag.includes("renter"))) params.set("renter", "1");
   if (tags.some((tag) => tag.includes("folding"))) params.set("folding", "1");
   if (tags.includes("folding-wall-rack")) params.set("rack", "folding-wall");
+  if (tags.includes("adjustable-dumbbells")) params.set("category", "dumbbell");
   const query = params.toString();
   return {
     href: query.length > 0 ? `/directory/?${query}` : "/directory/",
-    label: tags.includes("8-foot-ceiling")
-      ? "Filter 8-foot ceiling racks →"
-      : "Filter matching gear in the directory →",
+    label: tags.includes("adjustable-dumbbells")
+      ? "Filter adjustable dumbbells in the directory →"
+      : tags.includes("8-foot-ceiling")
+        ? "Filter 8-foot ceiling racks →"
+        : "Filter matching gear in the directory →",
   };
 }
 

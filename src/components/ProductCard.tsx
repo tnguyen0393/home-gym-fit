@@ -65,7 +65,8 @@ export function ProductCard({
           </div>
         ))}
       </dl>
-      {product.category === "bench" && product.verification.unverified_fields.length > 0 ? (
+      {(product.category === "bench" || product.category === "dumbbell") &&
+      product.verification.unverified_fields.length > 0 ? (
         <p>
           <span
             className="inline-flex items-center gap-1 rounded bg-amber-50 px-1.5 py-0.5 text-xs font-medium text-amber-950"

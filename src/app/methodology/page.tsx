@@ -26,6 +26,12 @@ export default function MethodologyPage() {
         and folded depth stay unverified until the manufacturer prints them.
       </p>
       <p>
+        An adjustable dumbbell card and the compare drawer print Not published when a dumbbell spec
+        is null. The product page prints Unverified for that same null. A published no, such as no
+        tray or not expandable, stays No. Tray length, width, and height are also shown together
+        when the manufacturer publishes all three.
+      </p>
+      <p>
         Minimum ceiling is shown only when the manufacturer states one. The directory ceiling filter
         uses that stated minimum when it exists. Otherwise it compares the upright height, and the
         product card marks the minimum ceiling as unverified. Upright height is not turned into a

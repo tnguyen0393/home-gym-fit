@@ -1,4 +1,4 @@
-export type ProductCategory = "rack" | "bench" | "barbell";
+export type ProductCategory = "rack" | "bench" | "barbell" | "dumbbell";
 
 export type FoldDirection = "inward" | "outward" | "upward" | "none" | null;
 
@@ -59,6 +59,32 @@ export interface BarbellSpecs {
 export type BenchType = "adjustable" | "flat";
 
 /**
+ * Adjustable dumbbells. Every field is a flat scalar and stays null
+ * until the manufacturer publishes it.
+ */
+export interface DumbbellSpecs {
+  min_weight_lbs: number | null;
+  max_weight_lbs: number | null;
+  weight_increment_lbs: number | null;
+  adjustment_mechanism:
+    | "selector-pin"
+    | "twist-handle"
+    | "lock-switch"
+    | "quick-lock-screw"
+    | "dial"
+    | null;
+  handle_diameter_mm: number | null;
+  handle_length_in: number | null;
+  tray_included: boolean | null;
+  tray_length_in: number | null;
+  tray_width_in: number | null;
+  tray_height_in: number | null;
+  stand_included: boolean | null;
+  expandable: boolean | null;
+  sold_as: "pair" | "single" | null;
+}
+
+/**
  * Vertical-storage benches. Every field is a flat scalar and stays null
  * until the manufacturer publishes it.
  */
@@ -102,12 +128,14 @@ export interface GymProduct {
   sku: string | null;
   category: ProductCategory;
   dimensions?: ProductDimensions | null;
-  /** Required for racks. Omitted on benches. Optional and nullable for barbells. */
+  /** Required for racks. Omitted on benches and dumbbells. Optional and nullable for barbells. */
   installation?: ProductInstallation | null;
   rack_specs?: RackSpecs | null;
   barbell_specs?: BarbellSpecs | null;
-  /** Required for benches. Omitted on racks and barbells. */
+  /** Required for benches. Omitted on racks, barbells, and dumbbells. */
   bench_specs?: BenchSpecs | null;
+  /** Required for dumbbells. Omitted on racks, barbells, and benches. */
+  dumbbell_specs?: DumbbellSpecs | null;
   verification: ProductVerification;
   affiliates: ProductAffiliates;
 }

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     template: "%s · Home Gym Fit",
   },
   description:
-    "Manufacturer-verified dimensions for compact and folding racks, short rackable barbells, and vertical-storage benches. Missing measurements stay unverified.",
+    "Manufacturer-verified dimensions for compact and folding racks, short rackable barbells, vertical-storage benches, and adjustable dumbbells. Missing measurements stay unverified.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

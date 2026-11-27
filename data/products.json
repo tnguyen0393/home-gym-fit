@@ -1106,5 +1106,270 @@
       "rep_affiliate_eligible": false,
       "amazon_asin": null
     }
+  },
+  {
+    "id": "rep-quickdraw-adjustable-dumbbell-60lb",
+    "slug": "rep-quickdraw-adjustable-dumbbell-60lb",
+    "brand": "REP Fitness",
+    "model": "QuickDraw Adjustable Dumbbell (LB) - 60lb Pair",
+    "sku": "DBS-6000-560",
+    "category": "dumbbell",
+    "dimensions": {
+      "height_in": null,
+      "min_ceiling_in": null,
+      "width_in": null,
+      "depth_open_in": 18.5,
+      "depth_folded_in": null,
+      "footprint_sqft": null,
+      "unit_weight_lbs": 60
+    },
+    "dumbbell_specs": {
+      "min_weight_lbs": 5,
+      "max_weight_lbs": 60,
+      "weight_increment_lbs": 5,
+      "adjustment_mechanism": "lock-switch",
+      "handle_diameter_mm": 32,
+      "handle_length_in": null,
+      "tray_included": true,
+      "tray_length_in": 20.6,
+      "tray_width_in": 8.45,
+      "tray_height_in": 4.7,
+      "stand_included": false,
+      "expandable": false,
+      "sold_as": "pair"
+    },
+    "verification": {
+      "spec_sheet_url": "https://repfitness.com/products/quickdraw-adjustable-dumbbell-lb",
+      "additional_source_urls": [
+        "https://repfitness.com/products/quickdraw-adjustable-dumbbell-lb.js"
+      ],
+      "last_verified_date": "2026-11-27",
+      "verification_status": "partial",
+      "unverified_fields": [
+        "dimensions.height_in",
+        "dimensions.width_in",
+        "dimensions.footprint_sqft",
+        "dumbbell_specs.handle_length_in"
+      ],
+      "notes": "Recorded variant: 60lb Pair, SKU DBS-6000-560 (other pairs: 30lb DBS-6000-530, 40lb DBS-6000-540, 50lb DBS-6000-550; all 5lb minimum). unit_weight_lbs = 60 lb max per single dumbbell of this SKU. Published dumbbell lengths: 30lb 12.2\", 40lb 14.3\", 50lb 16.4\", 60lb 18.5\" (depth_open_in = 18.5). Manufacturer states 60lb is the maximum; smaller pairs expand to 40/50/60lb via 10lb add-ons, so expandable = false for the 60lb SKU. Increments: Lock-N-Load switches change weight in 10lb steps; two included 2.5lb micro-adjustment plates give 5lb increments (2.5lb possible with small imbalance). Handle Diameter 32mm (published). Handle Length published as 5.4\" without 2.5lb add-on weights and 4.9\" with them attached; single value not determinable, so null. Tray = included cradle: Cradle Length 20.6\", Cradle Width 8.45\", Height (Cradle Without Dumbbell) 4.7\", Height (Cradle With Dumbbell) 7.9\", Cradle Weight (empty) 4.64lbs. Plate Diameter 7.3\" published; single-dumbbell height/width not published as such. Storage stand and cart sold separately. Manufacturer states occasional drops are tolerated but repeated drops are not covered by warranty. Also available in KG."
+    },
+    "affiliates": {
+      "manufacturer_url": "https://repfitness.com/products/quickdraw-adjustable-dumbbell-lb",
+      "rep_affiliate_eligible": true,
+      "amazon_asin": null
+    }
+  },
+  {
+    "id": "rep-x-pepin-fast-series-adjustable-dumbbell-125lb",
+    "slug": "rep-x-pepin-fast-series-adjustable-dumbbell-125lb",
+    "brand": "REP Fitness",
+    "model": "REP x PÉPIN FAST Series Adjustable Dumbbell - 125lb Pair",
+    "sku": "DBS-7000-125",
+    "category": "dumbbell",
+    "dimensions": {
+      "height_in": null,
+      "min_ceiling_in": null,
+      "width_in": null,
+      "depth_open_in": 18.3,
+      "depth_folded_in": null,
+      "footprint_sqft": null,
+      "unit_weight_lbs": 125
+    },
+    "dumbbell_specs": {
+      "min_weight_lbs": 10,
+      "max_weight_lbs": 125,
+      "weight_increment_lbs": 5,
+      "adjustment_mechanism": "selector-pin",
+      "handle_diameter_mm": 34,
+      "handle_length_in": null,
+      "tray_included": true,
+      "tray_length_in": null,
+      "tray_width_in": null,
+      "tray_height_in": null,
+      "stand_included": false,
+      "expandable": false,
+      "sold_as": "pair"
+    },
+    "verification": {
+      "spec_sheet_url": "https://repfitness.com/products/rep-x-pepin-fast-series-adjustable-dumbbell",
+      "additional_source_urls": [
+        "https://repfitness.com/products/rep-x-pepin-fast-series-adjustable-dumbbell.js"
+      ],
+      "last_verified_date": "2026-11-27",
+      "verification_status": "partial",
+      "unverified_fields": [
+        "dimensions.height_in",
+        "dimensions.width_in",
+        "dimensions.footprint_sqft",
+        "dumbbell_specs.handle_length_in",
+        "dumbbell_specs.tray_length_in",
+        "dumbbell_specs.tray_width_in",
+        "dumbbell_specs.tray_height_in"
+      ],
+      "notes": "Recorded variant: 125lb Pair, SKU DBS-7000-125, chosen because the only published length (18.3\") is stated for the 125lb configuration. Other pairs: 65lb DBS-7000-065, 85lb DBS-7000-085, 105lb DBS-7000-105; all 10lb minimum and expandable with add-on plates to the 125lb maximum (cradles expand via pre-drilled holes). unit_weight_lbs = 125 lb max per single dumbbell of this SKU. Adjustment by magnetic pop-pins on side-rail selector rods in 10lb steps; two included 2.5lb micro-adjustment plates per dumbbell give 5lb increments (2.5lb possible with small imbalance). Nickel-plated handle, 34mm diameter (published), volcano-style knurl; handle length not published. All-metal cradles included; cradle dimensions not published. Tech Specs block lists 'Footprint 9.85 Sqft', 'Weight Capacity 1000 lbs' and 'Material 11 Gauge Steel' with no stated basis (inconsistent with a dumbbell/cradle pair); footprint_sqft left null pending manufacturer clarification. Designed for flat storage only; stand and cart sold separately. Original PÉPIN components not compatible."
+    },
+    "affiliates": {
+      "manufacturer_url": "https://repfitness.com/products/rep-x-pepin-fast-series-adjustable-dumbbell",
+      "rep_affiliate_eligible": true,
+      "amazon_asin": null
+    }
+  },
+  {
+    "id": "powerblock-pro-100-exp-stage-1-40lb",
+    "slug": "powerblock-pro-100-exp-stage-1-40lb",
+    "brand": "PowerBlock",
+    "model": "Pro 100 EXP Adjustable Dumbbells - Stage 1 (5-40 lb), Knurled",
+    "sku": "504-00183-03",
+    "category": "dumbbell",
+    "dimensions": {
+      "height_in": null,
+      "min_ceiling_in": null,
+      "width_in": null,
+      "depth_open_in": null,
+      "depth_folded_in": null,
+      "footprint_sqft": null,
+      "unit_weight_lbs": 40
+    },
+    "dumbbell_specs": {
+      "min_weight_lbs": 5,
+      "max_weight_lbs": 40,
+      "weight_increment_lbs": null,
+      "adjustment_mechanism": "selector-pin",
+      "handle_diameter_mm": 38,
+      "handle_length_in": 4.88,
+      "tray_included": null,
+      "tray_length_in": null,
+      "tray_width_in": null,
+      "tray_height_in": null,
+      "stand_included": false,
+      "expandable": true,
+      "sold_as": "pair"
+    },
+    "verification": {
+      "spec_sheet_url": "https://www.powerblock.com/products/pro-100-exp-adjustable-dumbbells",
+      "additional_source_urls": [
+        "https://www.powerblock.com/products/pro-100-exp-adjustable-dumbbells.js"
+      ],
+      "last_verified_date": "2026-11-27",
+      "verification_status": "partial",
+      "unverified_fields": [
+        "dimensions.height_in",
+        "dimensions.width_in",
+        "dimensions.depth_open_in",
+        "dimensions.footprint_sqft",
+        "dumbbell_specs.weight_increment_lbs",
+        "dumbbell_specs.tray_included",
+        "dumbbell_specs.tray_length_in",
+        "dumbbell_specs.tray_width_in",
+        "dumbbell_specs.tray_height_in"
+      ],
+      "notes": "Recorded variant: Knurled / 40 LBS (Stage 1 base, 5-40 lb per dumbbell), SKU 504-00183-03; TPR grip equivalent 504-00183-01. Stage 2 (to 60 lb), Stage 3 (to 80 lb) and Stage 4 (to 100 lb) expansion kits add 20 lb each; pre-bundled pairs: Knurled 60/80/100 LBS SKUs 750-00329-00/750-00330-00/750-00331-00, TPR 750-00326-00/750-00327-00/750-00328-00. unit_weight_lbs = 40 lb max per single dumbbell of the Stage 1 SKU. Published Dimensions (L x W x H) 19.21 in x 7.63 in x 7.72 in without a stated stage/weight basis, so not assigned to the Stage 1 record. Increments non-uniform: published as '2.5 or 5 lbs'; selectable weights 5, 10, 15, 17.5, 20, 25, 27.5, 30, 35, 37.5, 40 (continuing to 100 with expansions). Grip Diameter 38 mm (knurled stainless steel; 32mm knurled grips sold separately). Grip Length 4.88\". Magnetic selector pin. Each handle includes two 2.5lb micro weights. Inclusion of a tray/cradle not stated. Stands sold separately (Commercial Pro 100, not this model, includes a stand). Manufacturer states '1.75 feet of space' (linear, not sq ft). Sold as a pair."
+    },
+    "affiliates": {
+      "manufacturer_url": "https://www.powerblock.com/products/pro-100-exp-adjustable-dumbbells",
+      "rep_affiliate_eligible": false,
+      "amazon_asin": null
+    }
+  },
+  {
+    "id": "ironmaster-quick-lock-adjustable-dumbbell-75lb",
+    "slug": "ironmaster-quick-lock-adjustable-dumbbell-75lb",
+    "brand": "Ironmaster",
+    "model": "Quick-Lock Adjustable Dumbbell System 75 lb Set",
+    "sku": "75-2",
+    "category": "dumbbell",
+    "dimensions": {
+      "height_in": 6.7,
+      "min_ceiling_in": null,
+      "width_in": 6.7,
+      "depth_open_in": 14.5,
+      "depth_folded_in": null,
+      "footprint_sqft": null,
+      "unit_weight_lbs": 75
+    },
+    "dumbbell_specs": {
+      "min_weight_lbs": null,
+      "max_weight_lbs": 75,
+      "weight_increment_lbs": 2.5,
+      "adjustment_mechanism": "quick-lock-screw",
+      "handle_diameter_mm": null,
+      "handle_length_in": 6.5,
+      "tray_included": false,
+      "tray_length_in": null,
+      "tray_width_in": null,
+      "tray_height_in": null,
+      "stand_included": false,
+      "expandable": true,
+      "sold_as": "pair"
+    },
+    "verification": {
+      "spec_sheet_url": "https://www.ironmaster.com/products/quick-lock-adjustable-dumbbells-75-original",
+      "additional_source_urls": [
+        "https://www.ironmaster.com/products/quick-lock-adjustable-dumbbells-75-original.js"
+      ],
+      "last_verified_date": "2026-11-27",
+      "verification_status": "partial",
+      "unverified_fields": [
+        "dimensions.footprint_sqft",
+        "dumbbell_specs.min_weight_lbs",
+        "dumbbell_specs.handle_diameter_mm"
+      ],
+      "notes": "Recorded base kit: 75 lb Set (75 lb per dumbbell, 150 lb total), SKU 75-2. Set includes two handles, four locking screws, 24 x 5 lb plates and 4 x 2.5 lb plates; no tray. Add-on kits to 120 lb or custom 165 lb per dumbbell; Heavy Handle Kit adds 15 lb per handle; stands (Stand, PRO Stand 120, PRO Stand 165) sold separately. unit_weight_lbs = 75 lb max per single dumbbell. min_weight_lbs null: page states 'Adjust from 5 to 75 lbs each' but also 'Handles weigh 5 lbs empty, each locking screw weighs 2.5 lbs, for a starting weight of 10 lbs per dumbbell before plates'. Increments 2.5 lb (published). Dimensions published as 6.7\" square x 14.5\" long at 75 lbs (9\" long at 20 lbs); height_in and width_in = 6.7 from the stated square section. Handle grip diameter published as 1.25\" only (no mm). handle_length_in = published 'Grip width: 6.5\" inside'. Chrome plated steel handles with knurled grips. Manufacturer states 'Heavy duty, go ahead and drop them'."
+    },
+    "affiliates": {
+      "manufacturer_url": "https://www.ironmaster.com/products/quick-lock-adjustable-dumbbells-75-original",
+      "rep_affiliate_eligible": false,
+      "amazon_asin": null
+    }
+  },
+  {
+    "id": "snode-ad80-adjustable-dumbbell",
+    "slug": "snode-ad80-adjustable-dumbbell",
+    "brand": "Snode",
+    "model": "AD80 Drop-proof Cast Iron Adjustable Dumbbells 80 LB - 1 Pair",
+    "sku": "AD80*2",
+    "category": "dumbbell",
+    "dimensions": {
+      "height_in": 6.68,
+      "min_ceiling_in": null,
+      "width_in": 6.68,
+      "depth_open_in": 18.11,
+      "depth_folded_in": null,
+      "footprint_sqft": null,
+      "unit_weight_lbs": 80
+    },
+    "dumbbell_specs": {
+      "min_weight_lbs": 10,
+      "max_weight_lbs": 80,
+      "weight_increment_lbs": 10,
+      "adjustment_mechanism": "dial",
+      "handle_diameter_mm": 36,
+      "handle_length_in": 4.53,
+      "tray_included": true,
+      "tray_length_in": 19.31,
+      "tray_width_in": 7.77,
+      "tray_height_in": 3.98,
+      "stand_included": false,
+      "expandable": null,
+      "sold_as": "pair"
+    },
+    "verification": {
+      "spec_sheet_url": "https://snodesport.com/products/ad-80-quick-adjusting-dumbbells",
+      "additional_source_urls": [
+        "https://snodesport.com/products/ad-80-quick-adjusting-dumbbells.js"
+      ],
+      "last_verified_date": "2026-11-27",
+      "verification_status": "partial",
+      "unverified_fields": [
+        "dimensions.footprint_sqft",
+        "dumbbell_specs.expandable"
+      ],
+      "notes": "Recorded variant: 1 Pair of AD80s, SKU AD80*2; second variant 'AD80*2+magnets' adds 8 magnet weight plates. unit_weight_lbs = 80 lb max per single dumbbell. Eight weight settings, 10-80 lb in 10 lb increments via single adjustment dial (dumbbell in cradle); optional magnetic plates allow smaller adjustments; whether they raise the 80 lb maximum is not stated, so expandable null. Published dimensions: Dumbbell Length 18.11\", Width 6.68\", Height 6.68\"; Cradle Length 19.31\", Width 7.77\", Height 3.98\", Cradle Weight 15.3lbs (all-iron cradle included with each dumbbell). Grip Length 4.53\" (115mm); Grip Diameter 1.42\" (36mm), knurled one-piece chrome iron handle. Manufacturer states drop-proof up to 32\" at multiple angles (1,000-drop test). Stand and bench bundles sold separately."
+    },
+    "affiliates": {
+      "manufacturer_url": "https://snodesport.com/products/ad-80-quick-adjusting-dumbbells",
+      "rep_affiliate_eligible": false,
+      "amazon_asin": null
+    }
   }
 ]
