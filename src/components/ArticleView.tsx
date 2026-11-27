@@ -8,9 +8,11 @@ import {
 } from "@/lib/format";
 import { itemListJsonLd } from "@/lib/jsonld";
 import type { ArticleDocument, GymProduct } from "@/lib/types";
+import { ArtworkImage } from "@/components/ArtworkImage";
 import { DisclosureNote } from "@/components/DisclosureNote";
 import { JsonLd } from "@/components/JsonLd";
 import { ProductCard } from "@/components/ProductCard";
+import { guideArtwork } from "@/lib/artwork";
 import { textLinkClass } from "@/components/styles";
 
 function directoryCta(article: ArticleDocument): { href: string; label: string } {
@@ -65,6 +67,10 @@ export function ArticleView({
   const showAmazon = products.some((product) => amazonLink(product) != null);
   const directory = directoryCta(article);
   const compare = compareCta(article);
+  const art = guideArtwork(
+    article,
+    products.map((product) => product.category),
+  );
 
   return (
     <article className="flex flex-col gap-6">
@@ -72,11 +78,19 @@ export function ArticleView({
       {articleNeedsDisclosure(article) ? (
         <DisclosureNote includeAmazonStatement={showAmazon} />
       ) : null}
-      <header className="flex max-w-prose flex-col gap-2">
-        <p className="text-sm font-medium text-indigo-800">{articleTypeLabel(article.type)}</p>
-        <h1 className="text-3xl font-semibold tracking-tight">{article.title}</h1>
-        <p className="text-lg text-stone-700">{article.description}</p>
-        <p className="text-sm text-stone-600">{articleStatusLine(article)}</p>
+      <header className="flex max-w-5xl flex-col gap-4 sm:flex-row sm:items-start">
+        {art ? (
+          <ArtworkImage
+            art={art}
+            className="h-28 w-auto max-w-full shrink-0 rounded-md border border-stone-200 bg-stone-50 sm:h-32"
+          />
+        ) : null}
+        <div className="flex max-w-prose flex-col gap-2">
+          <p className="text-sm font-medium text-indigo-800">{articleTypeLabel(article.type)}</p>
+          <h1 className="text-3xl font-semibold tracking-tight">{article.title}</h1>
+          <p className="text-lg text-stone-700">{article.description}</p>
+          <p className="text-sm text-stone-600">{articleStatusLine(article)}</p>
+        </div>
       </header>
       {headings.length > 0 ? (
         <nav aria-label="On this page" className="max-w-4xl text-sm">

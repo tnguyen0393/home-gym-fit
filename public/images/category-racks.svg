@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 220" role="img">
+  <title>Folding rack</title>
+  <desc>A folding wall rack under a ceiling line, with a shallow folded arm and a dashed open position.</desc>
+  <rect width="320" height="220" fill="#fafaf9"/>
+  <defs>
+    <pattern id="rack-grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M20 0 H0 V20" fill="none" stroke="#e7e5e4" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="320" height="220" fill="url(#rack-grid)"/>
+  <path d="M16 28 V14 H30" fill="none" stroke="#4f46e5" stroke-width="3"/>
+  <rect x="36" y="42" width="248" height="150" fill="#fafaf9" fill-opacity="0.94"/>
+  <line x1="36" y1="42" x2="284" y2="42" stroke="#57534e" stroke-width="2" stroke-dasharray="6 5"/>
+  <line x1="36" y1="42" x2="36" y2="192" stroke="#1c1917" stroke-width="3"/>
+  <line x1="36" y1="192" x2="284" y2="192" stroke="#1c1917" stroke-width="3"/>
+  <rect x="56" y="58" width="18" height="122" rx="2" fill="#4f46e5"/>
+  <rect x="56" y="58" width="52" height="10" fill="#4f46e5"/>
+  <rect x="74" y="96" width="28" height="10" fill="#6366f1"/>
+  <rect x="74" y="136" width="28" height="10" fill="#6366f1"/>
+  <rect x="74" y="74" width="96" height="100" fill="none" stroke="#6366f1" stroke-width="2" stroke-dasharray="5 4"/>
+  <line x1="36" y1="112" x2="102" y2="112" stroke="#d97706" stroke-width="2"/>
+  <line x1="36" y1="106" x2="36" y2="118" stroke="#d97706" stroke-width="2"/>
+  <line x1="102" y1="106" x2="102" y2="118" stroke="#d97706" stroke-width="2"/>
+</svg>

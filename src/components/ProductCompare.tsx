@@ -1,7 +1,8 @@
 import Link from "next/link";
+import { CompareFit } from "@/components/FitDiagram";
+import { SpecValue } from "@/components/SpecTable";
 import { cardSpecCells, compareExtraCells, type SpecCell } from "@/lib/format";
 import type { GymProduct } from "@/lib/types";
-import { SpecValue } from "@/components/SpecTable";
 
 function compareRows(products: GymProduct[]): { label: string; values: SpecCell[] }[] {
   const labels: string[] = [];
@@ -26,6 +27,7 @@ export function ProductCompare({ products }: { products: GymProduct[] }) {
 
   return (
     <div id="compare-panel" className="overflow-x-auto rounded-lg border border-stone-200 bg-white">
+      <CompareFit products={products} />
       <table className="w-full min-w-[40rem] border-collapse text-sm">
         <caption className="px-3 py-2 text-left text-sm text-stone-600">
           Published specs for the selected products.

@@ -1,12 +1,14 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { matchesDirectoryFilters } from "@/lib/filters";
-import { RACK_TYPE_LABELS } from "@/lib/format";
-import type { GymProduct, ProductCategory, RackType } from "@/lib/types";
+import { ArtworkImage } from "@/components/ArtworkImage";
 import { ProductCard } from "@/components/ProductCard";
 import { ProductCompare } from "@/components/ProductCompare";
 import { chipClass, fieldClass, secondaryButtonClass } from "@/components/styles";
+import { categoryArt, categoryBlurbs } from "@/lib/artwork";
+import { matchesDirectoryFilters } from "@/lib/filters";
+import { RACK_TYPE_LABELS } from "@/lib/format";
+import type { GymProduct, ProductCategory, RackType } from "@/lib/types";
 
 const RACK_TYPES = Object.keys(RACK_TYPE_LABELS) as RackType[];
 const CATEGORIES: ProductCategory[] = ["rack", "barbell", "bench", "dumbbell"];
@@ -302,6 +304,39 @@ export function DirectoryExplorer({ products }: { products: GymProduct[] }) {
 
   return (
     <div className={`flex flex-col gap-4 ${selected.length > 0 ? "pb-24" : ""}`}>
+      <div className="flex flex-col gap-3">
+        <div role="group" aria-label="Category" className="flex flex-wrap gap-2">
+          <button
+            type="button"
+            aria-pressed={category === "any"}
+            className={chipClass(category === "any")}
+            onClick={() => setCategory("any")}
+          >
+            All
+          </button>
+          {CATEGORIES.map((value) => (
+            <button
+              key={value}
+              type="button"
+              aria-pressed={category === value}
+              className={chipClass(category === value)}
+              onClick={() => setCategory(value)}
+            >
+              <ArtworkImage art={categoryArt[value]} alt="" className="mr-1.5 h-6 w-auto" />
+              {CATEGORY_FILTER_LABELS[value]}
+            </button>
+          ))}
+        </div>
+        {category !== "any" ? (
+          <div className="flex items-center gap-3 rounded-lg border border-stone-200 bg-white p-3">
+            <ArtworkImage
+              art={categoryArt[category]}
+              className="h-16 w-auto shrink-0 rounded-sm border border-stone-200 bg-stone-50"
+            />
+            <p className="text-sm text-stone-600">{categoryBlurbs[category]}</p>
+          </div>
+        ) : null}
+      </div>
       <form
         onSubmit={(event) => {
           event.preventDefault();
@@ -392,21 +427,6 @@ export function DirectoryExplorer({ products }: { products: GymProduct[] }) {
                   aria-invalid={maxBarLengthIn === "invalid"}
                   className={fieldClass}
                 />
-              </label>
-              <label className="flex flex-col gap-1 text-sm">
-                Category
-                <select
-                  value={category}
-                  onChange={(event) => setCategory(event.target.value as "any" | ProductCategory)}
-                  className={fieldClass}
-                >
-                  <option value="any">All</option>
-                  {CATEGORIES.map((value) => (
-                    <option key={value} value={value}>
-                      {CATEGORY_FILTER_LABELS[value]}
-                    </option>
-                  ))}
-                </select>
               </label>
               <label className="flex flex-col gap-1 text-sm">
                 Rack type
