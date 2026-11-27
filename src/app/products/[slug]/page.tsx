@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { DisclosureNote } from "@/components/DisclosureNote";
+import { FitDiagram } from "@/components/FitDiagram";
 import { JsonLd } from "@/components/JsonLd";
 import { OutboundLink } from "@/components/OutboundLink";
 import { ProductLinks } from "@/components/ProductLinks";
@@ -58,6 +59,7 @@ export default async function ProductPage(props: { params: Promise<{ slug: strin
         </p>
       </header>
       <ProductLinks product={product} />
+      <FitDiagram product={product} />
       {dumbbellRows.length > 0 ? (
         <section className="max-w-3xl rounded-lg border border-stone-200 bg-white p-4">
           <h2 className="mb-3 text-xl font-semibold">Dumbbell specs</h2>

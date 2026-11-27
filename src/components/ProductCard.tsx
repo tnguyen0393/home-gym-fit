@@ -1,8 +1,9 @@
 import Link from "next/link";
-import { cardSpecCells, CATEGORY_LABELS, formatDisplayDate, RACK_TYPE_LABELS } from "@/lib/format";
-import type { GymProduct } from "@/lib/types";
+import { FitStrip } from "@/components/FitDiagram";
 import { ProductLinks } from "@/components/ProductLinks";
 import { SpecValue } from "@/components/SpecTable";
+import { cardSpecCells, CATEGORY_LABELS, formatDisplayDate, RACK_TYPE_LABELS } from "@/lib/format";
+import type { GymProduct } from "@/lib/types";
 
 export function ProductCard({
   product,
@@ -55,6 +56,7 @@ export function ProductCard({
           Last verified {formatDisplayDate(product.verification.last_verified_date)}
         </p>
       </header>
+      <FitStrip product={product} />
       <dl className="grid grid-cols-4 gap-2 border-t border-stone-100 pt-3">
         {cardSpecCells(product).map((cell) => (
           <div key={cell.label} className="min-w-0">
@@ -78,7 +80,9 @@ export function ProductCard({
           </span>
         </p>
       ) : null}
-      <ProductLinks product={product} />
+      <div className="mt-auto">
+        <ProductLinks product={product} />
+      </div>
     </article>
   );
 }
