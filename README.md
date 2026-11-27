@@ -16,10 +16,10 @@ Set these environment variables before the build. `NEXT_PUBLIC_*` values are inl
 
 | Variable | Purpose |
 | --- | --- |
-| `NEXT_PUBLIC_SITE_URL` | Canonical origin for `metadataBase`, the sitemap, and JSON-LD. No trailing slash. Defaults to `https://home-gym-fit.pages.dev`. |
-| `NEXT_PUBLIC_REP_AFFILIATE_PARAM` | Query parameter name appended to a REP Fitness manufacturer URL. |
-| `NEXT_PUBLIC_REP_AFFILIATE_VALUE` | Query parameter value. Both REP variables must be non-empty, and the product must have `affiliates.rep_affiliate_eligible: true`. Otherwise the link is the plain `manufacturer_url`. |
-| `NEXT_PUBLIC_AMAZON_TAG` | Amazon Associates tag. A product renders `https://www.amazon.com/dp/${amazon_asin}?tag=${NEXT_PUBLIC_AMAZON_TAG}` only when both the ASIN and the tag are present. |
+| `NEXT_PUBLIC_SITE_URL` | Canonical origin for metadata, the sitemap, robots, Open Graph, and JSON-LD. No trailing slash. Defaults to `https://home-gym-fit.pages.dev`. |
+| `NEXT_PUBLIC_GSC_VERIFICATION` | Google Search Console meta tag content. Omitted when empty. |
+| `NEXT_PUBLIC_REP_AFFILIATE_PARAMS` | Query string from the REP Fitness affiliate dashboard, such as `ref=xyz`. Merged onto eligible `repfitness.com` manufacturer links without replacing existing parameters. |
+| `NEXT_PUBLIC_AMAZON_TAG` | Amazon Associates tag. A product links to `https://www.amazon.com/dp/<ASIN>` when `amazon_asin` is set. `?tag=` is added only when this variable is set. |
 
 See `.env.example`.
 
@@ -106,9 +106,10 @@ npm run validate:data
 npx tsc --noEmit
 npm run lint
 npm run build
+npm run check:seo
 ```
 
-`npm run build` writes the static site to `out/`.
+`npm run build` writes the static site to `out/`. `npm run check:seo` reads that export and fails on duplicate titles or descriptions, a missing canonical, or missing Open Graph tags.
 
 ## Affiliate links
 

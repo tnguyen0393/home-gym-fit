@@ -64,7 +64,7 @@ export function ArticleView({
   headings: ArticleHeading[];
   products: GymProduct[];
 }) {
-  const showAmazon = products.some((product) => amazonLink(product) != null);
+  const showAmazon = products.some((product) => amazonLink(product)?.affiliate === true);
   const directory = directoryCta(article);
   const compare = compareCta(article);
   const art = guideArtwork(
